@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     unixodbc \
     unixodbc-dev \
-    libc-client-dev \
     libkrb5-dev \
     && rm -rf /var/lib/apt/lists/*
 
