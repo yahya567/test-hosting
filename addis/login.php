@@ -9,6 +9,8 @@ if (!$phone || !$password) {
     die("Missing credentials");
 }
 
+error_log("URL: " . MEDIACMS_BASE . '/accounts/login/');
+
 // ---------------- STEP 1: GET CSRF ----------------
 $ch = curl_init(MEDIACMS_BASE . '/accounts/login/');
 curl_setopt_array($ch, [
