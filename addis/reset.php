@@ -1,0 +1,16 @@
+<?php
+require 'admin_api.php';
+
+$phone = $_POST['phone'] ?? '';
+$newPassword = $_POST['new_password'] ?? '';
+
+if (!$phone || !$newPassword) {
+    die("Missing phone or new password");
+}
+
+try {
+    $result = resetPassword($phone, $newPassword);
+    echo "Password reset successful for $phone";
+} catch (Exception $e) {
+    echo "Error resetting password: " . $e->getMessage();
+}

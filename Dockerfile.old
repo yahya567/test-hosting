@@ -1,0 +1,7 @@
+FROM php:8.2-apache
+
+# Install the socket extension
+RUN docker-php-ext-install sockets
+
+# Optional: Enable the extension (though install usually enables it)
+RUN docker-php-ext-enable sockets

@@ -1,0 +1,1890 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Risk_Assessment_Tool_v2 — QHSE Solutions.kz</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root{
+    --bg:#ffffff;
+    --card:#f8f9fa;
+    --accent:#0b4db6; /* тёмно-синий акцент */
+    --accent-2:#06386e;
+    --muted:#6c757d;
+    --low:#4caf50;    /* насыщенный зелёный */
+    --medium:#ff9800; /* насыщенный оранжевый */
+    --high:#f44336;   /* насыщенный красный */
+    --panel:#e9ecef;
+    --btn-success:#4caf50; /* Зелёный для кнопок */
+    --btn-text:#000000; /* Чёрный текст на кнопках */
+  }
+  *{box-sizing:border-box;font-family:Inter,Segoe UI,Arial;margin:0;padding:0}
+  body{background:var(--bg);color:#212529;padding:18px}
+  .wrap{max-width:1400px;margin:0 auto}
+  header{display:flex;align-items:flex-start;gap:18px;margin-bottom:14px}
+  h1{font-size:20px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .subtitle{color:var(--muted);font-size:13px}
+  
+  /* Language selector */
+  .lang-selector{display:flex;gap:8px;margin-left:auto;align-items:center}
+  .lang-btn{padding:6px 10px;border-radius:6px;background:var(--panel);border:1px solid rgba(0,0,0,0.05);cursor:pointer;font-size:12px}
+  .lang-btn.active{background:var(--accent);color:white}
+  
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .tab{padding:8px 10px;border-radius:8px;background:var(--panel);cursor:pointer;color:var(--muted);border:1px solid rgba(0,0,0,0.05)}
+  .tab.active{background:linear-gradient(90deg, rgba(11,77,182,0.12), rgba(6,56,110,0.06));color:var(--accent);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+  .layout{display:grid;grid-template-columns:1fr;gap:14px}
+  .panel{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.05)}
+  label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+  input,select,textarea,button{font-size:13px}
+  input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.1);background:white;color:#212529}
+  textarea{min-height:80px;resize:vertical}
+  .btn{background:var(--accent);color:white;padding:8px 10px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+  
+  /* Улучшенные кнопки - зелёный фон, чёрный текст */
+  .btn.primary{background:var(--btn-success);color:var(--btn-text);border:1px solid rgba(0,0,0,0.1)}
+  .btn.primary:hover{background:#45a049;transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+  
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(0,0,0,0.1)}
+  .btn.small{padding:6px 8px;font-size:12px}
+  .section{margin-bottom:12px}
+  .energy-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .energy-item{display:flex;flex-direction:column;gap:4px;padding:10px;border-radius:8px;background:var(--panel);border:1px solid rgba(0,0,0,0.05)}
+  .energy-name{font-weight:600;color:var(--accent);font-size:13px}
+  .energy-description{font-size:11px;color:var(--muted);line-height:1.3}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chip{padding:6px 10px;border-radius:999px;background:var(--panel);border:1px solid rgba(0,0,0,0.05);cursor:pointer;color:var(--muted)}
+  .chip.sel{background:var(--accent);color:white}
+  .flex{display:flex;gap:8px;align-items:center}
+  .right{margin-left:auto}
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+  th,td{border:1px solid rgba(0,0,0,0.1);padding:8px;text-align:left;vertical-align:top}
+  th{background:rgba(0,0,0,0.02);font-weight:600}
+  .small{color:var(--muted);font-size:13px}
+  .collapsible{background:var(--panel);padding:8px;border-radius:8px;margin-top:8px;border:1px solid rgba(0,0,0,0.05)}
+  .hidden{display:none !important}
+  .step-card{border-radius:8px;padding:10px;border:1px solid rgba(0,0,0,0.05);margin-bottom:8px;background:white}
+  .energy-assessment{display:grid;grid-template-columns:1fr 320px;gap:8px;align-items:start}
+  .assess-row{display:flex;gap:6px;align-items:center}
+  .barrier-list{max-height:120px;overflow:auto;padding:6px;border-radius:6px;background:rgba(0,0,0,0.03)}
+  .notification{position:fixed;top:18px;right:18px;padding:12px 16px;border-radius:8px;background:#f8f9fa;border:1px solid rgba(0,0,0,0.1);z-index:9999}
+  .legend{display:flex;gap:8px;align-items:center;margin-top:8px}
+  .legend .box{width:14px;height:14px;border-radius:4px}
+  .barrier-with-hierarchy { display: grid; grid-template-columns: 1fr 180px auto; gap: 8px; align-items: center; margin-bottom: 8px; padding: 8px; background: white; border-radius: 6px; border: 1px solid rgba(0,0,0,0.1); }
+  .hierarchy-select { min-width: 180px; }
+  .risk-assessment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+  .residual-risk-section { margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); }
+  .stat-card { padding: 12px; border-radius: 8px; background: white; border: 1px solid rgba(0,0,0,0.1); text-align: center; }
+  .stat-value { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+  .stat-label { font-size: 12px; color: var(--muted); }
+
+  /* Matrix styles */
+  .matrix-wrap { overflow:auto; border-radius:8px; padding:8px; background:white; border:1px solid rgba(0,0,0,0.05) }
+  .matrix-table { border-collapse:collapse; width:100%; min-width:720px; }
+  .matrix-table th, .matrix-table td { border:1px solid rgba(0,0,0,0.08); padding:10px; text-align:center; vertical-align:middle; font-size:13px; position:relative; }
+  .matrix-table th.header { background:#f5f7f8; font-weight:700; color:#222; }
+  .matrix-code { font-weight:700; margin-bottom:6px; display:block; }
+  .matrix-desc { font-size:12px; color:var(--muted); line-height:1.2; }
+
+  /* Updated risk colors with gradients */
+  .risk-low { 
+    background: linear-gradient(135deg, #e8f5e8, #4caf50); 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: #1b5e20;
+    font-weight: 600;
+  }
+
+  .risk-medium { 
+    background: linear-gradient(135deg, #fff3e0, #ff9800); 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: #e65100;
+    font-weight: 600;
+  }
+
+  .risk-high { 
+    background: linear-gradient(135deg, #ffebee, #f44336); 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: #b71c1c;
+    font-weight: 600;
+  }
+
+  /* Tooltip (modern, light) */
+  .tooltip {
+    position:fixed;
+    background:#ffffff;
+    color:#111;
+    border-radius:8px;
+    padding:10px 12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.14);
+    font-size:13px;
+    pointer-events:none;
+    opacity:0;
+    transform:translateY(-6px) scale(0.98);
+    transition:opacity .15s ease, transform .15s ease;
+    z-index:3000;
+    max-width:280px;
+  }
+  .tooltip.show { opacity:1; transform:translateY(-10px) scale(1); }
+
+  /* Широкие поля ввода */
+  .wide-input { width: 100%; min-width: 400px; }
+  .wide-textarea { width: 100%; min-height: 100px; }
+  .barrier-input { width: 100%; min-width: 500px; }
+  .barrier-textarea { width: 100%; min-height: 60px; resize: vertical; }
+
+  @media (max-width:1024px){
+    .energy-grid{grid-template-columns:1fr}
+    .wide-input, .barrier-input { min-width: 100%; }
+    .lang-selector{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1 id="app-title">QHSE Solutions.kz — Risk Assessment Tool</h1>
+      <div class="subtitle" id="app-subtitle">Offline · ППР по шагам · 12 энергий · Первичный/остаточный риск · Экспорт Excel</div>
+      <div class="tabs" style="margin-top:10px">
+        <div class="tab active" data-tab="tab-steps" id="tab-steps-btn">ППР / Этапы</div>
+        <div class="tab" data-tab="tab-info" id="tab-info-btn">Информация</div>
+        <div class="tab" data-tab="tab-matrix" id="tab-matrix-btn">Матрица рисков</div>
+        <div class="tab" data-tab="tab-registry" id="tab-registry-btn">Реестр</div>
+        <div class="tab" data-tab="tab-export" id="tab-export-btn">Экспорт</div>
+      </div>
+    </div>
+    <div class="lang-selector">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="kz">KZ</button>
+    </div>
+  </header>
+
+  <div class="layout" style="margin-top:12px">
+    <!-- Steps tab -->
+    <div id="tab-steps" class="panel tab-pane">
+      <h3 id="steps-title">📋 Порядок выполнения работ (ППР) — шаги</h3>
+      <div class="section">
+        <div style="display:flex;gap:8px">
+          <input id="newStepName" placeholder="Название шага (например: Подготовка рабочего места)" class="wide-input"/>
+          <button class="btn primary" onclick="addStep()" id="add-step-btn">➕ Добавить</button>
+        </div>
+        <div class="help small" id="steps-help">Добавляйте шаги вручную, затем для каждого шага добавляйте оценку рисков</div>
+      </div>
+
+      <div id="stepsContainer" class="section"></div>
+    </div>
+
+    <!-- Info tab -->
+    <div id="tab-info" class="panel tab-pane hidden">
+      <h3 id="info-title">📚 Информационный справочник</h3>
+      
+      <div class="section">
+        <h4 id="energy-wheel-title">Колесо энергий</h4>
+        <div id="energyList" class="energy-grid"></div>
+        <div class="help small" id="energy-help">12 источников энергии для идентификации опасностей</div>
+      </div>
+
+      <div class="section">
+        <h4 id="hierarchy-title">Иерархия мер контроля</h4>
+        <div id="hierarchyPanel" class="collapsible"></div>
+      </div>
+    </div>
+
+    <!-- Matrix tab -->
+    <div id="tab-matrix" class="panel tab-pane hidden">
+      <h3 id="matrix-title">📊 Матрица рисков (A–E × 1–5)</h3>
+      <div class="section matrix-wrap">
+        <table class="matrix-table" id="riskMatrix">
+          <thead>
+            <tr>
+              <th class="header" id="matrix-header-severity">Тяжесть \ Вероятность</th>
+              <th class="header" id="matrix-header-a">A<br><small id="matrix-desc-a">Не встречалось в мире</small></th>
+              <th class="header" id="matrix-header-b">B<br><small id="matrix-desc-b">Редко происходило в мире</small></th>
+              <th class="header" id="matrix-header-c">C<br><small id="matrix-desc-c">Происходило иногда в мире, но не в Казахстане</small></th>
+              <th class="header" id="matrix-header-d">D<br><small id="matrix-desc-d">Происходило редко в мире, но регулярно в Казахстане</small></th>
+              <th class="header" id="matrix-header-e">E<br><small id="matrix-desc-e">Происходит регулярно в Казахстане</small></th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody">
+            <!-- rendered by JS -->
+          </tbody>
+        </table>
+        <div class="legend" style="margin-top:12px">
+          <div class="box" style="background:linear-gradient(135deg, #e8f5e8, #4caf50)"></div><span id="legend-low">Низкий риск</span>
+          <div class="box" style="background:linear-gradient(135deg, #fff3e0, #ff9800)"></div><span id="legend-medium">Средний риск</span>
+          <div class="box" style="background:linear-gradient(135deg, #ffebee, #f44336)"></div><span id="legend-high">Высокий риск</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registry -->
+    <div id="tab-registry" class="panel tab-pane hidden">
+      <h3 id="registry-title">📋 Реестр рисков</h3>
+      <div class="section">
+        <table id="registryTable">
+          <thead>
+            <tr>
+              <th id="registry-col1">#</th>
+              <th id="registry-col2">Этап</th>
+              <th id="registry-col3">Энергия</th>
+              <th id="registry-col4">Опасность</th>
+              <th id="registry-col5">Последствие</th>
+              <th id="registry-col6">Первичный</th>
+              <th id="registry-col7">Уровень</th>
+              <th id="registry-col8">Проактивные</th>
+              <th id="registry-col9">Иерархия (Проакт)</th>
+              <th id="registry-col10">Реактивные</th>
+              <th id="registry-col11">Иерархия (Реакт)</th>
+              <th id="registry-col12">Остаточный</th>
+              <th id="registry-col13">Уровень ост.</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="small" style="margin-top:8px" id="registry-help">Клик по строке — открыть редактор оценки.</div>
+      </div>
+    </div>
+
+    <!-- Export -->
+    <div id="tab-export" class="panel tab-pane hidden">
+      <h3 id="export-title">📤 Сохранение / Экспорт</h3>
+      <div class="section">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn primary" onclick="exportExcel()" id="export-excel-btn">📊 Экспорт в Excel</button>
+          <button class="btn ghost" onclick="clearAll()" id="clear-all-btn">🔄 Сбросить всё</button>
+        </div>
+        <div class="small" style="margin-top:8px" id="export-help">Экспортируйте данные в Excel или сбросьте все данные</div>
+      </div>
+      <div class="section">
+        <h4 id="analytics-title">📈 Аналитика рисков</h4>
+        <div class="stats-grid" id="analyticsStats"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright" style="text-align:center;margin-top:18px;color:var(--muted);font-size:12px" id="copyright">
+    © 2025 QHSE Solutions. All rights reserved.
+  </div>
+</div>
+
+<!-- Компактная кнопка возврата на главную -->
+<div id="home-button" style="position:fixed;bottom:20px;right:20px;z-index:100;transition:all 0.3s ease">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--accent);color:white;border-radius:10px;text-decoration:none;font-size:12px;font-weight:600;box-shadow:0 4px 12px rgba(11,77,182,0.2);border:1px solid rgba(255,255,255,0.1);transition:all 0.2s ease">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l-7-7m7 7v13"/>
+    </svg>
+    <span id="home-button-text">Главная</span>
+  </a>
+</div>
+
+<!-- notification and tooltip -->
+<div id="notif" class="notification hidden"></div>
+<div id="matrixTooltip" class="tooltip" aria-hidden="true"></div>
+
+<!-- datalist for consequences -->
+<datalist id="consequenceSuggestions"></datalist>
+
+<script>
+/* ===========================
+   Многоязычность
+   =========================== */
+const TRANSLATIONS = {
+  ru: {
+    // Общие
+    appTitle: "QHSE Solutions.kz — Инструмент оценки рисков",
+    appSubtitle: "Offline · ППР по шагам · 12 энергий · Первичный/остаточный риск · Экспорт Excel",
+    copyright: "© 2025 QHSE Solutions. Все права защищены.",
+    homeButtonText: "Главная",
+    
+    // Вкладки
+    tabSteps: "ППР / Этапы",
+    tabInfo: "Информация",
+    tabMatrix: "Матрица рисков",
+    tabRegistry: "Реестр",
+    tabExport: "Экспорт",
+    
+    // Шаги
+    stepsTitle: "📋 Порядок выполнения работ (ППР) — шаги",
+    addStepBtn: "➕ Добавить",
+    stepsHelp: "Добавляйте шаги вручную, затем для каждого шага добавляйте оценку рисков",
+    stepNamePlaceholder: "Название шага (например: Подготовка рабочего места)",
+    
+    // Кнопки в карточке шага
+    analyzeBtn: "Анализ",
+    editBtn: "✎",
+    deleteBtn: "🗑",
+    
+    // Информация
+    infoTitle: "📚 Информационный справочник",
+    energyWheelTitle: "Колесо энергий",
+    energyHelp: "12 источников энергии для идентификации опасностей",
+    hierarchyTitle: "Иерархия мер контроля",
+    
+    // Матрица
+    matrixTitle: "📊 Матрица рисков (A–E × 1–5)",
+    matrixSeverity: "Тяжесть \\ Вероятность",
+    matrixA: "Не встречалось в мире",
+    matrixB: "Редко происходило в мире",
+    matrixC: "Происходило иногда в мире, но не в Казахстане",
+    matrixD: "Происходило редко в мире, но регулярно в Казахстане",
+    matrixE: "Происходит регулярно в Казахстане",
+    legendLow: "Низкий риск",
+    legendMedium: "Средний риск",
+    legendHigh: "Высокий риск",
+    
+    // Реестр
+    registryTitle: "📋 Реестр рисков",
+    registryHelp: "Клик по строке — открыть редактор оценки.",
+    registryCols: ["#", "Этап", "Энергия", "Опасность", "Последствие", "Первичный", "Уровень", 
+                   "Проактивные", "Иерархия (Проакт)", "Реактивные", "Иерархия (Реакт)", 
+                   "Остаточный", "Уровень ост."],
+    
+    // Экспорт
+    exportTitle: "📤 Сохранение / Экспорт",
+    analyticsTitle: "📈 Аналитика рисков",
+    exportExcelBtn: "📊 Экспорт в Excel",
+    clearAllBtn: "🔄 Сбросить всё",
+    exportHelp: "Экспортируйте данные в Excel или сбросьте все данные",
+    
+    // Оценка рисков
+    addAssessmentBtn: "Добавить оценку",
+    editAssessmentBtn: "Редактировать",
+    removeAssessmentBtn: "Удалить",
+    hazardLabel: "Название опасности",
+    hazardPlaceholder: "Например: Падение с высоты",
+    consequenceLabel: "Последствие (обязательно)",
+    proactiveLabel: "Проактивные барьеры (предотвращение)",
+    reactiveLabel: "Реактивные барьеры (смягчение)",
+    addBarrierBtn: "Добавить",
+    preBarrierPlaceholder: "Добавить профилактический барьер",
+    postBarrierPlaceholder: "Добавить смягчающий барьер",
+    severityLabel: "Оценка тяжести",
+    probabilityLabel: "Оценка вероятности",
+    calculatedRisk: "Расчетный риск (первичный):",
+    saveRiskBtn: "Сохранить оценку риска",
+    autoBarriersBtn: "Авто-предложения барьеров",
+    residualTitle: "Остаточный риск",
+    residualSeverity: "Остаточная тяжесть",
+    residualProbability: "Остаточная вероятность",
+    residualRisk: "Остаточный риск:",
+    saveResidualBtn: "Сохранить остаточный риск",
+    closeBtn: "Закрыть",
+    
+    // Уведомления
+    enterStepName: "Введите название шага",
+    removeStepConfirm: "Удалить шаг и все связанные оценки?",
+    stepAdded: "Шаг добавлен",
+    stepRemoved: "Шаг удалён",
+    stepNamePrompt: "Название шага",
+    stepDescPrompt: "Описание шага",
+    noSteps: "Нет добавленных шагов. Добавьте шаги вручную.",
+    noAssessments: "Нет оценок рисков. Добавьте оценки на вкладке 'ППР / Этапы'.",
+    noDataExport: "Нет данных для экспорта",
+    
+    // Матрица рисков - описания тяжести
+    severity5: "Групповая гибель",
+    severity4: "Один смертельный случай",
+    severity3: "Тяжёлая травма или вред здоровью",
+    severity2: "Травма или вред здоровья средней тяжести",
+    severity1: "Лёгкая травма или незначительный вред здоровью",
+    
+    // Иерархия мер контроля
+    hierarchy: [
+      {
+        level: "1. Устранение",
+        description: "Автоматизация процесса, замена опасного материала на безопасный"
+      },
+      {
+        level: "2. Замена",
+        description: "Применение менее опасных веществ или технологий, использование безопасных альтернатив"
+      },
+      {
+        level: "3. Инженерные меры",
+        description: "Ограждения, вентиляция, блокировки, сигнализация, защитные устройства, аварийные выключатели, технические средства безопасности"
+      },
+      {
+        level: "4. Административные меры",
+        description: "Инструктажи, процедуры, обучение, надзор, организационные меры по снижению риска"
+      },
+      {
+        level: "5. СИЗ",
+        description: "Каски, перчатки, респираторы, защитные очки и другие СИЗ"
+      }
+    ],
+    
+    // Уровни последствий
+    consequenceLevels: [
+      { level: 1, description: "Лёгкая травма или незначительный вред здоровью" },
+      { level: 2, description: "Травма или вред здоровья средней тяжести" },
+      { level: 3, description: "Тяжёлая травма или вред здоровью" },
+      { level: 4, description: "Один смертельный случай" },
+      { level: 5, description: "Групповая гибель" }
+    ],
+    
+    // Уровни вероятности
+    probabilityLevels: [
+      { level: "A", label: "1. Не встречалось в мире", description: "Не встречалось в мире" },
+      { level: "B", label: "2. Редко происходило в мире", description: "Редко происходило в мире" },
+      { level: "C", label: "3. Происходило иногда в мире, но не в Казахстане", description: "Происходило иногда в мире, но не в Казахстане" },
+      { level: "D", label: "4. Происходило редко в мире, но регулярно в Казахстане", description: "Происходило редко в мире, но регулярно в Казахстане" },
+      { level: "E", label: "5. Происходит регулярно в Казахстане", description: "Происходит регулярно в Казахстане" }
+    ]
+  },
+  
+  en: {
+    // General
+    appTitle: "QHSE Solutions.kz — Risk Assessment Tool",
+    appSubtitle: "Offline · Step-by-step work plan · 12 energies · Primary/residual risk · Excel export",
+    copyright: "© 2025 QHSE Solutions. All rights reserved.",
+    homeButtonText: "Home",
+    
+    // Tabs
+    tabSteps: "Work Plan / Steps",
+    tabInfo: "Information",
+    tabMatrix: "Risk Matrix",
+    tabRegistry: "Registry",
+    tabExport: "Export",
+    
+    // Steps
+    stepsTitle: "📋 Work Execution Plan — Steps",
+    addStepBtn: "➕ Add",
+    stepsHelp: "Add steps manually, then add risk assessments for each step",
+    stepNamePlaceholder: "Step name (e.g.: Workplace preparation)",
+    
+    // Step card buttons
+    analyzeBtn: "Analysis",
+    editBtn: "✎",
+    deleteBtn: "🗑",
+    
+    // Information
+    infoTitle: "📚 Information Reference",
+    energyWheelTitle: "Energy Wheel",
+    energyHelp: "12 energy sources for hazard identification",
+    hierarchyTitle: "Hierarchy of Controls",
+    
+    // Matrix
+    matrixTitle: "📊 Risk Matrix (A–E × 1–5)",
+    matrixSeverity: "Severity \\ Probability",
+    matrixA: "Never occurred worldwide",
+    matrixB: "Rarely occurred worldwide",
+    matrixC: "Occurred sometimes worldwide, but not in Kazakhstan",
+    matrixD: "Rarely occurred worldwide, but regularly in Kazakhstan",
+    matrixE: "Occurs regularly in Kazakhstan",
+    legendLow: "Low risk",
+    legendMedium: "Medium risk",
+    legendHigh: "High risk",
+    
+    // Registry
+    registryTitle: "📋 Risk Registry",
+    registryHelp: "Click on a row to open assessment editor.",
+    registryCols: ["#", "Step", "Energy", "Hazard", "Consequence", "Primary", "Level", 
+                   "Proactive", "Hierarchy (Proactive)", "Reactive", "Hierarchy (Reactive)", 
+                   "Residual", "Residual Level"],
+    
+    // Export
+    exportTitle: "📤 Save / Export",
+    analyticsTitle: "📈 Risk Analytics",
+    exportExcelBtn: "📊 Export to Excel",
+    clearAllBtn: "🔄 Reset all",
+    exportHelp: "Export data to Excel or reset all data",
+    
+    // Risk assessment
+    addAssessmentBtn: "Add assessment",
+    editAssessmentBtn: "Edit",
+    removeAssessmentBtn: "Remove",
+    hazardLabel: "Hazard name",
+    hazardPlaceholder: "e.g.: Fall from height",
+    consequenceLabel: "Consequence (required)",
+    proactiveLabel: "Proactive barriers (prevention)",
+    reactiveLabel: "Reactive barriers (mitigation)",
+    addBarrierBtn: "Add",
+    preBarrierPlaceholder: "Add preventive barrier",
+    postBarrierPlaceholder: "Add mitigation barrier",
+    severityLabel: "Severity assessment",
+    probabilityLabel: "Probability assessment",
+    calculatedRisk: "Calculated risk (primary):",
+    saveRiskBtn: "Save risk assessment",
+    autoBarriersBtn: "Auto-suggest barriers",
+    residualTitle: "Residual risk",
+    residualSeverity: "Residual severity",
+    residualProbability: "Residual probability",
+    residualRisk: "Residual risk:",
+    saveResidualBtn: "Save residual risk",
+    closeBtn: "Close",
+    
+    // Notifications
+    enterStepName: "Enter step name",
+    removeStepConfirm: "Delete step and all related assessments?",
+    stepAdded: "Step added",
+    stepRemoved: "Step removed",
+    stepNamePrompt: "Step name",
+    stepDescPrompt: "Step description",
+    noSteps: "No steps added. Add steps manually.",
+    noAssessments: "No risk assessments. Add assessments in 'Work Plan / Steps' tab.",
+    noDataExport: "No data to export",
+    
+    // Матрица рисков - описания тяжести
+    severity5: "Group fatality",
+    severity4: "One fatal case",
+    severity3: "Severe injury or health damage",
+    severity2: "Moderate injury or health damage",
+    severity1: "Minor injury or insignificant health damage",
+    
+    // Иерархия мер контроля
+    hierarchy: [
+      {
+        level: "1. Elimination",
+        description: "Process automation, replacement of hazardous material with safe material"
+      },
+      {
+        level: "2. Substitution",
+        description: "Use of less hazardous substances or technologies, use of safe alternatives"
+      },
+      {
+        level: "3. Engineering controls",
+        description: "Guarding, ventilation, lockout/tagout, alarms, protective devices, emergency stop buttons, technical safety devices"
+      },
+      {
+        level: "4. Administrative controls",
+        description: "Briefings, procedures, training, supervision, organizational measures to reduce risk"
+      },
+      {
+        level: "5. PPE",
+        description: "Helmets, gloves, respirators, safety glasses and other personal protective equipment"
+      }
+    ],
+    
+    // Уровни последствий
+    consequenceLevels: [
+      { level: 1, description: "Minor injury or insignificant health damage" },
+      { level: 2, description: "Moderate injury or health damage" },
+      { level: 3, description: "Severe injury or health damage" },
+      { level: 4, description: "One fatal case" },
+      { level: 5, description: "Group fatality" }
+    ],
+    
+    // Уровни вероятности
+    probabilityLevels: [
+      { level: "A", label: "1. Never occurred worldwide", description: "Never occurred worldwide" },
+      { level: "B", label: "2. Rarely occurred worldwide", description: "Rarely occurred worldwide" },
+      { level: "C", label: "3. Occurred sometimes worldwide, but not in Kazakhstan", description: "Occurred sometimes worldwide, but not in Kazakhstan" },
+      { level: "D", label: "4. Rarely occurred worldwide, but regularly in Kazakhstan", description: "Rarely occurred worldwide, but regularly in Kazakhstan" },
+      { level: "E", label: "5. Occurs regularly in Kazakhstan", description: "Occurs regularly in Kazakhstan" }
+    ]
+  },
+  
+  kz: {
+    // Жалпы
+    appTitle: "QHSE Solutions.kz — Тәуекелді бағалау құралы",
+    appSubtitle: "Офлайн · Сатылар бойынша жұмыс жоспары · 12 энергия · Бастапқы/қалдық тәуекел · Excel экспорты",
+    copyright: "© 2025 QHSE Solutions. Барлық құқықтар қорғалған.",
+    homeButtonText: "Басты бет",
+    
+    // Қойындылар
+    tabSteps: "ЖЖЖ / Сатылар",
+    tabInfo: "Ақпарат",
+    tabMatrix: "Тәуекел матрицасы",
+    tabRegistry: "Тіркеу",
+    tabExport: "Экспорт",
+    
+    // Сатылар
+    stepsTitle: "📋 Жұмысты орындау тәртібі (ЖЖЖ) — сатылар",
+    addStepBtn: "➕ Қосу",
+    stepsHelp: "Сатыларды қолмен қосыңыз, содан кейін әр сатқа тәуекел бағалауын қосыңыз",
+    stepNamePlaceholder: "Саты атауы (мысалы: Жұмыс орнын дайындау)",
+    
+    // Саты карточкасы түймелері
+    analyzeBtn: "Талдау",
+    editBtn: "✎",
+    deleteBtn: "🗑",
+    
+    // Ақпарат
+    infoTitle: "📚 Ақпараттық анықтама",
+    energyWheelTitle: "Энергия доңғалағы",
+    energyHelp: "Қауіпті анықтау үшін 12 энергия көзі",
+    hierarchyTitle: "Басқару шараларының иерархиясы",
+    
+    // Матрица
+    matrixTitle: "📊 Тәуекел матрицасы (A–E × 1–5)",
+    matrixSeverity: "Ауырлық \\ Ықтималдық",
+    matrixA: "Әлемде ешқашан болған жоқ",
+    matrixB: "Әлемде сирек болды",
+    matrixC: "Әлемде кейде болды, бірақ Қазақстанда емес",
+    matrixD: "Әлемде сирек болды, бірақ Қазақстанда үнемі",
+    matrixE: "Қазақстанда үнемі болады",
+    legendLow: "Төмен тәуекел",
+    legendMedium: "Орташа тәуекел",
+    legendHigh: "Жоғары тәуекел",
+    
+    // Тіркеу
+    registryTitle: "📋 Тәуекел тіркеуі",
+    registryHelp: "Жолды басу - бағалау редакторын ашу.",
+    registryCols: ["№", "Саты", "Энергия", "Қауіп", "Салдар", "Бастапқы", "Деңгей", 
+                   "Проактивті", "Иерархия (Проактивті)", "Реактивті", "Иерархия (Реактивті)", 
+                   "Қалдық", "Қалдық деңгейі"],
+    
+    // Экспорт
+    exportTitle: "📤 Сақтау / Экспорт",
+    analyticsTitle: "📈 Тәуекел аналитикасы",
+    exportExcelBtn: "📊 Excel-ге экспорт",
+    clearAllBtn: "🔄 Барлығын қалпына келтіру",
+    exportHelp: "Деректерді Excel-ге экспорттаңыз немесе барлық деректерді қалпына келтіріңіз",
+    
+    // Тәуекелді бағалау
+    addAssessmentBtn: "Бағалау қосу",
+    editAssessmentBtn: "Өңдеу",
+    removeAssessmentBtn: "Жою",
+    hazardLabel: "Қауіп атауы",
+    hazardPlaceholder: "Мысалы: Биіктіктен құлау",
+    consequenceLabel: "Салдар (міндетті)",
+    proactiveLabel: "Проактивті кедергілер (алдын алу)",
+    reactiveLabel: "Реактивті кедергілер (жеңілдету)",
+    addBarrierBtn: "Қосу",
+    preBarrierPlaceholder: "Алдын алу кедергісін қосу",
+    postBarrierPlaceholder: "Жеңілдету кедергісін қосу",
+    severityLabel: "Ауырлық бағасы",
+    probabilityLabel: "Ықтималдық бағасы",
+    calculatedRisk: "Есептелген тәуекел (бастапқы):",
+    saveRiskBtn: "Тәуекел бағалауын сақтау",
+    autoBarriersBtn: "Кедергілерді авто-ұсыну",
+    residualTitle: "Қалдық тәуекел",
+    residualSeverity: "Қалдық ауырлық",
+    residualProbability: "Қалдық ықтималдық",
+    residualRisk: "Қалдық тәуекел:",
+    saveResidualBtn: "Қалдық тәуекелді сақтау",
+    closeBtn: "Жабу",
+    
+    // Хабарландырулар
+    enterStepName: "Саты атауын енгізіңіз",
+    removeStepConfirm: "Сатыны және барлық байланысты бағалауларды жойыңыз?",
+    stepAdded: "Саты қосылды",
+    stepRemoved: "Саты жойылды",
+    stepNamePrompt: "Саты атауы",
+    stepDescPrompt: "Саты сипаттамасы",
+    noSteps: "Қосылған сатылар жоқ. Сатыларды қолмен қосыңыз.",
+    noAssessments: "Тәуекел бағалаулары жоқ. 'ЖЖЖ / Сатылар' қойындысында бағалауларды қосыңыз.",
+    noDataExport: "Экспорттау үшін деректер жоқ",
+    
+    // Матрица рисков - описания тяжести
+    severity5: "Топтық өлім",
+    severity4: "Бір өлім жағдайы",
+    severity3: "Ауыр жарақат немесе денсаулыққа зиян",
+    severity2: "Орташа дәрежедегі жарақат немесе денсаулыққа зиян",
+    severity1: "Жеңіл жарақат немесе елеусіз денсаулыққа зиян",
+    
+    // Иерархия мер контроля
+    hierarchy: [
+      {
+        level: "1. Жою",
+        description: "Процесті автоматтандыру, қауіпті материалды қауіпсіз материалға ауыстыру"
+      },
+      {
+        level: "2. Ауыстыру",
+        description: "Аз қауіпті заттарды немесе технологияларды қолдану, қауіпсіз альтернативаларды пайдалану"
+      },
+      {
+        level: "3. Инженерлік шаралар",
+        description: "Қорғау, желдету, бұғаттау/белгілеу, дабылдар, қорғаныс құрылғылары, авариялық тоқтату түймелері, техникалық қауіпсіздік құрылғылары"
+      },
+      {
+        level: "4. Әкімшілік шаралар",
+        description: "Нұсқаулар, процедуралар, оқыту, қадағалау, тәуекелді азайтуға бағытталған ұйымдастыру шаралары"
+      },
+      {
+        level: "5. ЖЖҚ",
+        description: "Дөңгелек, қолғап, респираторлар, көзілдіріктер және басқа да жеке қорғаныс құралдары"
+      }
+    ],
+    
+    // Уровни последствий
+    consequenceLevels: [
+      { level: 1, description: "Жеңіл жарақат немесе елеусіз денсаулыққа зиян" },
+      { level: 2, description: "Орташа дәрежедегі жарақат немесе денсаулыққа зиян" },
+      { level: 3, description: "Ауыр жарақат немесе денсаулыққа зиян" },
+      { level: 4, description: "Бір өлім жағдайы" },
+      { level: 5, description: "Топтық өлім" }
+    ],
+    
+    // Уровни вероятности
+    probabilityLevels: [
+      { level: "A", label: "1. Әлемде ешқашан болған жоқ", description: "Әлемде ешқашан болған жоқ" },
+      { level: "B", label: "2. Әлемде сирек болды", description: "Әлемде сирек болды" },
+      { level: "C", label: "3. Әлемде кейде болды, бірақ Қазақстанда емес", description: "Әлемде кейде болды, бірақ Қазақстанда емес" },
+      { level: "D", label: "4. Әлемде сирек болды, бірақ Қазақстанда үнемі", description: "Әлемде сирек болды, бірақ Қазақстанда үнемі" },
+      { level: "E", label: "5. Қазақстанда үнемі болады", description: "Қазақстанда үнемі болады" }
+    ]
+  }
+};
+
+let currentLang = 'ru';
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  const t = TRANSLATIONS[lang];
+  
+  // Обновляем элементы интерфейса
+  document.getElementById('app-title').textContent = t.appTitle;
+  document.getElementById('app-subtitle').textContent = t.appSubtitle;
+  document.getElementById('copyright').textContent = t.copyright;
+  
+  // Вкладки
+  document.getElementById('tab-steps-btn').textContent = t.tabSteps;
+  document.getElementById('tab-info-btn').textContent = t.tabInfo;
+  document.getElementById('tab-matrix-btn').textContent = t.tabMatrix;
+  document.getElementById('tab-registry-btn').textContent = t.tabRegistry;
+  document.getElementById('tab-export-btn').textContent = t.tabExport;
+  
+  // Шаги
+  document.getElementById('steps-title').textContent = t.stepsTitle;
+  document.getElementById('add-step-btn').textContent = t.addStepBtn;
+  document.getElementById('steps-help').textContent = t.stepsHelp;
+  document.getElementById('newStepName').placeholder = t.stepNamePlaceholder;
+  
+  // Информация
+  document.getElementById('info-title').textContent = t.infoTitle;
+  document.getElementById('energy-wheel-title').textContent = t.energyWheelTitle;
+  document.getElementById('energy-help').textContent = t.energyHelp;
+  document.getElementById('hierarchy-title').textContent = t.hierarchyTitle;
+  
+  // Матрица
+  document.getElementById('matrix-title').textContent = t.matrixTitle;
+  document.getElementById('matrix-header-severity').textContent = t.matrixSeverity;
+  document.getElementById('matrix-desc-a').textContent = t.matrixA;
+  document.getElementById('matrix-desc-b').textContent = t.matrixB;
+  document.getElementById('matrix-desc-c').textContent = t.matrixC;
+  document.getElementById('matrix-desc-d').textContent = t.matrixD;
+  document.getElementById('matrix-desc-e').textContent = t.matrixE;
+  document.getElementById('legend-low').textContent = t.legendLow;
+  document.getElementById('legend-medium').textContent = t.legendMedium;
+  document.getElementById('legend-high').textContent = t.legendHigh;
+  
+  // Реестр
+  document.getElementById('registry-title').textContent = t.registryTitle;
+  document.getElementById('registry-help').textContent = t.registryHelp;
+  t.registryCols.forEach((col, i) => {
+    document.getElementById(`registry-col${i+1}`).textContent = col;
+  });
+  
+  // Экспорт
+  document.getElementById('export-title').textContent = t.exportTitle;
+  document.getElementById('analytics-title').textContent = t.analyticsTitle;
+  document.getElementById('export-excel-btn').textContent = t.exportExcelBtn;
+  document.getElementById('clear-all-btn').textContent = t.clearAllBtn;
+  document.getElementById('export-help').textContent = t.exportHelp;
+  
+  // Обновляем языковые кнопки
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Обновляем текст кнопки "Главная"
+  updateHomeButtonLanguage();
+  
+  // Перерисовываем интерфейс с новым языком
+  renderStepsUI();
+  updateRegistryTable();
+  renderEnergyList();
+  renderHierarchyPanel();
+  renderMatrix();
+  updateAnalytics();
+}
+
+// Функция обновления текста кнопки "Главная"
+function updateHomeButtonLanguage() {
+  const t = TRANSLATIONS[currentLang];
+  document.getElementById('home-button-text').textContent = t.homeButtonText;
+}
+
+/* ===========================
+   Data
+   =========================== */
+
+const ENERGIES = [
+  { key: 'Gravity', ru: 'Гравитация', en: 'Gravity', kz: 'Гравитация', description: 'Сила притяжения', examples: 'падающие предметы, падение человека' },
+  { key: 'Motion', ru: 'Движение', en: 'Motion', kz: 'Қозғалыс', description: 'Перемещение тел и потоков', examples: 'транспорт, подвижное оборудование' },
+  { key: 'Mechanical', ru: 'Механическая энергия', en: 'Mechanical energy', kz: 'Механикалық энергия', description: 'Движущиеся части, сила', examples: 'вращение, вибрация, зажатие' },
+  { key: 'Electrical', ru: 'Электричество', en: 'Electrical', kz: 'Электр', description: 'Электрические сети и оборудование', examples: 'напряжение, кабели' },
+  { key: 'Pressure', ru: 'Давление', en: 'Pressure', kz: 'Қысым', description: 'Газ/жидкость под давлением', examples: 'баллоны, трубопроводы' },
+  { key: 'Temperature', ru: 'Температура', en: 'Temperature', kz: 'Температура', description: 'Горячие/холодные среды', examples: 'пар, горячие поверхности' },
+  { key: 'Chemical', ru: 'Химическая энергия', en: 'Chemical energy', kz: 'Химиялық энергия', description: 'Опасные вещества', examples: ' токсичные пары, кислоты' },
+  { key: 'Biological', ru: 'Биологическая энергия', en: 'Biological energy', kz: 'Биологиялық энергия', description: 'Организмы и биоматериалы', examples: 'бактерии, животные' },
+  { key: 'Radiation', ru: 'Радиация', en: 'Radiation', kz: 'Радиация', description: 'Излучение', examples: 'лазеры, рентген' },
+  { key: 'Sound', ru: 'Звук', en: 'Sound', kz: 'Дыбыс', description: 'Шум и ударные волны', examples: 'шум оборудования' },
+  { key: 'Ergonomics', ru: 'Эргономика', en: 'Ergonomics', kz: 'Эргономика', description: 'Поза, подъемы, повтор', examples: 'подъем тяжестей' },
+  { key: 'Psychological', ru: 'Психологические факторы', en: 'Psychological factors', kz: 'Психологиялық факторлар', description: 'Стресс и когнитивные факторы', examples: 'стресс, усталость' }
+];
+
+// Иерархия мер контроля теперь берется из TRANSLATIONS
+function getHierarchyControls() {
+  return TRANSLATIONS[currentLang].hierarchy;
+}
+
+const CONSEQUENCE_SUGGESTIONS_BY_ENERGY = {
+  Gravity: ["Падение — травма головы, перелом","Падение предметов — ушиб, перелом"],
+  Electrical: ["Поражение током — ожог, остановка сердца","Короткое замыкание — пожар"],
+  Chemical: ["Химический ожог — повреждение кожи, интоксикация"],
+  Mechanical: ["Зажатие — перелом, ампутация","Удар движущимся элементом — травма"],
+  Temperature: ["Ожог — повреждение кожи","Ожог паром — термические травмы"],
+  Pressure: ["Разрыв сосуда — осколки, разлив горячей/токсичной жидкости"],
+  Biological: ["Инфекция — заболевание персонала"],
+  Radiation: ["Излучение — ожог, долгосрочные эффекты"],
+  Sound: ["Потеря слуха — снижение качества работы"],
+  Ergonomics: ["Тендинит, боли в спине"],
+  Psychological: ["Стресс — снижение внимания, ошибки"],
+  Motion: ["Наезд/столкновение — травмы"],
+  default: ["Травма — ушиб, перелом","Повреждение оборудования","Пожар — ожоги, материальные потери"]
+};
+
+// Уровни последствий теперь берутся из TRANSLATIONS
+function getConsequenceLevels() {
+  return TRANSLATIONS[currentLang].consequenceLevels;
+}
+
+// Уровни вероятности теперь берутся из TRANSLATIONS
+function getProbabilityLevels() {
+  return TRANSLATIONS[currentLang].probabilityLevels;
+}
+
+/* ===========================
+   Matrix definitions (explicit mapping)
+   Keys formatted as `${severity}${prob}` e.g. '5A', '3C' etc.
+   Each maps to level and description matching your table.
+   =========================== */
+
+const MATRIX_DEFS = {
+  // 5
+  "5A": { level: "Средний", note: "Не встречалось в мире" },
+  "5B": { level: "Высокий", note: "Редко происходило в мире" },
+  "5C": { level: "Высокий", note: "Происходило иногда в мире, но не в Казахстане" },
+  "5D": { level: "Высокий", note: "Происходило редко в мире, но регулярно в Казахстане" },
+  "5E": { level: "Высокий", note: "Происходит регулярно в Казахстане" },
+
+  // 4
+  "4A": { level: "Средний", note: "Не встречалось в мире" },
+  "4B": { level: "Средний", note: "Редко происходило в мире" },
+  "4C": { level: "Высокий", note: "Происходило иногда в мире, но не в Казахстане" },
+  "4D": { level: "Высокий", note: "Происходило редко в мире, но регулярно в Казахстане" },
+  "4E": { level: "Высокий", note: "Происходит регулярно в Казахстане" },
+
+  // 3
+  "3A": { level: "Низкий", note: "Не встречалось в мире" },
+  "3B": { level: "Средний", note: "Редко происходило в мире" },
+  "3C": { level: "Средний", note: "Происходило иногда в мире, но не в Казахстане" },
+  "3D": { level: "Высокий", note: "Происходило редко в мире, но регулярно в Казахстане" },
+  "3E": { level: "Высокий", note: "Происходит регулярно в Казахстане" },
+
+  // 2
+  "2A": { level: "Низкий", note: "Не встречалось в мире" },
+  "2B": { level: "Низкий", note: "Редко происходило в мире" },
+  "2C": { level: "Средний", note: "Происходило иногда в мире, но не в Казахстане" },
+  "2D": { level: "Средний", note: "Происходило редко в мире, но регулярно в Казахстане" },
+  "2E": { level: "Высокий", note: "Происходит регулярно в Казахстане" },
+
+  // 1
+  "1A": { level: "Низкий", note: "Не встречалось в мире" },
+  "1B": { level: "Низкий", note: "Редко происходило в мире" },
+  "1C": { level: "Низкий", note: "Происходило иногда в мире, но не в Казахстане" },
+  "1D": { level: "Средний", note: "Происходило редко в мире, но регулярно в Казахстане" },
+  "1E": { level: "Средний", note: "Происходит регулярно в Казахстане" }
+};
+
+// Обновляем описания матрицы для разных языков
+function getMatrixNote(severity, probLetter) {
+  const t = TRANSLATIONS[currentLang];
+  const notes = {
+    ru: {
+      "A": "Не встречалось в мире",
+      "B": "Редко происходило в мире",
+      "C": "Происходило иногда в мире, но не в Казахстане",
+      "D": "Происходило редко в мире, но регулярно в Казахстане",
+      "E": "Происходит регулярно в Казахстане"
+    },
+    en: {
+      "A": "Never occurred worldwide",
+      "B": "Rarely occurred worldwide",
+      "C": "Occurred sometimes worldwide, but not in Kazakhstan",
+      "D": "Rarely occurred worldwide, but regularly in Kazakhstan",
+      "E": "Occurs regularly in Kazakhstan"
+    },
+    kz: {
+      "A": "Әлемде ешқашан болған жоқ",
+      "B": "Әлемде сирек болды",
+      "C": "Әлемде кейде болды, бірақ Қазақстанда емес",
+      "D": "Әлемде сирек болды, бірақ Қазақстанда үнемі",
+      "E": "Қазақстанда үнемі болады"
+    }
+  };
+  
+  const note = notes[currentLang]?.[probLetter] || "";
+  const level = getMatrixInfo(severity, probLetter).level;
+  
+  // Переводим уровень риска
+  const levelTranslations = {
+    ru: {"Низкий": "Низкий", "Средний": "Средний", "Высокий": "Высокий"},
+    en: {"Низкий": "Low", "Средний": "Medium", "Высокий": "High"},
+    kz: {"Низкий": "Төмен", "Средний": "Орташа", "Высокий": "Жоғары"}
+  };
+  
+  const translatedLevel = levelTranslations[currentLang]?.[level] || level;
+  
+  return { level: translatedLevel, note: note };
+}
+
+function getMatrixInfo(severity, probLetter){
+  const key = `${severity}${probLetter}`;
+  return MATRIX_DEFS[key] || { level: "Н/Д", note: "" };
+}
+
+/* ===========================
+   State & storage
+   =========================== */
+const STORAGE_KEY = 'qhs_risk_assessment_v2_final_matrix';
+let state = { steps: [], assessments: [] };
+
+/* ===========================
+   Helpers
+   =========================== */
+const $ = id => document.getElementById(id);
+function uid(prefix='id'){ return prefix + '_' + Date.now().toString(36) + Math.floor(Math.random()*999).toString(36); }
+function notify(msg, type='info'){
+  const n = $('notif'); n.textContent = msg; n.className = 'notification'; n.style.borderLeft = '4px solid ' + (type==='success'?'#16a34a':(type==='error'?'#ef4444':(type==='warn'?'#f59e0b':'var(--accent)')));
+  n.classList.remove('hidden'); setTimeout(()=>n.classList.add('hidden'), 2600);
+}
+function escapeHtml(str){ if(!str) return ''; return String(str).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+
+/* ===========================
+   Initialization
+   =========================== */
+document.addEventListener('DOMContentLoaded', init);
+
+function init(){
+  // Настройка языковых переключателей
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const lang = e.target.getAttribute('data-lang');
+      changeLanguage(lang);
+    });
+  });
+  
+  renderEnergyList();
+  renderHierarchyPanel();
+  bindTabs();
+  loadFromLocal();
+  renderStepsUI();
+  renderMatrix();
+  updateRegistryTable();
+  updateAnalytics();
+  
+  // Настройка кнопки "Главная"
+  setupHomeButton();
+  
+  // Показываем первую вкладку
+  showTab('tab-steps');
+}
+
+/* Настройка кнопки "Главная" */
+function setupHomeButton() {
+  const homeBtn = document.getElementById('home-button');
+  if(homeBtn) {
+    const link = homeBtn.querySelector('a');
+    link.addEventListener('mouseenter', () => {
+      homeBtn.style.transform = 'translateY(-2px)';
+      link.style.boxShadow = '0 6px 16px rgba(11,77,182,0.3)';
+      link.style.background = 'var(--accent-2)';
+    });
+    link.addEventListener('mouseleave', () => {
+      homeBtn.style.transform = 'translateY(0)';
+      link.style.boxShadow = '0 4px 12px rgba(11,77,182,0.2)';
+      link.style.background = 'var(--accent)';
+    });
+  }
+  
+  // Адаптация для мобильных устройств
+  function adjustHomeButtonForMobile() {
+    if (window.innerWidth < 768) {
+      homeBtn.style.bottom = '15px';
+      homeBtn.style.right = '15px';
+      if(homeBtn.querySelector('a')) {
+        homeBtn.querySelector('a').style.padding = '6px 10px';
+      }
+    } else {
+      homeBtn.style.bottom = '20px';
+      homeBtn.style.right = '20px';
+      if(homeBtn.querySelector('a')) {
+        homeBtn.querySelector('a').style.padding = '8px 14px';
+      }
+    }
+  }
+  
+  window.addEventListener('resize', adjustHomeButtonForMobile);
+  adjustHomeButtonForMobile();
+}
+
+/* Tabs */
+function bindTabs(){
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      const tabId = e.target.getAttribute('data-tab');
+      showTab(tabId);
+    });
+  });
+}
+
+function showTab(tabId) {
+  // Убираем активный класс у всех вкладок
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Скрываем все панели
+  document.querySelectorAll('.tab-pane').forEach(pane => {
+    pane.classList.add('hidden');
+  });
+  
+  // Активируем выбранную вкладку и показываем соответствующую панель
+  document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+  $(tabId).classList.remove('hidden');
+  
+  // Обновляем контент при переключении вкладок
+  if(tabId === 'tab-registry') updateRegistryTable();
+  if(tabId === 'tab-steps') renderStepsUI();
+  if(tabId === 'tab-info') {
+    renderEnergyList();
+    renderHierarchyPanel();
+  }
+  if(tabId === 'tab-export') updateAnalytics();
+}
+
+/* Steps */
+function addStep(){
+  const name = $('newStepName').value.trim();
+  const t = TRANSLATIONS[currentLang];
+  if(!name){ notify(t.enterStepName,'warn'); return; }
+  const step = {id: uid('step'), name, desc: ''};
+  state.steps.push(step);
+  $('newStepName').value='';
+  saveToLocal(false); 
+  renderStepsUI(); 
+  notify(t.stepAdded,'success');
+}
+
+function removeStep(stepId){
+  const t = TRANSLATIONS[currentLang];
+  if(!confirm(t.removeStepConfirm)) return;
+  state.steps = state.steps.filter(s=>s.id!==stepId);
+  state.assessments = state.assessments.filter(a=>a.stepId!==stepId);
+  saveToLocal(false); 
+  renderStepsUI(); 
+  updateRegistryTable(); 
+  updateAnalytics(); 
+  notify(t.stepRemoved,'success');
+}
+
+function editStep(stepId){
+  const step = state.steps.find(s=>s.id===stepId);
+  const t = TRANSLATIONS[currentLang];
+  if(!step) return;
+  const newName = prompt(t.stepNamePrompt, step.name);
+  if(newName!==null) step.name=newName;
+  const newDesc = prompt(t.stepDescPrompt, step.desc||'');
+  if(newDesc!==null) step.desc=newDesc;
+  saveToLocal(false); 
+  renderStepsUI();
+}
+
+function renderStepsUI(){
+  const container = $('stepsContainer'); 
+  container.innerHTML='';
+  const t = TRANSLATIONS[currentLang];
+  
+  if (state.steps.length === 0) {
+    container.innerHTML = `<div class="small" style="text-align:center;padding:20px;color:var(--muted)">${t.noSteps}</div>`;
+    return;
+  }
+  
+  state.steps.forEach((step, idx)=>{
+    const card = document.createElement('div'); 
+    card.className='step-card';
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong>${idx+1}. ${escapeHtml(step.name)}</strong>
+          <div class="small">${escapeHtml(step.desc||'')}</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn primary small" onclick="openStepPanel('${step.id}')">${t.analyzeBtn}</button>
+          <button class="btn small ghost" onclick="editStep('${step.id}')">${t.editBtn}</button>
+          <button class="btn small ghost" onclick="removeStep('${step.id}')">${t.deleteBtn}</button>
+        </div>
+      </div>
+      <div id="step_panel_${step.id}" class="collapsible hidden" style="margin-top:8px"></div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+/* Step panel -> per energy add/edit */
+function openStepPanel(stepId){
+  const panel = $(`step_panel_${stepId}`);
+  if(!panel) return;
+  panel.classList.toggle('hidden');
+  if(!panel.classList.contains('hidden')) renderStepPanel(stepId);
+}
+
+function renderStepPanel(stepId){
+  const panel = $(`step_panel_${stepId}`); 
+  if(!panel) return;
+  panel.innerHTML = '';
+  const step = state.steps.find(s=>s.id===stepId); 
+  if(!step) return;
+  const t = TRANSLATIONS[currentLang];
+  
+  panel.appendChild(Object.assign(document.createElement('div'), { 
+    innerHTML:`<div class="small">${t.stepsTitle.split('📋')[1] || 'Шаг'}: <strong>${escapeHtml(step.name)}</strong> — ${t.addAssessmentBtn}</div>` 
+  }));
+  
+  ENERGIES.forEach(en=>{
+    const existing = state.assessments.find(a=>a.stepId===stepId && a.energyKey===en.key);
+    const wrapper = document.createElement('div'); 
+    wrapper.style.marginTop='8px';
+    wrapper.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><strong>${en[currentLang]}</strong> <span class="small">(${en.key})</span></div>
+        <div style="display:flex;gap:6px">
+          <button class="btn primary small" onclick="openAssessmentEditor('${stepId}','${en.key}')">
+            ${existing ? t.editAssessmentBtn : t.addAssessmentBtn}
+          </button>
+          ${existing ? `<button class="btn small ghost" onclick="removeAssessment('${existing.id}')">${t.removeAssessmentBtn}</button>` : ''}
+        </div>
+      </div>
+    `;
+    panel.appendChild(wrapper);
+  });
+}
+
+/* Assessments editor */
+function openAssessmentEditor(stepId, energyKey){
+  const step = state.steps.find(s=>s.id===stepId);
+  const en = ENERGIES.find(e=>e.key===energyKey);
+  const existing = state.assessments.find(a=>a.stepId===stepId && a.energyKey===energyKey);
+  const t = TRANSLATIONS[currentLang];
+
+  const formId = uid('form');
+  const form = document.createElement('div'); 
+  form.className='collapsible'; 
+  form.style.position='relative';
+  form.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div><strong>${t.addAssessmentBtn}: ${escapeHtml(step.name)} — ${escapeHtml(en[currentLang])}</strong></div>
+      <div><button class="btn small primary" id="${formId}_close">${t.closeBtn}</button></div>
+    </div>
+
+    <div class="risk-assessment-grid">
+      <div>
+        <label>${t.hazardLabel}</label>
+        <textarea id="${formId}_hazard" class="wide-textarea" placeholder="${t.hazardPlaceholder}">${en[currentLang]} — ${t.hazardLabel.toLowerCase()}</textarea>
+        <label style="margin-top:8px">${t.consequenceLabel}</label>
+        <textarea id="${formId}_consequence" class="wide-textarea" placeholder="${t.consequenceLabel}">${existing?.consequence || ''}</textarea>
+        <div style="margin-top:12px">
+          <label>${t.proactiveLabel}</label>
+          <div id="${formId}_pre_barriers"></div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <textarea id="${formId}_pre_add" placeholder="${t.preBarrierPlaceholder}" class="barrier-textarea"></textarea>
+            <button class="btn small primary" onclick="addBarrierToForm('${formId}','pre')">${t.addBarrierBtn}</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>${t.reactiveLabel}</label>
+          <div id="${formId}_post_barriers"></div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <textarea id="${formId}_post_add" placeholder="${t.postBarrierPlaceholder}" class="barrier-textarea"></textarea>
+            <button class="btn small primary" onclick="addBarrierToForm('${formId}','post')">${t.addBarrierBtn}</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label>${t.severityLabel}</label>
+        <select id="${formId}_prim_cons">
+          ${getConsequenceLevels().map(c=>`<option value="${c.level}">${c.level} - ${c.description}</option>`).join('')}
+        </select>
+
+        <label style="margin-top:8px">${t.probabilityLabel}</label>
+        <select id="${formId}_prim_prob">
+          ${getProbabilityLevels().map(p=>`<option value="${p.level}">${p.label}</option>`).join('')}
+        </select>
+
+        <div style="margin-top:12px; padding:10px; background:#f8f9fa; border-radius:6px;">
+          <strong>${t.calculatedRisk}</strong>
+          <div id="${formId}_risk_result" style="margin-top:4px; font-weight:bold"></div>
+          <div id="${formId}_risk_level" style="font-size:12px; color:#6c757d"></div>
+        </div>
+
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn primary" id="${formId}_save">${t.saveRiskBtn}</button>
+          <button class="btn ghost" id="${formId}_apply_preset">${t.autoBarriersBtn}</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="${formId}_residual_section" style="margin-top:12px">
+      <div class="residual-risk-section">
+        <h4>${t.residualTitle}</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <label>${t.residualSeverity}</label>
+            <select id="${formId}_res_cons">
+              ${getConsequenceLevels().map(c=>`<option value="${c.level}">${c.level} - ${c.description}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label>${t.residualProbability}</label>
+            <select id="${formId}_res_prob">
+              ${getProbabilityLevels().map(p=>`<option value="${p.level}">${p.label}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:12px; padding:10px; background:#e9ecef; border-radius:6px;">
+          <strong>${t.residualRisk}</strong>
+          <div id="${formId}_res_risk_result" style="margin-top:6px; font-weight:bold"></div>
+          <div id="${formId}_res_risk_level" style="font-size:12px; color:#6c757d"></div>
+        </div>
+
+        <div style="margin-top:8px">
+          <button class="btn primary" id="${formId}_save_res">${t.saveResidualBtn}</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const panel = $(`step_panel_${stepId}`);
+  const prev = panel.querySelector('.collapsible[data-form-active]');
+  if(prev) prev.remove();
+  form.setAttribute('data-form-active','1');
+  panel.appendChild(form);
+
+  // populate datalist for this energy
+  populateConsequenceDatalistForEnergy(energyKey);
+
+  // render barriers if existing
+  renderBarriersInForm(formId, existing);
+
+  // fill existing values
+  if(existing){
+    $(`${formId}_hazard`).value = existing.hazardName || `${en[currentLang]} — ${t.hazardLabel.toLowerCase()}`;
+    $(`${formId}_consequence`).value = existing.consequence || '';
+    $(`${formId}_prim_prob`).value = existing.primary?.prob || 'C';
+    $(`${formId}_prim_cons`).value = existing.primary?.cons || 3;
+    if(existing.residual){
+      $(`${formId}_res_prob`).value = existing.residual.prob;
+      $(`${formId}_res_cons`).value = existing.residual.cons;
+      updateResidualRiskCalculation(formId);
+    }
+  }
+
+  // initial calculations
+  updateRiskCalculation(formId);
+  updateResidualRiskCalculation(formId);
+
+  // events
+  $(`${formId}_prim_prob`).addEventListener('change', ()=> updateRiskCalculation(formId));
+  $(`${formId}_prim_cons`).addEventListener('change', ()=> updateRiskCalculation(formId));
+  $(`${formId}_res_prob`).addEventListener('change', ()=> updateResidualRiskCalculation(formId));
+  $(`${formId}_res_cons`).addEventListener('change', ()=> updateResidualRiskCalculation(formId));
+
+  $(`${formId}_close`).onclick = ()=> form.remove();
+
+  $(`${formId}_apply_preset`).onclick = ()=>{
+    const presets = {
+      Gravity: ['Страховочное оборудование','Ограждения'],
+      Motion: ['Сигнализация движения','Ограничение скорости'],
+      Mechanical: ['Проверка оборудования','Блокировка'],
+      Electrical: ['LOTO','Автоматические предохранители'],
+      Pressure: ['Контроль давления','Защитные клапаны'],
+      Temperature: ['Изоляция','Теплозащита'],
+      Chemical: ['Вентиляция','СИЗ для химии'],
+      Biological: ['Санитарная обработка','Изоляция зоны'],
+      Radiation: ['Экранирование','Ограничение доступа'],
+      Sound: ['Ограничение времени воздействия','Шумозащитные кожухи'],
+      Ergonomics: ['Эргономичная мебель','Ротация персонала'],
+      Psychological: ['Психологическая поддержка','Обучение стресс-менеджменту']
+    };
+    const list = presets[energyKey] || CONSEQUENCE_SUGGESTIONS_BY_ENERGY.default;
+    list.forEach(b => addBarrierToForm(formId,'pre',b));
+    addBarrierToForm(formId,'post','План ликвидации аварий');
+  };
+
+  $(`${formId}_save`).onclick = ()=>{
+    const hazardName = $(`${formId}_hazard`).value.trim() || `${en[currentLang]} — ${t.hazardLabel.toLowerCase()}`;
+    const consequence = $(`${formId}_consequence`).value.trim();
+    if(!consequence){ alert('⚠️ Добавьте последствие (к чему может привести опасность)'); return; }
+    const prob = $(`${formId}_prim_prob`).value;
+    const cons = parseInt($(`${formId}_prim_cons`).value);
+    const preBarriers = getBarriersFromForm(formId,'pre');
+    const postBarriers = getBarriersFromForm(formId,'post');
+    const code = `${cons}${prob}`;
+    const matrixInfo = getMatrixNote(cons, prob);
+    const level = matrixInfo.level;
+
+    if(existing){
+      existing.hazardName = hazardName;
+      existing.consequence = consequence;
+      existing.primary = {prob,cons,code,level};
+      existing.preBarriers = preBarriers.barriers;
+      existing.preHierarchy = preBarriers.hierarchies;
+      existing.postBarriers = postBarriers.barriers;
+      existing.postHierarchy = postBarriers.hierarchies;
+    } else {
+      const a = { 
+        id: uid('ass'), 
+        stepId, 
+        energyKey, 
+        hazardName, 
+        consequence, 
+        primary: {prob,cons,code,level}, 
+        preBarriers: preBarriers.barriers, 
+        preHierarchy: preBarriers.hierarchies, 
+        postBarriers: postBarriers.barriers, 
+        postHierarchy: postBarriers.hierarchies, 
+        residual: null 
+      };
+      state.assessments.push(a);
+    }
+    saveToLocal(false); 
+    renderStepPanel(stepId); 
+    updateRegistryTable(); 
+    updateAnalytics(); 
+    notify('Оценка сохранена','success');
+    form.remove();
+  };
+
+  $(`${formId}_save_res`).onclick = ()=>{
+    const rprob = $(`${formId}_res_prob`).value;
+    const rcons = parseInt($(`${formId}_res_cons`).value);
+    const rcode = `${rcons}${rprob}`;
+    const matrixInfo = getMatrixNote(rcons, rprob);
+    const rlevel = matrixInfo.level;
+
+    let a = state.assessments.find(a=>a.stepId===stepId && a.energyKey===energyKey);
+    if(!a){
+      const prob = $(`${formId}_prim_prob`).value;
+      const cons = parseInt($(`${formId}_prim_cons`).value);
+      const preBarriers = getBarriersFromForm(formId,'pre');
+      const postBarriers = getBarriersFromForm(formId,'post');
+      const matrixInfoPrim = getMatrixNote(cons, prob);
+      a = { 
+        id: uid('ass'), 
+        stepId, 
+        energyKey, 
+        hazardName: $(`${formId}_hazard`).value || `${en[currentLang]} — ${t.hazardLabel.toLowerCase()}`, 
+        consequence: $(`${formId}_consequence`).value || '', 
+        primary: {prob,cons,code:`${cons}${prob}`, level: matrixInfoPrim.level}, 
+        preBarriers: preBarriers.barriers, 
+        preHierarchy: preBarriers.hierarchies, 
+        postBarriers: postBarriers.barriers, 
+        postHierarchy: postBarriers.hierarchies, 
+        residual: null
+      };
+      state.assessments.push(a);
+    }
+    a.residual = {prob: rprob, cons: rcons, code: rcode, level: rlevel};
+    saveToLocal(false); 
+    updateRegistryTable(); 
+    updateAnalytics(); 
+    notify('Остаточный риск сохранён','success');
+    form.remove();
+  };
+}
+
+/* calculations display */
+function updateRiskCalculation(formId){
+  const prob = $(`${formId}_prim_prob`).value;
+  const cons = parseInt($(`${formId}_prim_cons`).value);
+  const info = getMatrixNote(cons, prob);
+  const display = `${cons}${prob} - ${info.level || 'Н/Д'}`;
+  $(`${formId}_risk_result`).textContent = display;
+  
+  // Цвета для уровней риска
+  const levelColors = {
+    ru: {"Низкий": "var(--low)", "Средний": "var(--medium)", "Высокий": "var(--high)"},
+    en: {"Low": "var(--low)", "Medium": "var(--medium)", "High": "var(--high)"},
+    kz: {"Төмен": "var(--low)", "Орташа": "var(--medium)", "Жоғары": "var(--high)"}
+  };
+  
+  $(`${formId}_risk_result`).style.color = levelColors[currentLang]?.[info.level] || 'var(--muted)';
+  
+  let treatment = '';
+  if(info.level==='Высокий' || info.level==='High' || info.level==='Жоғары') {
+    treatment = 'Требуется применение методологии Bow-Tie и критических барьеров';
+  } else if(info.level==='Средний' || info.level==='Medium' || info.level==='Орташа') {
+    treatment = 'Требуются дополнительные меры контроля';
+  } else {
+    treatment = 'Управлять через процедуры и существующие меры контроля';
+  }
+  $(`${formId}_risk_level`).textContent = treatment;
+}
+
+function updateResidualRiskCalculation(formId){
+  const rprob = $(`${formId}_res_prob`).value;
+  const rcons = parseInt($(`${formId}_res_cons`).value);
+  const info = getMatrixNote(rcons, rprob);
+  $(`${formId}_res_risk_result`).textContent = `${rcons}${rprob} - ${info.level || 'Н/Д'}`;
+  
+  // Цвета для уровней риска
+  const levelColors = {
+    ru: {"Низкий": "var(--low)", "Средний": "var(--medium)", "Высокий": "var(--high)"},
+    en: {"Low": "var(--low)", "Medium": "var(--medium)", "High": "var(--high)"},
+    kz: {"Төмен": "var(--low)", "Орташа": "var(--medium)", "Жоғары": "var(--high)"}
+  };
+  
+  $(`${formId}_res_risk_result`).style.color = levelColors[currentLang]?.[info.level] || 'var(--muted)';
+  
+  let treatment = '';
+  if(info.level==='Высокий' || info.level==='High' || info.level==='Жоғары') {
+    treatment = 'Требуется применение методологии Bow-Tie и критических барьеров';
+  } else if(info.level==='Средний' || info.level==='Medium' || info.level==='Орташа') {
+    treatment = 'Требуются дополнительные меры контроля';
+  } else {
+    treatment = 'Управлять через процедуры и существующие меры контроля';
+  }
+  $(`${formId}_res_risk_level`).textContent = treatment;
+}
+
+/* Barriers helpers */
+function renderBarriersInForm(formId, assessment){
+  const preBarriers = assessment?.preBarriers || [];
+  const preHierarchy = assessment?.preHierarchy || [];
+  const postBarriers = assessment?.postBarriers || [];
+  const postHierarchy = assessment?.postHierarchy || [];
+  const preContainer = $(`${formId}_pre_barriers`);
+  const postContainer = $(`${formId}_post_barriers`);
+  if(!preContainer || !postContainer) return;
+  preContainer.innerHTML = ''; 
+  postContainer.innerHTML = '';
+  
+  const hierarchy = getHierarchyControls();
+  
+  preBarriers.forEach((barrier,index)=>{
+    const div = document.createElement('div'); 
+    div.className='barrier-with-hierarchy';
+    div.innerHTML = `
+      <textarea class="barrier-text barrier-textarea">${escapeHtml(barrier)}</textarea>
+      <select class="hierarchy-select">
+        <option value="">— ${currentLang === 'en' ? 'Select hierarchy' : currentLang === 'kz' ? 'Иерархия таңдаңыз' : 'Выберите иерархию'} —</option>
+        ${hierarchy.map(h=>`<option value="${h.level}" ${preHierarchy[index]===h.level?'selected':''}>${h.level}</option>`).join('')}
+      </select>
+      <button class="btn small ghost" onclick="this.parentElement.remove()">×</button>
+    `;
+    preContainer.appendChild(div);
+  });
+  
+  postBarriers.forEach((barrier,index)=>{
+    const div = document.createElement('div'); 
+    div.className='barrier-with-hierarchy';
+    div.innerHTML = `
+      <textarea class="barrier-text barrier-textarea">${escapeHtml(barrier)}</textarea>
+      <select class="hierarchy-select">
+        <option value="">— ${currentLang === 'en' ? 'Select hierarchy' : currentLang === 'kz' ? 'Иерархия таңдаңыз' : 'Выберите иерархию'} —</option>
+        ${hierarchy.map(h=>`<option value="${h.level}" ${postHierarchy[index]===h.level?'selected':''}>${h.level}</option>`).join('')}
+      </select>
+      <button class="btn small ghost" onclick="this.parentElement.remove()">×</button>
+    `;
+    postContainer.appendChild(div);
+  });
+}
+
+function addBarrierToForm(formId, type, presetText=null){
+  const container = $(`${formId}_${type}_barriers`);
+  const input = $(`${formId}_${type}_add`);
+  const text = presetText || (input ? input.value.trim() : '');
+  if(!text){ notify('Введите текст барьера','warn'); return; }
+  const div = document.createElement('div'); 
+  div.className='barrier-with-hierarchy';
+  const hierarchy = getHierarchyControls();
+  div.innerHTML = `
+    <textarea class="barrier-text barrier-textarea">${escapeHtml(text)}</textarea>
+    <select class="hierarchy-select">
+      <option value="">— ${currentLang === 'en' ? 'Select hierarchy' : currentLang === 'kz' ? 'Иерархия таңдаңыз' : 'Выберите иерархию'} —</option>
+      ${hierarchy.map(h=>`<option value="${h.level}">${h.level}</option>`).join('')}
+    </select>
+    <button class="btn small ghost" onclick="this.parentElement.remove()">×</button>
+  `;
+  container.appendChild(div);
+  if(!presetText && input) input.value='';
+}
+
+function getBarriersFromForm(formId, type){
+  const container = $(`${formId}_${type}_barriers`);
+  const barriers=[], hierarchies=[];
+  if(!container) return {barriers:[], hierarchies:[]};
+  container.querySelectorAll('.barrier-with-hierarchy').forEach(div=>{
+    const txt = div.querySelector('.barrier-text');
+    const sel = div.querySelector('.hierarchy-select');
+    if(txt && txt.value.trim()){ 
+      barriers.push(txt.value.trim()); 
+      hierarchies.push(sel?sel.value:''); 
+    }
+  });
+  return {barriers,hierarchies};
+}
+
+/* Remove assessment */
+function removeAssessment(assId){
+  if(!confirm('Удалить оценку?')) return;
+  state.assessments = state.assessments.filter(a=>a.id!==assId);
+  saveToLocal(false); 
+  renderStepsUI(); 
+  updateRegistryTable(); 
+  updateAnalytics(); 
+  notify('Оценка удалена','success');
+}
+
+/* Render energy list */
+function renderEnergyList(){
+  const el = $('energyList'); 
+  el.innerHTML='';
+  const t = TRANSLATIONS[currentLang];
+  const examplesText = currentLang === 'en' ? 'Examples:' : currentLang === 'kz' ? 'Мысалдар:' : 'Примеры:';
+  
+  ENERGIES.forEach(e=>{
+    const d = document.createElement('div'); 
+    d.className='energy-item';
+    d.innerHTML = `
+      <div class="energy-name">${e[currentLang]}</div>
+      <div class="energy-description">${e.description}</div>
+      <div class="energy-description"><strong>${examplesText}</strong> ${e.examples}</div>
+    `;
+    el.appendChild(d);
+  });
+}
+
+/* Registry table rendering */
+function updateRegistryTable(){
+  const tbody = document.querySelector('#registryTable tbody'); 
+  tbody.innerHTML='';
+  const t = TRANSLATIONS[currentLang];
+  
+  if (state.assessments.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="13" style="text-align:center;padding:20px;color:var(--muted)">${t.noAssessments}</td></tr>`;
+    return;
+  }
+  
+  state.assessments.forEach((a,i)=>{
+    const step = state.steps.find(s=>s.id===a.stepId);
+    const energy = ENERGIES.find(e=>e.key===a.energyKey);
+    const primary = a.primary || {prob:'C',cons:3,code:'3C',level:'Средний'};
+    const residual = a.residual || null;
+    
+    const proactiveBarriers = (a.preBarriers||[]).join('; ');
+    const proactiveHierarchy = (a.preHierarchy||[]).join('; ');
+    const reactiveBarriers = (a.postBarriers||[]).join('; ');
+    const reactiveHierarchy = (a.postHierarchy||[]).join('; ');
+    
+    const tr = document.createElement('tr'); 
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td>${step?escapeHtml(step.name):'—'}</td>
+      <td>${energy?energy[currentLang]:a.energyKey}</td>
+      <td>${escapeHtml(a.hazardName||'—')}</td>
+      <td>${escapeHtml(a.consequence||'—')}</td>
+      <td>${primary.prob}${primary.cons}</td>
+      <td>${primary.level}</td>
+      <td>${escapeHtml(proactiveBarriers)}</td>
+      <td>${escapeHtml(proactiveHierarchy)}</td>
+      <td>${escapeHtml(reactiveBarriers)}</td>
+      <td>${escapeHtml(reactiveHierarchy)}</td>
+      <td>${residual? (residual.prob+''+residual.cons) : '—'}</td>
+      <td>${residual? residual.level : '—'}</td>`;
+    tr.addEventListener('click', ()=> openAssessmentEditor(a.stepId, a.energyKey));
+    tbody.appendChild(tr);
+  });
+}
+
+/* Hierarchy panel render */
+function renderHierarchyPanel(){
+  const panel = $('hierarchyPanel'); 
+  panel.innerHTML='';
+  const hierarchy = getHierarchyControls();
+  
+  hierarchy.forEach(h=>{
+    const d = document.createElement('div'); 
+    d.className='small'; 
+    d.style.marginBottom='6px';
+    d.innerHTML = `
+      <strong>${escapeHtml(h.level)}</strong>
+      <div class="hierarchy-description">${escapeHtml(h.description)}</div>
+    `;
+    panel.appendChild(d);
+  });
+}
+
+/* Analytics */
+function updateAnalytics(){
+  const total = state.assessments.length;
+  
+  // Учитываем перевод уровней риска
+  const highKeywords = {
+    ru: ["Высокий"],
+    en: ["High"],
+    kz: ["Жоғары"]
+  };
+  
+  const mediumKeywords = {
+    ru: ["Средний"],
+    en: ["Medium"],
+    kz: ["Орташа"]
+  };
+  
+  const lowKeywords = {
+    ru: ["Низкий"],
+    en: ["Low"],
+    kz: ["Төмен"]
+  };
+  
+  const high = state.assessments.filter(a => {
+    const level = a.primary?.level || '';
+    return highKeywords[currentLang].includes(level);
+  }).length;
+  
+  const medium = state.assessments.filter(a => {
+    const level = a.primary?.level || '';
+    return mediumKeywords[currentLang].includes(level);
+  }).length;
+  
+  const low = state.assessments.filter(a => {
+    const level = a.primary?.level || '';
+    return lowKeywords[currentLang].includes(level);
+  }).length;
+  
+  const analyticsContainer = $('analyticsStats');
+  if(analyticsContainer) {
+    const t = TRANSLATIONS[currentLang];
+    const totalText = currentLang === 'en' ? 'Total Risks' : currentLang === 'kz' ? 'Барлық тәуекелдер' : 'Всего рисков';
+    
+    analyticsContainer.innerHTML = `
+      <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;margin-top:12px">
+        <div class="stat-card">
+          <div class="stat-value">${total}</div>
+          <div class="stat-label">${totalText}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--low)">${low}</div>
+          <div class="stat-label">${t.legendLow}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--medium)">${medium}</div>
+          <div class="stat-label">${t.legendMedium}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--high)">${high}</div>
+          <div class="stat-label">${t.legendHigh}</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+/* Persistence */
+function saveToLocal(show=true){
+  try{ 
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); 
+    if(show) notify('Сохранено в localStorage','success'); 
+  } catch(e){ 
+    console.error(e); 
+    notify('Ошибка сохранения','error'); 
+  }
+}
+
+function loadFromLocal(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const obj = JSON.parse(raw);
+      // Add structure validation
+      if (!obj.steps) obj.steps = [];
+      if (!obj.assessments) obj.assessments = [];
+      state = Object.assign({steps: [], assessments: []}, obj);
+      notify('Данные загружены','success');
+    } else {
+      // Initialize with default step if empty
+      if(state.steps.length===0){ 
+        state.steps.push({id:uid('step'), name:'Подготовка рабочего места', desc:'Описание по умолчанию'}); 
+      }
+    }
+  } catch(e){ 
+    console.error(e); 
+    state = {steps: [], assessments: []};
+    notify('Ошибка загрузки данных, создана новая сессия','error'); 
+  }
+}
+
+/* Export to Excel */
+function exportExcel(){
+  if(state.assessments.length===0){ 
+    const t = TRANSLATIONS[currentLang];
+    notify(t.noDataExport,'warn'); 
+    return; 
+  }
+  const header = TRANSLATIONS[currentLang].registryCols;
+  const aoa = [header];
+  state.assessments.forEach((a,i)=>{
+    const step = state.steps.find(s=>s.id===a.stepId);
+    const en = ENERGIES.find(e=>e.key===a.energyKey);
+    const primary = a.primary || {prob:'C',cons:3,code:'3C',level:'Средний'};
+    const residual = a.residual || {prob:'',cons:'',code:'',level:''};
+    aoa.push([
+      i+1,
+      step?step.name:'',
+      en?en[currentLang]:a.energyKey,
+      a.hazardName||'',
+      a.consequence||'',
+      primary.prob + '' + primary.cons,
+      primary.level,
+      (a.preBarriers||[]).join('; '),
+      (a.preHierarchy||[]).join('; '),
+      (a.postBarriers||[]).join('; '),
+      (a.postHierarchy||[]).join('; '),
+      residual.prob? (residual.prob+''+residual.cons) : '',
+      residual.level || ''
+    ]);
+  });
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+  const wb = XLSX.utils.book_new(); 
+  XLSX.utils.book_append_sheet(wb, ws, 'Реестр рисков'); 
+  XLSX.writeFile(wb, 'Risk_Assessment_Tool_v2_registry.xlsx');
+  notify('Excel экспортирован','success');
+}
+
+/* misc */
+function clearAll(){ 
+  if(!confirm('Очистить все данные?')) return; 
+  state = {steps:[], assessments:[]}; 
+  localStorage.removeItem(STORAGE_KEY); 
+  renderStepsUI(); 
+  renderMatrix(); 
+  updateRegistryTable(); 
+  updateAnalytics(); 
+  notify('Данные очищены','success'); 
+}
+
+/* Matrix rendering */
+function renderMatrix(){
+  const tbody = $('matrixBody');
+  tbody.innerHTML = '';
+
+  const t = TRANSLATIONS[currentLang];
+  
+  // severity rows 5..1 with translations
+  const severities = [
+    {v:5, label:t.severity5},
+    {v:4, label:t.severity4},
+    {v:3, label:t.severity3},
+    {v:2, label:t.severity2},
+    {v:1, label:t.severity1}
+  ];
+
+  severities.forEach(row=>{
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    th.className='header';
+    th.style.textAlign='left';
+    th.innerHTML = `<div style="font-weight:700">${row.v}</div><div class="small">${row.label}</div>`;
+    tr.appendChild(th);
+
+    ['A','B','C','D','E'].forEach(col=>{
+      const code = `${row.v}${col}`;
+      const info = getMatrixNote(row.v, col);
+      const td = document.createElement('td');
+      const lvl = info.level || 'Н/Д';
+      let cls = '';
+      if(lvl === 'Высокий' || lvl === 'High' || lvl === 'Жоғары') cls='risk-high';
+      else if(lvl === 'Средний' || lvl === 'Medium' || lvl === 'Орташа') cls='risk-medium';
+      else cls='risk-low';
+      td.className = cls;
+      td.setAttribute('data-code', code);
+      td.setAttribute('data-level', lvl);
+      td.setAttribute('data-note', info.note || '');
+      td.innerHTML = `<span class="matrix-code">${code}</span><span class="matrix-desc">${lvl}</span>`;
+      // attach tooltip events
+      td.addEventListener('mouseenter', onMatrixCellEnter);
+      td.addEventListener('mouseleave', onMatrixCellLeave);
+      td.addEventListener('mousemove', onMatrixCellMove);
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+/* tooltip handling */
+const tooltip = $('matrixTooltip');
+let tooltipTimeout = null;
+
+function onMatrixCellEnter(e){
+  const td = e.currentTarget;
+  const code = td.getAttribute('data-code');
+  const level = td.getAttribute('data-level');
+  const note = td.getAttribute('data-note');
+  const html = `<div style="font-weight:700;margin-bottom:6px">${code} — ${level} ${currentLang === 'en' ? 'risk' : currentLang === 'kz' ? 'тәуекел' : 'риск'}</div><div style="font-size:13px;color:var(--muted)">${note}</div>`;
+  tooltip.innerHTML = html;
+  tooltip.classList.remove('show');
+  // show after tiny delay to avoid flicker
+  if(tooltipTimeout) clearTimeout(tooltipTimeout);
+  tooltipTimeout = setTimeout(()=>{
+    positionTooltip(e);
+    tooltip.classList.add('show');
+  }, 60);
+}
+
+function onMatrixCellMove(e){
+  positionTooltip(e);
+}
+
+function onMatrixCellLeave(e){
+  if(tooltipTimeout) clearTimeout(tooltipTimeout);
+  tooltip.classList.remove('show');
+  // clear after animation
+  setTimeout(()=>{ tooltip.innerHTML = ''; }, 200);
+}
+
+function positionTooltip(e){
+  const pad = 10;
+  const viewportW = window.innerWidth;
+  const viewportH = window.innerHeight;
+  const tipRect = tooltip.getBoundingClientRect();
+  const x = e.clientX;
+  const y = e.clientY;
+  // default above
+  let left = x - tipRect.width/2;
+  if(left < pad) left = pad;
+  if(left + tipRect.width > viewportW - pad) left = viewportW - pad - tipRect.width;
+  let top = e.clientY - tipRect.height - 12; // above cursor
+  if(top < 10) top = e.clientY + 18; // if not enough space, place below
+  tooltip.style.left = left + 'px';
+  tooltip.style.top = top + 'px';
+}
+
+/* consequence datalist population */
+function populateConsequenceDatalistForEnergy(energyKey){
+  const dl = $('consequenceSuggestions'); 
+  if(!dl) return; 
+  dl.innerHTML='';
+  const arr = (CONSEQUENCE_SUGGESTIONS_BY_ENERGY[energyKey] || []).concat(CONSEQUENCE_SUGGESTIONS_BY_ENERGY.default || []);
+  Array.from(new Set(arr)).forEach(v=>{ 
+    const opt=document.createElement('option'); 
+    opt.value=v; 
+    dl.appendChild(opt);
+  } );
+}
+
+/* End of script */
+</script>
+</body>
+</html>

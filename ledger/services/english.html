@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Английский с нуля — простая и понятная система обучения</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #facc15;
+      --accent: #3b82f6;
+      --light: #f9fafb;
+      --dark: #1f2937;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: #fff;
+      transition: all 0.3s ease;
+    }
+    
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--secondary);
+    }
+    
+    .language-switcher {
+      display: flex;
+      gap: 10px;
+      margin-left: 20px;
+    }
+    
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .lang-btn:hover, .lang-btn.active {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn {
+      background: var(--secondary);
+      color: #000;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      background: #e6b800;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 32px;
+      color: var(--primary);
+    }
+    
+    .why-us {
+      background-color: var(--light);
+      border-radius: 15px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .why-us h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .stage-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+      border-top: 4px solid var(--accent);
+    }
+    
+    .stage-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .stage-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .stage-card .result {
+      background: var(--light);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .results {
+      background: var(--light);
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .results-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .result-item {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .result-item i {
+      color: var(--secondary);
+      font-size: 20px;
+    }
+    
+    .cta {
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      padding: 80px 20px;
+      border-radius: 15px;
+    }
+    
+    .cta h2 {
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .contact-info {
+      text-align: center;
+      background: var(--light);
+      padding: 40px;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+    
+    .contact-info h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .contact-column {
+      flex: 1;
+      min-width: 250px;
+      text-align: left;
+    }
+    
+    .contact-column h4 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 18px;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 5px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .contact-item i {
+      font-size: 20px;
+      color: var(--primary);
+      min-width: 24px;
+      margin-top: 2px;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 22px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .social-icon:hover {
+      background: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .social-section {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid #e5e7eb;
+    }
+    
+    footer {
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      padding: 30px;
+      margin-top: 60px;
+    }
+    
+    @media (max-width: 1024px) {
+      .contact-row {
+        justify-content: center;
+      }
+      
+      .contact-column {
+        min-width: 300px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .hero h2 {
+        font-size: 32px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .contact-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-column {
+        width: 100%;
+        max-width: 400px;
+      }
+      
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .social-icons {
+        gap: 10px;
+      }
+      
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      
+      .contact-item {
+        font-size: 14px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <h1><i class="fas fa-language"></i> <span data-lang="title">Английский с нуля</span></h1>
+  <nav>
+    <a href="index.html" data-lang="nav-home">Главная</a>
+    <a href="#why" data-lang="nav-why">Почему работает</a>
+    <a href="#stages" data-lang="nav-stages">Этапы обучения</a>
+    <a href="#results" data-lang="nav-results">Результаты</a>
+    <a href="#contact" data-lang="nav-contact">Контакты</a>
+    
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="kz">KZ</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2 data-lang="hero-title">🌟 Английский с нуля — простая и понятная система обучения</h2>
+  <p data-lang="hero-subtitle">Стартуй легко. Говори уверенно. Осваивай язык шаг за шагом.</p>
+  <a href="#contact" class="btn" data-lang="hero-btn">Записаться на пробный урок</a>
+</section>
+
+<section id="why">
+  <h2 class="section-title" data-lang="why-title">🔥 Почему наша программа работает?</h2>
+  <div class="why-us">
+    <h3 data-lang="why-method">Эффективная методика обучения</h3>
+    <p data-lang="why-description">Мы совмещаем чёткую структуру, понятные шаги и постоянную практику. Каждый этап повторяется и усиливает предыдущий — так вы двигаетесь быстро и без перегрузки.</p>
+  </div>
+</section>
+
+<section id="stages">
+  <h2 class="section-title" data-lang="stages-title">📘 Этапы обучения</h2>
+  <div class="stages">
+    <div class="stage-card">
+      <h3><i class="fas fa-font"></i> <span data-lang="stage1-title">Этап 1 — Алфавит и звуки</span></h3>
+      <p data-lang="stage1-desc">Осваиваем буквы, базовые звуки и чтение простых слов.</p>
+      <div class="result" data-lang="stage1-result">Результат: уверенное произношение и понимание основ.</div>
+    </div>
+    
+    <div class="stage-card">
+      <h3><i class="fas fa-volume-up"></i> <span data-lang="stage2-title">Этап 2 — Фонетика и чтение</span></h3>
+      <p data-lang="stage2-desc">Транскрипция, ключевые фонемы, правила чтения.</p>
+      <div class="result" data-lang="stage2-result">Результат: можете читать незнакомые слова самостоятельно.</div>
+    </div>
+    
+    <div class="stage-card">
+      <h3><i class="fas fa-book"></i> <span data-lang="stage3-title">Этап 3 — Первые 2000–3000 слов</span></h3>
+      <p data-lang="stage3-desc">Тематическая лексика: семья, дом, еда, числа, действия.</p>
+      <div class="result" data-lang="stage3-result">Результат: говорите простыми фразами с первого занятия.</div>
+    </div>
+    
+    <div class="stage-card">
+      <h3><i class="fas fa-puzzle-piece"></i> <span data-lang="stage4-title">Этап 4 — Грамматика без боли</span></h3>
+      <p data-lang="stage4-desc">To be, Present Simple, артикли, множ. число, модальные глаголы, Past Simple, Present Continuous.</p>
+      <div class="result" data-lang="stage4-result">Результат: строите правильные предложения легко и уверенно.</div>
+    </div>
+    
+    <div class="stage-card">
+      <h3><i class="fas fa-comments"></i> <span data-lang="stage5-title">Этап 5 — Практика и живое общение</span></h3>
+      <p data-lang="stage5-desc">Диалоги, бытовые ситуации, аудирование, чтение, ролевые игры.</p>
+      <div class="result" data-lang="stage5-result">Результат: ведёте простой диалог и понимаете речь на слух.</div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <h2 class="section-title" data-lang="results-title">🎯 Что получаете в итоге?</h2>
+  <div class="results">
+    <div class="results-list">
+      <div class="result-item">
+        <i class="fas fa-check-circle"></i>
+        <span data-lang="result1">Уверенное чтение и произношение</span>
+      </div>
+      <div class="result-item">
+        <i class="fas fa-check-circle"></i>
+        <span data-lang="result2">Базовый словарный запас для общения</span>
+      </div>
+      <div class="result-item">
+        <i class="fas fa-check-circle"></i>
+        <span data-lang="result3">Понимание основ грамматики</span>
+      </div>
+      <div class="result-item">
+        <i class="fas fa-check-circle"></i>
+        <span data-lang="result4">Способность говорить на бытовые темы</span>
+      </div>
+      <div class="result-item">
+        <i class="fas fa-check-circle"></i>
+        <span data-lang="result5">Настоящую языковую уверенность уже через несколько недель</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta">
+    <h2 data-lang="cta-title">🚀 Готов начать?</h2>
+    <p data-lang="cta-subtitle">Оставьте заявку — и я подберу вам удобный формат обучения.</p>
+    <a href="#" class="btn" data-lang="cta-btn">Записаться на пробный урок</a>
+  </div>
+  
+  <div class="contact-info">
+    <h3 data-lang="contact-title">Контактная информация</h3>
+    <p data-lang="contact-subtitle">Свяжитесь с нами удобным для вас способом</p>
+    
+    <div class="contact-row">
+      <div class="contact-column">
+        <h4 data-lang="address-title">Адрес</h4>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span data-lang="address">г. Уральск, Западно-Казахстанская область</span>
+        </div>
+      </div>
+      
+      <div class="contact-column">
+        <h4 data-lang="phones-title">Телефоны</h4>
+        <div class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <span data-lang="phone1">WhatsApp/Мобильный: +7 771 025 00 08</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-mobile-alt"></i>
+          <span data-lang="phone2">WhatsApp/Мобильный: +7 708 729 63 07</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span data-lang="phone3">Городской: +7 (7112) 21-90-18</span>
+        </div>
+      </div>
+      
+      <div class="contact-column">
+        <h4 data-lang="email-title">Email</h4>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>qhsesolutions5@gmail.com</span>
+        </div>
+      </div>
+      
+      <div class="contact-column">
+        <h4 data-lang="work-hours-title">Время работы</h4>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span data-lang="work-hours">Без выходных 24/7</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="social-section">
+      <h4 style="color: var(--primary); margin-bottom: 15px;" data-lang="social-title">Социальные сети</h4>
+      <div class="social-icons">
+        <a href="https://t.me/qhsesolutions" target="_blank" class="social-icon" title="Telegram">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" class="social-icon" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" class="social-icon" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@qhsesolutions" target="_blank" class="social-icon" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 QHSE Solutions. Все права защищены. | All rights reserved. | Барлық құқықтар қорғалған.</p>
+</footer>
+
+<script>
+  // Многоязычные тексты
+  const translations = {
+    ru: {
+      "title": "Английский с нуля",
+      "nav-home": "Главная",
+      "nav-why": "Почему работает",
+      "nav-stages": "Этапы обучения",
+      "nav-results": "Результаты",
+      "nav-contact": "Контакты",
+      "hero-title": "🌟 Английский с нуля — простая и понятная система обучения",
+      "hero-subtitle": "Стартуй легко. Говори уверенно. Осваивай язык шаг за шагом.",
+      "hero-btn": "Записаться на пробный урок",
+      "why-title": "🔥 Почему наша программа работает?",
+      "why-method": "Эффективная методика обучения",
+      "why-description": "Мы совмещаем чёткую структуру, понятные шаги и постоянную практику. Каждый этап повторяется и усиливает предыдущий — так вы двигаетесь быстро и без перегрузки.",
+      "stages-title": "📘 Этапы обучения",
+      "stage1-title": "Этап 1 — Алфавит и звуки",
+      "stage1-desc": "Осваиваем буквы, базовые звуки и чтение простых слов.",
+      "stage1-result": "Результат: уверенное произношение и понимание основ.",
+      "stage2-title": "Этап 2 — Фонетика и чтение",
+      "stage2-desc": "Транскрипция, ключевые фонемы, правила чтения.",
+      "stage2-result": "Результат: можете читать незнакомые слова самостоятельно.",
+      "stage3-title": "Этап 3 — Первые 2000–3000 слов",
+      "stage3-desc": "Тематическая лексика: семья, дом, еда, числа, действия.",
+      "stage3-result": "Результат: говорите простыми фразами с первого занятия.",
+      "stage4-title": "Этап 4 — Грамматика без боли",
+      "stage4-desc": "To be, Present Simple, артикли, множ. число, модальные глаголы, Past Simple, Present Continuous.",
+      "stage4-result": "Результат: строите правильные предложения легко и уверенно.",
+      "stage5-title": "Этап 5 — Практика и живое общение",
+      "stage5-desc": "Диалоги, бытовые ситуации, аудирование, чтение, ролевые игры.",
+      "stage5-result": "Результат: ведёте простой диалог и понимаете речь на слух.",
+      "results-title": "🎯 Что получаете в итоге?",
+      "result1": "Уверенное чтение и произношение",
+      "result2": "Базовый словарный запас для общения",
+      "result3": "Понимание основ грамматика",
+      "result4": "Способность говорить на бытовые темы",
+      "result5": "Настоящую языковую уверенность уже через несколько недель",
+      "cta-title": "🚀 Готов начать?",
+      "cta-subtitle": "Оставьте заявку — и я подберу вам удобный формат обучения.",
+      "cta-btn": "Записаться на пробный урок",
+      "contact-title": "Контактная информация",
+      "contact-subtitle": "Свяжитесь с нами удобным для вас способом",
+      "address-title": "Адрес",
+      "address": "г. Уральск, Западно-Казахстанская область",
+      "phones-title": "Телефоны",
+      "phone1": "WhatsApp/Мобильный: +7 771 025 00 08",
+      "phone2": "WhatsApp/Мобильный: +7 708 729 63 07",
+      "phone3": "Городской: +7 (7112) 21-90-18",
+      "email-title": "Email",
+      "work-hours-title": "Время работы",
+      "work-hours": "Без выходных 24/7",
+      "social-title": "Социальные сети"
+    },
+    kz: {
+      "title": "Ағылшын тілі нөлден",
+      "nav-home": "Басты",
+      "nav-why": "Неге жұмыс істейді",
+      "nav-stages": "Оқу кезеңдері",
+      "nav-results": "Нәтижелер",
+      "nav-contact": "Байланыс",
+      "hero-title": "🌟 Ағылшын тілі нөлден — қарапайым және түсінікті оқыту жүйесі",
+      "hero-subtitle": "Оңай бастаңыз. Сенімді сөйлесіңіз. Тілді біртіндеп меңгеріңіз.",
+      "hero-btn": "Сынақ сабағына жазылу",
+      "why-title": "🔥 Біздің бағдарлама неге жұмыс істейді?",
+      "why-method": "Тиімді оқыту әдістемесі",
+      "why-description": "Біз нақты құрылымды, түсінікті қадамдарды және тұрақты тәжірибені біріктіреміз. Әрбір кезең қайталанады және алдыңғысын күшейтеді — осылайша сіз жылдам және шамадан тыс жүктемесіз қозғаласыз.",
+      "stages-title": "📘 Оқу кезеңдері",
+      "stage1-title": "1-кезең — Әліпби және дыбыстар",
+      "stage1-desc": "Әріптерді, негізгі дыбыстарды және қарапайым сөздерді оқуды меңгереміз.",
+      "stage1-result": "Нәтиже: сенімді айтылым және негіздерді түсіну.",
+      "stage2-title": "2-кезең — Фонетика және оқу",
+      "stage2-desc": "Транскрипция, негізгі фонемалар, оқу ережелері.",
+      "stage2-result": "Нәтиже: таныс емес сөздерді өздігінен оқи аласыз.",
+      "stage3-title": "3-кезең — Алғашқы 2000–3000 сөз",
+      "stage3-desc": "Тақырыптық лексика: отбасы, үй, тамақ, сандар, әрекеттер.",
+      "stage3-result": "Нәтиже: бірінші сабақтан бастап қарапайым сөйлемдермен сөйлесесіз.",
+      "stage4-title": "4-кезең — Ауырсыз грамматика",
+      "stage4-desc": "To be, Present Simple, артикльдер, көпше түр, модальді етістіктер, Past Simple, Present Continuous.",
+      "stage4-result": "Нәтиже: дұрыс сөйлемдерді оңай және сенімді құрасыз.",
+      "stage5-title": "5-кезең — Тәжірибе және тікелей сөйлесу",
+      "stage5-desc": "Диалогтар, тұрмыстық жағдайлар, тыңдау, оқу, рөлдік ойындар.",
+      "stage5-result": "Нәтиже: қарапайым диалог жүргізесіз және сөйлеуді ести түсінесіз.",
+      "results-title": "🎯 Соңында не аласыз?",
+      "result1": "Сенімді оқу және айтылым",
+      "result2": "Сөйлесу үшін негізгі сөздік қор",
+      "result3": "Грамматика негіздерін түсіну",
+      "result4": "Тұрмыстық тақырыптар бойынша сөйлеу қабілеті",
+      "result5": "Бірнеше аптаның ішінде нақты тілдік сенімділік",
+      "cta-title": "🚀 Бастауға дайынсыз ба?",
+      "cta-subtitle": "Өтініш қалдырыңыз — мен сізге ыңғайлы оқу форматын таңдаймын.",
+      "cta-btn": "Сынақ сабағына жазылу",
+      "contact-title": "Байланыс ақпараты",
+      "contact-subtitle": "Бізбен сізге ыңғайлы тәсілмен байланысыңыз",
+      "address-title": "Мекен-жай",
+      "address": "Орал қаласы, Батыс Қазақстан облысы",
+      "phones-title": "Телефондар",
+      "phone1": "WhatsApp/Ұялы: +7 771 025 00 08",
+      "phone2": "WhatsApp/Ұялы: +7 708 729 63 07",
+      "phone3": "Қалалық: +7 (7112) 21-90-18",
+      "email-title": "Электрондық пошта",
+      "work-hours-title": "Жұмыс уақыты",
+      "work-hours": "Тәулік бойы, демалыссыз (24/7)",
+      "social-title": "Әлеуметтік желілер"
+    },
+    en: {
+      "title": "English from Scratch",
+      "nav-home": "Home",
+      "nav-why": "Why It Works",
+      "nav-stages": "Learning Stages",
+      "nav-results": "Results",
+      "nav-contact": "Contacts",
+      "hero-title": "🌟 English from Scratch — Simple and Clear Learning System",
+      "hero-subtitle": "Start easily. Speak confidently. Master the language step by step.",
+      "hero-btn": "Sign up for a trial lesson",
+      "why-title": "🔥 Why Our Program Works?",
+      "why-method": "Effective Learning Methodology",
+      "why-description": "We combine clear structure, understandable steps and constant practice. Each stage repeats and reinforces the previous one — so you progress quickly and without overload.",
+      "stages-title": "📘 Learning Stages",
+      "stage1-title": "Stage 1 — Alphabet and Sounds",
+      "stage1-desc": "Mastering letters, basic sounds and reading simple words.",
+      "stage1-result": "Result: confident pronunciation and understanding of basics.",
+      "stage2-title": "Stage 2 — Phonics and Reading",
+      "stage2-desc": "Transcription, key phonemes, reading rules.",
+      "stage2-result": "Result: you can read unfamiliar words on your own.",
+      "stage3-title": "Stage 3 — First 2000–3000 Words",
+      "stage3-desc": "Thematic vocabulary: family, home, food, numbers, actions.",
+      "stage3-result": "Result: you speak simple phrases from the first lesson.",
+      "stage4-title": "Stage 4 — Grammar Without Pain",
+      "stage4-desc": "To be, Present Simple, articles, plural, modal verbs, Past Simple, Present Continuous.",
+      "stage4-result": "Result: you build correct sentences easily and confidently.",
+      "stage5-title": "Stage 5 — Practice and Live Communication",
+      "stage5-desc": "Dialogues, everyday situations, listening, reading, role-playing games.",
+      "stage5-result": "Result: you conduct simple dialogue and understand speech by ear.",
+      "results-title": "🎯 What Do You Get in the End?",
+      "result1": "Confident reading and pronunciation",
+      "result2": "Basic vocabulary for communication",
+      "result3": "Understanding grammar basics",
+      "result4": "Ability to speak on everyday topics",
+      "result5": "Real language confidence in just a few weeks",
+      "cta-title": "🚀 Ready to Start?",
+      "cta-subtitle": "Leave a request — and I will select a convenient learning format for you.",
+      "cta-btn": "Sign up for a trial lesson",
+      "contact-title": "Contact Information",
+      "contact-subtitle": "Contact us in a way convenient for you",
+      "address-title": "Address",
+      "address": "Uralsk city, West Kazakhstan Region",
+      "phones-title": "Phones",
+      "phone1": "WhatsApp/Mobile: +7 771 025 00 08",
+      "phone2": "WhatsApp/Mobile: +7 708 729 63 07",
+      "phone3": "City phone: +7 (7112) 21-90-18",
+      "email-title": "Email",
+      "work-hours-title": "Working Hours",
+      "work-hours": "Open 24/7",
+      "social-title": "Social Networks"
+    }
+  };
+
+  // Функция для смены языка
+  function changeLanguage(lang) {
+    // Обновляем активную кнопку
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      }
+    });
+    
+    // Обновляем все тексты на странице
+    document.querySelectorAll('[data-lang]').forEach(element => {
+      const key = element.getAttribute('data-lang');
+      if (translations[lang][key]) {
+        element.textContent = translations[lang][key];
+      }
+    });
+    
+    // Сохраняем выбор языка
+    localStorage.setItem('preferred-language', lang);
+  }
+
+  // Инициализация языка при загрузке страницы
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedLang = localStorage.getItem('preferred-language') || 'ru';
+    changeLanguage(savedLang);
+    
+    // Добавляем обработчики для кнопок переключения языка
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        changeLanguage(lang);
+      });
+    });
+  });
+
+  // Плавная прокрутка для навигационных ссылок
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Анимация появления элементов при прокрутке
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+  
+  // Применяем анимацию к карточкам этапов
+  document.querySelectorAll('.stage-card').forEach(card => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.5s, transform 0.5s';
+    observer.observe(card);
+  });
+</script>
+
+</body>
+</html>

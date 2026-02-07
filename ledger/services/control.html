@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Производственный контроль «под ключ» | QHSE-Solutions.kz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome для иконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .tab-active {
+      background: linear-gradient(to right, #1e40af, #2563eb);
+      color: white;
+    }
+    .tab-inactive {
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-gray-50 via-blue-50 to-gray-100 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-teal-600 to-blue-700 text-white shadow-lg p-6 sticky top-0 z-50 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">QHSE-Solutions.kz</h1>
+    <div class="flex items-center gap-2">
+      <button onclick="setLanguage('ru')" class="px-3 py-1 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100">RU</button>
+      <button onclick="setLanguage('kz')" class="px-3 py-1 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100">KZ</button>
+      <button onclick="setLanguage('en')" class="px-3 py-1 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100">EN</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-6xl mx-auto p-8 space-y-8">
+
+    <!-- BUTTON BACK -->
+    <div>
+      <a id="back-link" href="index.html" class="px-5 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl shadow hover:opacity-90 transition">
+        ⬅ На главную
+      </a>
+    </div>
+
+    <!-- SERVICE TITLE -->
+    <div class="text-center">
+      <h1 id="service-title" class="text-3xl font-bold text-blue-800 mb-2">Производственный контроль «под ключ»</h1>
+      <p id="service-subtitle" class="text-gray-600">Полный цикл услуг по разработке и внедрению системы производственного контроля</p>
+    </div>
+
+    <!-- CONTENT -->
+    <section id="content" class="space-y-8">
+      <!-- Контент будет загружен через JS -->
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-6 mt-12">
+    <div class="max-w-6xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <p id="copyright" class="text-gray-300">© 2025 QHSE Solutions. Все права защищены.</p>
+          <p class="text-gray-400 text-sm mt-1">qhse-solutions.kz</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://t.me/qhsesolutions" target="_blank" class="text-gray-300 hover:text-blue-400 transition">
+            <i class="fab fa-telegram text-xl"></i>
+          </a>
+          <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" class="text-gray-300 hover:text-blue-600 transition">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" class="text-gray-300 hover:text-pink-500 transition">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://www.youtube.com/@qhsesolutions" target="_blank" class="text-gray-300 hover:text-red-500 transition">
+            <i class="fab fa-youtube text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      ru: {
+        pageTitle: "Производственный контроль «под ключ» | QHSE-Solutions.kz",
+        backButton: "⬅ На главную",
+        serviceTitle: "Производственный контроль «под ключ»",
+        serviceSubtitle: "Полный цикл услуг по разработке и внедрению системы производственного контроля",
+        copyright: "© 2025 QHSE Solutions. Все права защищены.",
+        content: [
+          { 
+            title: "Производственный контроль «под ключ»", 
+            text: `Разработка и внедрение эффективной системы производственного контроля (самоконтроля) для гарантированного соблюдения санитарных норм, защиты здоровья работников, безопасности продукции и минимизации воздействия на окружающую среду.`,
+            isMainTitle: true
+          },
+          { 
+            title: "Наша экспертиза", 
+            text: `Мы предлагаем профессиональное сопровождение на основе более чем 30-летнего опыта работы в международных компаниях (таких как ТШО, КПО, НКОК). Мы знаем, как построить систему, которая не просто формально соответствует требованиям, но и реально работает на вашу безопасность и эффективность.`,
+            isHighlighted: true
+          },
+          { 
+            title: "Законодательная основа (актуально на 2024 год)", 
+            text: `Деятельность по производственному контролю регламентируется:
+• Кодекс РК «О здоровье народа и системе здравоохранения» (ст. 51).
+• Санитарные правила, утвержденные Приказом Министра здравоохранения РК от 07.04.2023 № 62.`
+          },
+          { 
+            title: "Кому необходим производственный контроль?", 
+            text: `Если ваше предприятие относится к одной из этих категорий, разработка программы производственного контроля обязательна:
+• Промышленные и радиационные объекты.
+• Производство и оборот пищевой продукции.
+• Объекты коммунального обслуживания 
+• Организации здравоохранения и фармацевтики.
+• Образовательные и детские учреждения.
+• Транспортные компании.
+• И многие другие (полный список — по запросу).`,
+            isImportant: true
+          },
+          { 
+            title: "Наши услуги: полный цикл", 
+            text: `Мы не просто делаем замеры, мы помогаем построить и поддерживать систему.
+
+1. Разработка и внедрение системы контроля
+• Программа (План) производственного контроля: Разработка индивидуального документа с учетом специфики вашего объекта, всех вредных факторов и требований приказа.
+• Оценка профессиональных рисков: Интеграция оценки рисков в систему ПК.
+• Консультации по организации медосмотров: Помощь в формировании списков контингентов и опасных профессий.
+• Создание списка производств, цехов, профессий и должностей, перечень тяжелых работ, работ с вредными (особо вредными) и (или) опасными условиями труда.
+• Консультации по заключительному акту по результатам проведенного периодического медицинского осмотра работников.
+
+2. Лабораторные исследования и инструментальные замеры
+Проводим с привлечением аккредитованных партнерских лабораторий:
+• Микроклимат (температура, влажность, скорость воздуха)
+• Освещенность (естественная и искусственная)
+• Воздух рабочей зоны (химические вещества, аэрозоли)
+• Шум и вибрация
+• Электромагнитные поля
+• Радиационный фон`
+          },
+          { 
+            title: "Ваши выгоды", 
+            text: `✅ Гарантированное соблюдение требований: Минимизация риска штрафов и исключение остановок бизнеса.
+
+✅ Профессиональная экспертиза: Решения, основанные на многолетнем опыте в крупных международных нефтегазовых проектах.
+
+✅ Экономия ваших ресурсов: Все процессы — от подготовки документов до взаимодействия с лабораториями — мы берём на себя.
+
+✅ Управление и снижение рисков: Предотвращение аварийных ситуаций, профессиональных заболеваний и инфекционных вспышек.
+
+✅ Полная уверенность: Ваш объект всегда готов к проверкам и аудиту.`,
+            isBenefits: true
+          },
+          { 
+            title: "Стоимость", 
+            text: `Договорная.`
+          }
+        ]
+      },
+      kz: {
+        pageTitle: "Өндірістік бақылау «толық қамтамасыз ету» | QHSE-Solutions.kz",
+        backButton: "⬅ Басты бетке",
+        serviceTitle: "Өндірістік бақылау «толық қамтамасыз ету»",
+        serviceSubtitle: "Өндірістік бақылау жүйесін әзірлеу және енгізу бойынша толық цикл қызметтері",
+        copyright: "© 2025 QHSE Solutions. Барлық құқықтар қорғалған.",
+        content: [
+          { 
+            title: "Өндірістік бақылау «толық қамтамасыз ету»", 
+            text: `Санитарлық нормаларды сақтауды қамтамасыз ету, қызметкерлер денсаулығын қорғау, өнім қауіпсіздігі және қоршаған ортаға әсерді азайту үшін тиімді өндірістік бақылау (өзін-өзі бақылау) жүйесін әзірлеу және енгізу.`,
+            isMainTitle: true
+          },
+          { 
+            title: "Біздің сарапшылық", 
+            text: `Біз ТШО, ҚПО, НҚОК сияқты халықаралық компаниялардағы 30 жылдан астам тәжірибеге негізделген кәсіби қолдау ұсынамыз. Біз тек қана талаптарға ресми түрде сәйкес келетін емес, сонымен қатар сіздің қауіпсіздігіңіз және тиімділігіңіз үшін нақты жұмыс істейтін жүйені қалай құру керектігін білеміз.`,
+            isHighlighted: true
+          },
+          { 
+            title: "Заңнама негізі (2024 жылға өзекті)", 
+            text: `Өндірістік бақылау қызметі мынамен регламенттеледі:
+• ҚР «Халық денсаулығы және денсаулық сақтау жүйесі туралы» кодексі (51-бап).
+• ҚР Денсаулық сақтау министрінің 2023 жылғы 07.04. № 62 бұйрығымен бекітілген санитарлық ережелер.`
+          },
+          { 
+            title: "Өндірістік бақылау кімге қажет?", 
+            text: `Егер сіздің кәсіпорныңыз осы санаттардың біріне жататын болса, өндірістік бақылау бағдарламасын әзірлеу міндетті:
+• Өнеркәсіптік және радиациялық объектілер.
+• Азық-түлік өнімдерін өндіру және айналыс.
+• Коммуналдық қызмет көрсету объектілері
+• Денсаулық сақтау және фармацевтика ұйымдары.
+• Білім беру және балалар мекемелері.
+• Көлік компаниялары.
+• Және тағы басқалары (толық тізім – сұраныс бойынша).`,
+            isImportant: true
+          },
+          { 
+            title: "Біздің қызметтеріміз: толық цикл", 
+            text: `Біз жай ғана өлшемдер жасамаймыз, біз жүйені құруға және ұстауға көмектесеміз.
+
+1. Бақылау жүйесін әзірлеу және енгізу
+• Өндірістік бақылау бағдарламасы (жоспары): Сіздің объектіңіздің ерекшеліктерін, барлық зиянды факторларды және бұйрық талаптарын ескере отырып жеке құжат әзірлеу.
+• Кәсіби тәуекелдерді бағалау: Тәуекелдерді бағалауды ПК жүйесіне біріктіру.
+• Медициналық тексерулерді ұйымдастуру бойынша кеңестер: Контингенттер мен қауіпті кәсіптер тізімдерін қалыптастыруға көмек.
+• Өндірістер, цехтар, кәсіптер мен лауазымдар тізімін құру, ауыр жұмыстардың, зиянды (ерекше зиянды) және (немесе) қауіпті жұмыс жағдайлары бар жұмыстардың тізімі.
+• Жұмысшылардың мерзімді медициналық тексеруінің нәтижелері бойынша қорытынды акті бойынша кеңестер.
+
+2. Зертханалық зерттеулер және аспаптық өлшемдер
+Сертификатталған серіктес зертханаларды тарту арқылы жүргіземіз:
+• Микроклимат (температура, ылғалдылық, ауа жылдамдығы)
+• Жарықтандыру (табиғи және жасанды)
+• Жұмыс аймағының ауасы (химиялық заттар, аэрозольдер)
+• Шу және діріл
+• Электромагниттік өрістер
+• Радиациялық фон`
+          },
+          { 
+            title: "Сіздің артықшылықтарыңыз", 
+            text: `✅ Талаптарды кепілденген орындау: Айыппұлдар тәуекелін азайту және бизнесті тоқтатуды жою.
+
+✅ Кәсіби сарапшылық: Ірі халықаралық мұнай-газ жобаларындағы көпжылдық тәжірибеге негізделген шешімдер.
+
+✅ Сіздің ресурстарыңызды үнемдеу: Біз құжаттарды дайындаудан зертханалармен өзара әрекеттесуге дейін барлық үдерістерді өзімізге аламыз.
+
+✅ Тәуекелдерді басқару және азайту: Апаттық жағдайлардың, кәсіби аурулардың және жұқпалы аурулардың алдын алу.
+
+✅ Толық сенімділік: Сіздің объектіңіз әрқашан тексерулер мен аудитке дайын.`,
+            isBenefits: true
+          },
+          { 
+            title: "Құны", 
+            text: `Келісім бойынша.`
+          }
+        ]
+      },
+      en: {
+        pageTitle: "Industrial Control «Turnkey» | QHSE-Solutions.kz",
+        backButton: "⬅ Back to main",
+        serviceTitle: "Industrial Control «Turnkey»",
+        serviceSubtitle: "Full cycle of services for the development and implementation of an industrial control system",
+        copyright: "© 2025 QHSE Solutions. All rights reserved.",
+        content: [
+          { 
+            title: "Industrial Control «Turnkey»", 
+            text: `Development and implementation of an effective industrial control (self-control) system to ensure compliance with sanitary standards, protect workers' health, ensure product safety and minimize environmental impact.`,
+            isMainTitle: true
+          },
+          { 
+            title: "Our Expertise", 
+            text: `We offer professional support based on over 30 years of experience in international companies (such as TCO, KPO, NCOC). We know how to build a system that not only formally meets requirements, but actually works for your safety and efficiency.`,
+            isHighlighted: true
+          },
+          { 
+            title: "Legal Basis (updated for 2024)", 
+            text: `Industrial control activities are regulated by:
+• Code of the Republic of Kazakhstan "On Public Health and Healthcare System" (Article 51).
+• Sanitary Rules approved by Order of the Minister of Health of the Republic of Kazakhstan dated 04/07/2023 No. 62.`
+          },
+          { 
+            title: "Who Needs Industrial Control?", 
+            text: `If your enterprise belongs to one of these categories, development of an industrial control program is mandatory:
+• Industrial and radiation facilities.
+• Production and circulation of food products.
+• Public utilities facilities.
+• Healthcare and pharmaceutical organizations.
+• Educational and children's institutions.
+• Transport companies.
+• And many others (full list upon request).`,
+            isImportant: true
+          },
+          { 
+            title: "Our Services: Full Cycle", 
+            text: `We don't just take measurements, we help build and maintain a system.
+
+1. Development and implementation of a control system
+• Industrial Control Program (Plan): Development of an individual document considering the specifics of your facility, all harmful factors and order requirements.
+• Occupational risk assessment: Integration of risk assessment into the PC system.
+• Consultations on organizing medical examinations: Assistance in forming lists of contingents and hazardous professions.
+• Creation of lists of productions, workshops, professions and positions, list of heavy works, works with harmful (especially harmful) and/or dangerous working conditions.
+• Consultations on the final act based on the results of periodic medical examination of employees.
+
+2. Laboratory research and instrumental measurements
+We conduct with the involvement of accredited partner laboratories:
+• Microclimate (temperature, humidity, air velocity)
+• Illumination (natural and artificial)
+• Workplace air (chemical substances, aerosols)
+• Noise and vibration
+• Electromagnetic fields
+• Radiation background`
+          },
+          { 
+            title: "Your Benefits", 
+            text: `✅ Guaranteed compliance: Minimization of the risk of fines and elimination of business stoppages.
+
+✅ Professional expertise: Solutions based on many years of experience in major international oil and gas projects.
+
+✅ Saving your resources: We take on all processes - from document preparation to interaction with laboratories.
+
+✅ Risk management and reduction: Prevention of emergency situations, occupational diseases and infectious outbreaks.
+
+✅ Complete confidence: Your facility is always ready for inspections and audits.`,
+            isBenefits: true
+          },
+          { 
+            title: "Cost", 
+            text: `Negotiable.`
+          }
+        ]
+      }
+    };
+
+    const contacts = {
+      ru: {
+        title: "Контактная информация",
+        address: "г. Уральск, Западно-Казахстанская область",
+        phones: [
+          { label: "WhatsApp/Мобильный:", number: "+7 771 025 00 08" },
+          { label: "WhatsApp/Мобильный:", number: "+7 708 729 63 07" },
+          { label: "Городской:", number: "+7 (7112) 21-90-18" }
+        ],
+        email: "qhsesolutions5@gmail.com",
+        workingHours: "Без выходных 24/7",
+        socialTitle: "Социальные сети",
+        socialLinks: [
+          { icon: "fab fa-telegram", url: "https://t.me/qhsesolutions", color: "bg-blue-500" },
+          { icon: "fab fa-facebook", url: "https://www.facebook.com/qhsesolutions.kz/", color: "bg-blue-700" },
+          { icon: "fab fa-instagram", url: "https://www.instagram.com/qhsesolutions.kz/", color: "bg-pink-600" },
+          { icon: "fab fa-youtube", url: "https://www.youtube.com/@qhsesolutions", color: "bg-red-600" }
+        ]
+      },
+      kz: {
+        title: "Байланыс ақпараты",
+        subtitle: "Бізбен сізге ыңғайлы тәсілмен байланысыңыз",
+        address: "Орал қаласы, Батыс Қазақстан облысы",
+        phones: [
+          { label: "WhatsApp/Ұялы:", number: "+7 771 025 00 08" },
+          { label: "WhatsApp/Ұялы:", number: "+7 708 729 63 07" },
+          { label: "Қалалық:", number: "+7 (7112) 21-90-18" }
+        ],
+        email: "qhsesolutions5@gmail.com",
+        workingHours: "Тәулік бойы, демалыссыз (24/7)",
+        socialTitle: "Әлеуметтік желілер",
+        socialLinks: [
+          { icon: "fab fa-telegram", url: "https://t.me/qhsesolutions", color: "bg-blue-500" },
+          { icon: "fab fa-facebook", url: "https://www.facebook.com/qhsesolutions.kz/", color: "bg-blue-700" },
+          { icon: "fab fa-instagram", url: "https://www.instagram.com/qhsesolutions.kz/", color: "bg-pink-600" },
+          { icon: "fab fa-youtube", url: "https://www.youtube.com/@qhsesolutions", color: "bg-red-600" }
+        ]
+      },
+      en: {
+        title: "Contact Information",
+        subtitle: "Contact us in a way convenient for you",
+        address: "Uralsk city, West Kazakhstan Region",
+        phones: [
+          { label: "WhatsApp/Mobile:", number: "+7 771 025 00 08" },
+          { label: "WhatsApp/Mobile:", number: "+7 708 729 63 07" },
+          { label: "City phone:", number: "+7 (7112) 21-90-18" }
+        ],
+        email: "qhsesolutions5@gmail.com",
+        workingHours: "Open 24/7",
+        socialTitle: "Social Networks",
+        socialLinks: [
+          { icon: "fab fa-telegram", url: "https://t.me/qhsesolutions", color: "bg-blue-500" },
+          { icon: "fab fa-facebook", url: "https://www.facebook.com/qhsesolutions.kz/", color: "bg-blue-700" },
+          { icon: "fab fa-instagram", url: "https://www.instagram.com/qhsesolutions.kz/", color: "bg-pink-600" },
+          { icon: "fab fa-youtube", url: "https://www.youtube.com/@qhsesolutions", color: "bg-red-600" }
+        ]
+      }
+    };
+
+    let currentLang = localStorage.getItem("lang") || "ru";
+
+    function updateStaticTexts() {
+      document.getElementById("page-title").textContent = translations[currentLang].pageTitle;
+      document.getElementById("back-link").innerHTML = translations[currentLang].backButton;
+      document.getElementById("service-title").textContent = translations[currentLang].serviceTitle;
+      document.getElementById("service-subtitle").textContent = translations[currentLang].serviceSubtitle;
+      // Обновляем копирайт
+      document.getElementById("copyright").textContent = translations[currentLang].copyright;
+    }
+
+    function renderContacts() {
+      const contactData = contacts[currentLang];
+      let phonesHtml = contactData.phones.map(phone => 
+        `<div class="flex items-center gap-2">
+          <span class="text-gray-600 min-w-32">${phone.label}</span>
+          <a href="tel:${phone.number.replace(/\s|\(|\)|-/g, '')}" class="font-semibold text-blue-700 hover:text-blue-900 transition">${phone.number}</a>
+        </div>`
+      ).join('');
+      
+      let socialIcons = contactData.socialLinks.map(link => 
+        `<a href="${link.url}" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full ${link.color} text-white hover:opacity-90 transition transform hover:-translate-y-1 shadow-md">
+          <i class="${link.icon} text-xl"></i>
+        </a>`
+      ).join('');
+
+      return `
+        <div class="p-8 rounded-2xl shadow-lg bg-gradient-to-r from-gray-50 to-blue-50 border border-blue-100">
+          <h2 class="text-2xl font-bold text-blue-800 mb-2">${contactData.title}</h2>
+          ${contactData.subtitle ? `<p class="text-gray-600 mb-6">${contactData.subtitle}</p>` : ''}
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Контактные данные -->
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <i class="fas fa-map-marker-alt text-blue-600 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-1">${currentLang === 'ru' ? 'Адрес' : currentLang === 'kz' ? 'Мекен-жай' : 'Address'}</h3>
+                  <p class="text-gray-800">${contactData.address}</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3">
+                <i class="fas fa-phone-alt text-blue-600 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-1">${currentLang === 'ru' ? 'Телефоны' : currentLang === 'kz' ? 'Телефондар' : 'Phones'}</h3>
+                  <div class="space-y-1">${phonesHtml}</div>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3">
+                <i class="fas fa-envelope text-blue-600 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-1">Email</h3>
+                  <a href="mailto:${contactData.email}" class="text-blue-700 hover:text-blue-900 font-medium">${contactData.email}</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3">
+                <i class="fas fa-clock text-blue-600 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-1">${currentLang === 'ru' ? 'Время работы' : currentLang === 'kz' ? 'Жұмыс уақыты' : 'Working Hours'}</h3>
+                  <p class="text-gray-800 font-medium">${contactData.workingHours}</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Социальные сети -->
+            <div>
+              <h3 class="font-semibold text-gray-700 mb-4 text-xl">${contactData.socialTitle}</h3>
+              <div class="flex flex-wrap gap-4 mb-6">
+                ${socialIcons}
+              </div>
+              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg">
+                <p class="text-gray-700 mb-2">
+                  <i class="fas fa-globe text-blue-600 mr-2"></i>
+                  <strong>Сайт:</strong> 
+                  <a href="https://qhse-solutions.kz" target="_blank" class="text-blue-700 hover:text-blue-900 ml-2">qhse-solutions.kz</a>
+                </p>
+                <p class="text-gray-700">
+                  <i class="fas fa-comments text-green-600 mr-2"></i>
+                  <strong>${currentLang === 'ru' ? 'Пишите нам' : currentLang === 'kz' ? 'Бізге жазыңыз' : 'Write to us'}</strong> 
+                  <span class="ml-2">${currentLang === 'ru' ? 'в любое время' : currentLang === 'kz' ? 'кез келген уақытта' : 'anytime'}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Карта/Локация -->
+          <div class="mt-8 pt-6 border-t border-blue-100">
+            <div class="flex items-center gap-2 text-gray-700 mb-3">
+              <i class="fas fa-location-dot text-red-500"></i>
+              <span class="font-semibold">${currentLang === 'ru' ? 'Мы находимся в Западно-Казахстанской области' : currentLang === 'kz' ? 'Біз Батыс Қазақстан облысында орналасқанбыз' : 'We are located in West Kazakhstan Region'}</span>
+            </div>
+            <p class="text-gray-600">${currentLang === 'ru' ? 'Работаем по всему Казахстану' : currentLang === 'kz' ? 'Қазақстан бойынша жұмыс істейміз' : 'We work throughout Kazakhstan'}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderContent() {
+      const container = document.getElementById("content");
+      container.innerHTML = "";
+      
+      // Рендерим основной контент
+      translations[currentLang].content.forEach((sec, idx) => {
+        let cardClasses = "p-6 rounded-2xl shadow hover:shadow-lg transition mb-6";
+        
+        if (sec.isMainTitle) {
+          cardClasses += " bg-gradient-to-r from-blue-800 to-indigo-900 text-white";
+        } else if (sec.isHighlighted) {
+          cardClasses += " bg-gradient-to-r from-teal-500 to-blue-600 text-white";
+        } else if (sec.isImportant) {
+          cardClasses += " bg-gradient-to-r from-amber-100 to-yellow-100 border-l-4 border-yellow-500";
+        } else if (sec.isBenefits) {
+          cardClasses += " bg-gradient-to-r from-green-50 to-emerald-100 border-l-4 border-green-500";
+        } else {
+          const colors = ["from-indigo-50 to-blue-50", "from-green-50 to-emerald-50", "from-yellow-50 to-amber-50"];
+          cardClasses += ` bg-gradient-to-r ${colors[idx % colors.length]}`;
+        }
+
+        const card = document.createElement("div");
+        card.className = cardClasses;
+        
+        let titleClass = "text-xl font-semibold mb-3";
+        if (sec.isMainTitle) {
+          titleClass += " text-white text-2xl";
+        } else if (sec.isHighlighted) {
+          titleClass += " text-white";
+        } else {
+          titleClass += " text-blue-800";
+        }
+        
+        card.innerHTML = `
+          <h2 class="${titleClass}">${sec.title}</h2>
+          <p class="whitespace-pre-line ${sec.isMainTitle || sec.isHighlighted ? 'text-white' : 'text-gray-700'}">${sec.text}</p>
+        `;
+        container.appendChild(card);
+      });
+      
+      // Добавляем блок контактов в конце
+      const contactsCard = document.createElement("div");
+      contactsCard.id = "contacts-section";
+      contactsCard.innerHTML = renderContacts();
+      container.appendChild(contactsCard);
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem("lang", lang);
+      updateStaticTexts();
+      renderContent();
+    }
+
+    // Первичная загрузка
+    updateStaticTexts();
+    renderContent();
+  </script>
+</body>
+</html>

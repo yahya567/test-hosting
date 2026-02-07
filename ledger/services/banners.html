@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Профессиональная печать баннеров, изготовление стендов и журналов по охране труда и технике безопасности. Высокое качество, индивидуальный подход, доставка по Казахстану.">
+  <title>Печать и изготовление стендов | Охрана труда и техника безопасности</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .lang { 
+      display: none; 
+      opacity: 0; 
+      transition: opacity 0.3s ease; 
+    }
+    .lang.active { 
+      display: block; 
+      opacity: 1; 
+    }
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .gallery-img {
+      transition: transform 0.3s ease;
+    }
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+    .social-icon {
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+    .why-item {
+      padding: 8px 0;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Language Switch + Home Button -->
+  <div class="fixed top-4 right-4 z-50 bg-white shadow-md px-4 py-2 rounded-lg flex items-center gap-3">
+    <div class="flex items-center">
+      <button onclick="setLang('ru')" class="mx-1 text-blue-600 font-medium hover:text-blue-800 transition-colors" aria-label="Русский язык">RU</button>
+      <span class="mx-1 text-gray-400">|</span>
+      <button onclick="setLang('en')" class="mx-1 text-green-600 font-medium hover:text-green-800 transition-colors" aria-label="English language">EN</button>
+      <span class="mx-1 text-gray-400">|</span>
+      <button onclick="setLang('kz')" class="mx-1 text-red-600 font-medium hover:text-red-800 transition-colors" aria-label="Қазақ тілі">KZ</button>
+    </div>
+    <a href="index.html" class="bg-yellow-400 text-black font-semibold px-3 py-1 rounded shadow hover:bg-yellow-500 transition-colors">
+      ⬅ <span class="lang lang-ru active">Главная</span>
+      <span class="lang lang-en">Home</span>
+      <span class="lang lang-kz">Басты</span>
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <header class="bg-blue-600 text-white p-10 text-center">
+    <h1 class="text-4xl font-bold mb-4 lang lang-ru active">Печать баннеров, изготовление стендов и журналов</h1>
+    <h1 class="text-4xl font-bold mb-4 lang lang-en">Banner Printing, Stand and Logbook Production</h1>
+    <h1 class="text-4xl font-bold mb-4 lang lang-kz">Баннерлерді басып шығару, стендтер мен журналдар дайындау</h1>
+
+    <p class="mt-4 text-xl lang lang-ru active">Всё для охраны труда и техники безопасности</p>
+    <p class="mt-4 text-xl lang lang-en">Everything for occupational safety and health</p>
+    <p class="mt-4 text-xl lang lang-kz">Еңбек қорғау және техника қауіпсіздігі үшін бәрі</p>
+    
+    <a href="#contact" class="mt-8 inline-block bg-white text-blue-600 font-bold px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition-colors">
+      <span class="lang lang-ru active">Получить консультацию</span>
+      <span class="lang lang-en">Get Consultation</span>
+      <span class="lang lang-kz">Кеңес алу</span>
+    </a>
+  </header>
+
+  <!-- Services -->
+  <section class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-center mb-10 lang lang-ru active">Наши услуги</h2>
+    <h2 class="text-3xl font-bold text-center mb-10 lang lang-en">Our Services</h2>
+    <h2 class="text-3xl font-bold text-center mb-10 lang lang-kz">Біздің қызметтер</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- RU -->
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-ru active">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Печать баннеров</h3>
+        <p class="text-center">Изготовим рекламные и информационные баннеры любого размера.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-ru active">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Стенды</h3>
+        <p class="text-center">Стенды по ОТ и ТБ, информационные и имиджевые решения для офиса и производства.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-ru active">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Знаки безопасности</h3>
+        <p class="text-center">Все виды знаков: пожарные, эвакуационные, предупреждающие.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-ru active">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Журналы по ОТ</h3>
+        <p class="text-center">Журналы инструктажей, проверки знаний и другие формы.</p>
+      </div>
+
+      <!-- EN -->
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-en">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Banner Printing</h3>
+        <p class="text-center">Production of advertising and informational banners of any size.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-en">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Stands</h3>
+        <p class="text-center">OSH stands, informational and branding solutions for office and production.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-en">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Safety Signs</h3>
+        <p class="text-center">All types of signs: fire, evacuation, warning.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-en">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">OSH Logbooks</h3>
+        <p class="text-center">Instruction, knowledge check and other occupational safety journals.</p>
+      </div>
+
+      <!-- KZ -->
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-kz">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Баннерлерді басып шығару</h3>
+        <p class="text-center">Кез келген өлшемдегі жарнамалық және ақпараттық баннерлер дайындаймыз.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-kz">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Стендтер</h3>
+        <p class="text-center">ЕҚ және ТҚ стендтері, кеңсе мен өндіріс үшін ақпараттық және имидждік шешімдер.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-kz">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">Қауіпсіздік белгілері</h3>
+        <p class="text-center">Барлық түрлері: өртке қарсы, эвакуациялық, ескерту белгілері.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow service-card lang lang-kz">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-semibold text-xl mb-3 text-center">ЕҚ журналдары</h3>
+        <p class="text-center">Нұсқаулық, білім тексеру және басқа еңбек қауіпсіздігі журналдары.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-center mb-10 lang lang-ru active">Наши работы</h2>
+    <h2 class="text-3xl font-bold text-center mb-10 lang lang-en">Our Works</h2>
+    <h2 class="text-3xl font-bold text-center mb-10 lang lang-kz">Біздің жұмыстарымыз</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <img src="images/Печать баннеров.jpg" alt="Печать баннеров" class="rounded-lg shadow gallery-img">
+      <img src="images/Стенды по ОТ и ТБ.jpg" alt="Информационные стенды" class="rounded-lg shadow gallery-img">
+      <img src="images/Знаки безопасности.jpg" alt="Знаки безопасности" class="rounded-lg shadow gallery-img">
+      <img src="images/Журналы.jpg" alt="Журналы по охране труда" class="rounded-lg shadow gallery-img">
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="bg-white py-16 px-6 shadow-inner">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8 lang lang-ru active">Почему выбирают нас</h2>
+      <h2 class="text-3xl font-bold mb-8 lang lang-en">Why Choose Us</h2>
+      <h2 class="text-3xl font-bold mb-8 lang lang-kz">Неліктен бізді таңдайды</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <!-- Russian -->
+        <div class="lang lang-ru active">
+          <ul class="space-y-3 text-left">
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Высокое качество печати и материалов</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Индивидуальный подход к каждому заказу</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Соблюдение сроков изготовления</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Доставка по всему Казахстану</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- English -->
+        <div class="lang lang-en">
+          <ul class="space-y-3 text-left">
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>High quality of printing and materials</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Individual approach to each order</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Adherence to production deadlines</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Delivery across Kazakhstan</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kazakh -->
+        <div class="lang lang-kz">
+          <ul class="space-y-3 text-left">
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Жоғары сапалы баспа және материалдар</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Әр тапсырысқа жеке көзқарас</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Өндіру мерзімдеріне сәйкестік</span>
+            </li>
+            <li class="flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full p-2 mr-3 flex-shrink-0">✔</span>
+              <span>Қазақстан бойынша жеткізу</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-6xl mx-auto py-16 px-6">
+    <div class="bg-white rounded-xl shadow-lg p-8">
+      <h2 class="text-3xl font-bold text-center mb-10 lang lang-ru active">Контактная информация</h2>
+      <h2 class="text-3xl font-bold text-center mb-10 lang lang-en">Contact Information</h2>
+      <h2 class="text-3xl font-bold text-center mb-10 lang lang-kz">Байланыс ақпараты</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Contact Details -->
+        <div>
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-3 text-blue-600">
+              <span class="lang lang-ru active">Адрес</span>
+              <span class="lang lang-en">Address</span>
+              <span class="lang lang-kz">Мекен-жай</span>
+            </h3>
+            <p class="text-lg">
+              <span class="lang lang-ru active">г. Уральск, Западно-Казахстанская область</span>
+              <span class="lang lang-en">Uralsk, West Kazakhstan Region</span>
+              <span class="lang lang-kz">Орал қаласы, Батыс Қазақстан облысы</span>
+            </p>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-3 text-blue-600">
+              <span class="lang lang-ru active">Телефоны</span>
+              <span class="lang lang-en">Phones</span>
+              <span class="lang lang-kz">Телефондар</span>
+            </h3>
+            <p class="text-lg mb-2 flex items-center">
+              <i class="fas fa-mobile-alt text-blue-500 mr-2"></i>
+              <span class="lang lang-ru active">WhatsApp/Мобильный:</span>
+              <span class="lang lang-en">WhatsApp/Mobile:</span>
+              <span class="lang lang-kz">WhatsApp/Ұялы:</span>
+              <a href="tel:+77710250008" class="text-blue-600 hover:text-blue-800 ml-1">+7 771 025 00 08</a>
+            </p>
+            <p class="text-lg mb-2 flex items-center">
+              <i class="fab fa-whatsapp text-green-500 mr-2"></i>
+              <a href="tel:+77087296307" class="text-blue-600 hover:text-blue-800">+7 708 729 63 07</a>
+            </p>
+            <p class="text-lg flex items-center">
+              <i class="fas fa-phone text-gray-600 mr-2"></i>
+              <span class="lang lang-ru active">Городской:</span>
+              <span class="lang lang-en">City phone:</span>
+              <span class="lang lang-kz">Қалалық:</span>
+              <a href="tel:+77112219018" class="text-blue-600 hover:text-blue-800 ml-1">+7 (7112) 21-90-18</a>
+            </p>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-3 text-blue-600">Email</h3>
+            <p class="text-lg flex items-center">
+              <i class="fas fa-envelope text-red-500 mr-2"></i>
+              <a href="mailto:qhsesolutions5@gmail.com" class="text-blue-600 hover:text-blue-800">qhsesolutions5@gmail.com</a>
+            </p>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-3 text-blue-600">
+              <span class="lang lang-ru active">Время работы</span>
+              <span class="lang lang-en">Working Hours</span>
+              <span class="lang lang-kz">Жұмыс уақыты</span>
+            </h3>
+            <p class="text-lg flex items-center">
+              <i class="fas fa-clock text-yellow-500 mr-2"></i>
+              <span class="lang lang-ru active">Без выходных 24/7</span>
+              <span class="lang lang-en">24/7 without days off</span>
+              <span class="lang lang-kz">Демалыс күндерісіз 24/7</span>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Social Media -->
+        <div>
+          <h3 class="text-xl font-semibold mb-6 text-blue-600">
+            <span class="lang lang-ru active">Социальные сети</span>
+            <span class="lang lang-en">Social Media</span>
+            <span class="lang lang-kz">Әлеуметтік желілер</span>
+          </h3>
+          
+          <div class="flex flex-wrap gap-6 justify-center md:justify-start">
+            <a href="https://t.me/qhsesolutions" target="_blank" class="social-icon bg-blue-100 hover:bg-blue-200 text-blue-600 p-4 rounded-full w-16 h-16 flex items-center justify-center" title="Telegram">
+              <i class="fab fa-telegram text-3xl"></i>
+            </a>
+            
+            <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" class="social-icon bg-blue-100 hover:bg-blue-200 text-blue-600 p-4 rounded-full w-16 h-16 flex items-center justify-center" title="Facebook">
+              <i class="fab fa-facebook text-3xl"></i>
+            </a>
+            
+            <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" class="social-icon bg-blue-100 hover:bg-blue-200 text-blue-600 p-4 rounded-full w-16 h-16 flex items-center justify-center" title="Instagram">
+              <i class="fab fa-instagram text-3xl"></i>
+            </a>
+            
+            <a href="https://www.youtube.com/@qhsesolutions" target="_blank" class="social-icon bg-blue-100 hover:bg-blue-200 text-blue-600 p-4 rounded-full w-16 h-16 flex items-center justify-center" title="YouTube">
+              <i class="fab fa-youtube text-3xl"></i>
+            </a>
+          </div>
+          
+          <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+            <p class="text-gray-600 lang lang-ru active">
+              <i class="fas fa-comment-dots text-blue-500 mr-2"></i>
+              Свяжитесь с нами удобным для вас способом! Мы ответим на все ваши вопросы и поможем с выбором продукции.
+            </p>
+            <p class="text-gray-600 lang lang-en">
+              <i class="fas fa-comment-dots text-blue-500 mr-2"></i>
+              Contact us in any convenient way! We will answer all your questions and help you choose the right products.
+            </p>
+            <p class="text-gray-600 lang lang-kz">
+              <i class="fas fa-comment-dots text-blue-500 mr-2"></i>
+              Бізге қолайлы тәсілмен хабарласыңыз! Біз барлық сұрақтарыңызға жауап береміз және өнімді таңдауға көмектесеміз.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-center p-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-4">
+        <p class="lang lang-ru active">© 2025 QHSE Solutions. Все права защищены</p>
+        <p class="lang lang-en">© 2025 QHSE Solutions. All rights reserved</p>
+        <p class="lang lang-kz">© 2025 QHSE Solutions. Барлық құқықтар қорғалған</p>
+      </div>
+      
+      <div class="mt-4">
+        <a href="index.html" class="bg-yellow-400 text-black font-semibold px-4 py-2 rounded shadow hover:bg-yellow-500 transition-colors inline-block">
+          <span class="lang lang-ru active">⬅ Вернуться на главную</span>
+          <span class="lang lang-en">⬅ Back to Home</span>
+          <span class="lang lang-kz">⬅ Басты бетке оралу</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('.lang').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+      
+      // Update html lang attribute for accessibility
+      document.documentElement.lang = lang;
+      
+      // Save language preference
+      localStorage.setItem('preferred-lang', lang);
+    }
+    
+    // Check for saved language preference or browser language
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('preferred-lang');
+      const browserLang = navigator.language.substring(0, 2);
+      
+      if (savedLang) {
+        setLang(savedLang);
+      } else if (browserLang === 'ru' || browserLang === 'en' || browserLang === 'kz') {
+        setLang(browserLang);
+      }
+    });
+  </script>
+</body>
+</html>

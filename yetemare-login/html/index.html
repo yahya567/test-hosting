@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yetemare - Learn Computer Skills</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Language selector -->
+    <div class="language-selector">
+        <div class="language-dropdown">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="am">አማርኛ</option>
+                <option value="or">Afaan Oromoo</option>
+                <option value="ti">ትግርኛ</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Main container -->
+    <div class="login-container">
+        <!-- Geometric pattern accent -->
+        <div class="geometric-pattern"></div>
+
+        <!-- Login card -->
+        <div class="login-card">
+            <!-- Header section -->
+            <div class="card-header">
+                <div class="logo-container">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="2" y1="17" x2="22" y2="17"></line>
+                        <line x1="6" y1="21" x2="18" y2="21"></line>
+                    </svg>
+                </div>
+                <h1 id="appName">Yetemare</h1>
+                <p id="tagline">Master Computer Skills</p>
+            </div>
+
+            <!-- Form section -->
+            <div class="card-body">
+                <h2 id="formTitle">Login</h2>
+
+                <!-- Message display -->
+                <div id="messageBox" class="message-box" style="display: none;"></div>
+
+                <!-- Login Form -->
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <!-- Phone Number Input -->
+                    <div class="form-group">
+                        <label for="phoneNumber" id="phoneLabel">Phone Number</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <input type="tel" id="phoneNumber" placeholder="0912345678" required>
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="password" id="passwordLabel">Password</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <input type="password" id="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="btn-primary">Sign In</button>
+
+                    <!-- Forgot Password Link -->
+                    <button type="button" id="forgotPasswordBtn" class="btn-link" onclick="toggleResetMode(true)">Forgot Password?</button>
+                </form>
+
+                <!-- Password Reset Form (hidden by default) -->
+                <form id="resetForm" style="display: none;" onsubmit="handlePasswordReset(event)">
+                    <p id="resetDescription">Enter your phone number to receive a password reset code</p>
+
+                    <div class="form-group">
+                        <label for="resetPhoneNumber" id="resetPhoneLabel">Phone Number</label>
+                        <div class="input-wrapper">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <input type="tel" id="resetPhoneNumber" placeholder="0912345678" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="resetSubmitBtn" class="btn-accent">Send Reset Link</button>
+
+                    <button type="button" id="backToLoginBtn" class="btn-link" onclick="toggleResetMode(false)">Back to Login</button>
+                </form>
+
+                <!-- Terms of Service -->
+                <div class="terms-section">
+                    <p id="termsText">You agree to our <a href="terms.html" id="termsLink">Terms of Service</a> by using our service</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-text">© 2026 Yetemare. All rights reserved.</p>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

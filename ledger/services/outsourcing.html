@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QHSE Solutions — Аутсорсинг БиОТ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-white py-12 text-center relative">
+    <div class="absolute top-4 right-4 flex items-center space-x-0">
+      <!-- Языковые переключатели в формате RU | EN | KZ -->
+      <div class="flex items-center bg-white rounded-lg overflow-hidden">
+        <button onclick="setLanguage('ru')" class="px-4 py-1 text-yellow-700 hover:bg-gray-100 transition font-medium">RU</button>
+        <span class="text-gray-300">|</span>
+        <button onclick="setLanguage('en')" class="px-4 py-1 text-yellow-700 hover:bg-gray-100 transition font-medium">EN</button>
+        <span class="text-gray-300">|</span>
+        <button onclick="setLanguage('kz')" class="px-4 py-1 text-yellow-700 hover:bg-gray-100 transition font-medium">KZ</button>
+      </div>
+      
+      <!-- Разделитель -->
+      <span class="mx-2 text-white">|</span>
+      
+      <!-- Кнопка возврата на главную -->
+      <a href="index.html" 
+         class="px-3 py-1 bg-white text-yellow-700 rounded hover:bg-gray-100 transition flex items-center space-x-1"
+         title="На главную страницу">
+        <i class="fas fa-arrow-left"></i>
+        <span id="home-button-text">Главная</span>
+      </a>
+    </div>
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 id="header-title" class="text-4xl font-bold mb-4"></h1>
+      <p id="header-subtitle" class="text-xl opacity-90"></p>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="max-w-6xl mx-auto py-12 px-4 space-y-12">
+
+    <section class="bg-white rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-hard-hat text-2xl"></i>
+        </div>
+        <h2 id="section1-title" class="text-2xl font-bold"></h2>
+      </div>
+      <ul id="section1-list" class="space-y-3 pl-4">
+        <!-- Список заполнится через JS -->
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-building text-2xl"></i>
+        </div>
+        <h2 id="section2-title" class="text-2xl font-bold"></h2>
+      </div>
+      <ul id="section2-list" class="space-y-3 pl-4">
+        <!-- Список заполнится через JS -->
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-tools text-2xl"></i>
+        </div>
+        <h2 id="section3-title" class="text-2xl font-bold"></h2>
+      </div>
+      <ul id="section3-list" class="space-y-3 pl-4">
+        <!-- Список заполнится через JS -->
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-tasks text-2xl"></i>
+        </div>
+        <h2 id="section4-title" class="text-2xl font-bold"></h2>
+      </div>
+      <ul id="section4-list" class="space-y-3 pl-4">
+        <!-- Список заполнится через JS -->
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-star text-2xl"></i>
+        </div>
+        <h2 id="section5-title" class="text-2xl font-bold"></h2>
+      </div>
+      <ul id="section5-list" class="space-y-3 pl-4">
+        <!-- Список заполнится через JS -->
+      </ul>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-briefcase text-2xl"></i>
+        </div>
+        <h2 id="section6-title" class="text-2xl font-bold"></h2>
+      </div>
+      <div id="section6-content"></div>
+    </section>
+
+    <section class="bg-gradient-to-r from-blue-50 to-yellow-50 rounded-2xl shadow-lg p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full mr-4">
+          <i class="fas fa-chart-line text-2xl"></i>
+        </div>
+        <h2 id="section7-title" class="text-2xl font-bold"></h2>
+      </div>
+      <div id="section7-content"></div>
+    </section>
+
+    <!-- ОБНОВЛЕННАЯ СЕКЦИЯ КОНТАКТОВ -->
+    <section class="bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl shadow-xl p-8">
+      <h2 id="section8-title" class="text-3xl font-bold mb-10 text-center"></h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Левая колонка - контактная информация -->
+        <div class="lg:col-span-2 space-y-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Адрес -->
+            <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition duration-300">
+              <div class="flex items-start space-x-4">
+                <div class="bg-yellow-500 p-3 rounded-full">
+                  <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2" id="address-title"></h3>
+                  <p id="address-text" class="text-gray-300"></p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Телефоны -->
+            <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition duration-300">
+              <div class="flex items-start space-x-4">
+                <div class="bg-yellow-500 p-3 rounded-full">
+                  <i class="fas fa-phone-alt text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2" id="phones-title"></h3>
+                  <div class="space-y-2">
+                    <p id="phone1" class="text-gray-300"></p>
+                    <p id="phone2" class="text-gray-300"></p>
+                    <p id="phone3" class="text-gray-300"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Email -->
+            <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition duration-300">
+              <div class="flex items-start space-x-4">
+                <div class="bg-yellow-500 p-3 rounded-full">
+                  <i class="fas fa-envelope text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2">Email</h3>
+                  <p id="email-text" class="text-gray-300"></p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Время работы -->
+            <div class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition duration-300">
+              <div class="flex items-start space-x-4">
+                <div class="bg-yellow-500 p-3 rounded-full">
+                  <i class="fas fa-clock text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2" id="hours-title"></h3>
+                  <p id="hours-text" class="text-gray-300"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Правая колонка - социальные сети -->
+        <div class="bg-gray-800 rounded-xl p-6">
+          <h3 class="font-bold text-2xl mb-8 text-center" id="social-title"></h3>
+          <div class="space-y-4">
+            <a href="https://t.me/qhsesolutions" target="_blank" 
+               class="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-xl flex items-center space-x-4 transition duration-300 group">
+              <div class="bg-white p-3 rounded-lg">
+                <i class="fab fa-telegram text-blue-500 text-2xl"></i>
+              </div>
+              <div>
+                <span class="font-medium text-lg">Telegram</span>
+                <p class="text-sm text-blue-100">@qhsesolutions</p>
+              </div>
+              <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition"></i>
+            </a>
+            
+            <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" 
+               class="bg-blue-700 hover:bg-blue-800 text-white p-4 rounded-xl flex items-center space-x-4 transition duration-300 group">
+              <div class="bg-white p-3 rounded-lg">
+                <i class="fab fa-facebook text-blue-700 text-2xl"></i>
+              </div>
+              <div>
+                <span class="font-medium text-lg">Facebook</span>
+                <p class="text-sm text-blue-200">/qhsesolutions.kz</p>
+              </div>
+              <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition"></i>
+            </a>
+            
+            <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" 
+               class="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white p-4 rounded-xl flex items-center space-x-4 transition duration-300 group">
+              <div class="bg-white p-3 rounded-lg">
+                <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+              </div>
+              <div>
+                <span class="font-medium text-lg">Instagram</span>
+                <p class="text-sm text-pink-100">@qhsesolutions.kz</p>
+              </div>
+              <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition"></i>
+            </a>
+            
+            <a href="https://www.youtube.com/@qhsesolutions" target="_blank" 
+               class="bg-red-600 hover:bg-red-700 text-white p-4 rounded-xl flex items-center space-x-4 transition duration-300 group">
+              <div class="bg-white p-3 rounded-lg">
+                <i class="fab fa-youtube text-red-600 text-2xl"></i>
+              </div>
+              <div>
+                <span class="font-medium text-lg">YouTube</span>
+                <p class="text-sm text-red-100">@qhsesolutions</p>
+              </div>
+              <i class="fas fa-arrow-right ml-auto opacity-0 group-hover:opacity-100 transition"></i>
+            </a>
+          </div>
+          
+          <div class="mt-8 text-center">
+            <p class="text-gray-300 mb-4" id="social-subtitle"></p>
+            <div class="flex justify-center space-x-6">
+              <a href="https://t.me/qhsesolutions" target="_blank" 
+                 class="text-white hover:text-blue-400 transition transform hover:scale-110">
+                <i class="fab fa-telegram text-2xl"></i>
+              </a>
+              <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" 
+                 class="text-white hover:text-blue-300 transition transform hover:scale-110">
+                <i class="fab fa-facebook text-2xl"></i>
+              </a>
+              <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" 
+                 class="text-white hover:text-pink-300 transition transform hover:scale-110">
+                <i class="fab fa-instagram text-2xl"></i>
+              </a>
+              <a href="https://www.youtube.com/@qhsesolutions" target="_blank" 
+                 class="text-white hover:text-red-400 transition transform hover:scale-110">
+                <i class="fab fa-youtube text-2xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="bg-gray-900 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <div id="footer-content"></div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      ru: {
+        homeButton: "Главная",
+        header: {
+          title: "Аутсорсинг по охране труда и промышленной безопасности (БиОТ)",
+          subtitle: "Мы берём на себя функции службы ОТ, ПБ, ООС и КК, обеспечивая соответствие законодательству РК, требованиям заказчиков и международным стандартам."
+        },
+        section1: {
+          title: "1. Аутсорсинг по охране труда и промышленной безопасности (БиОТ)",
+          list: [
+            "Внедрение систем менеджмента охраны труда, промышленной и пожарной безопасности.",
+            "Разработка всей необходимой документации: политики, инструкции, журналы учета.",
+            "Организация обучения и сертификации персонала: БиОТ, ПТМ, промышленная безопасность, электробезопасность, первая помощь.",
+            "Проведение специальной оценки условий труда (СОУТ) и управления профессиональными рисками.",
+            "Организация медицинских осмотров и программ здоровья на производстве.",
+            "Контроль состояния противопожарной безопасности.",
+            "Расследование и оформление несчастных случаев.",
+            "Полное ведение документации, отчетности и планов корректирующих мероприятий."
+          ]
+        },
+        section2: {
+          title: "2. Организация офиса инженера по технике безопасности",
+          list: [
+            "Создание полноценного рабочего места для инженера по ТБ, включая оснащение для обслуживания оборудования.",
+            "Управление выдачей персоналу средств индивидуальной защиты (СИЗ) и специализированного оборудования."
+          ]
+        },
+        section3: {
+          title: "Оборудование для выдачи персоналу:",
+          list: [
+            "Пожарная безопасность: огнетушители, щиты, шкафы, гидранты, сигнализация, системы пожаротушения.",
+            "Аварийное оборудование: станции для промывки глаз, аварийные души, носилки, дефибрилляторы.",
+            "Химическая защита: комбинезоны, перчатки и сапоги, фартуки, респираторы, защитные очки и щитки.",
+            "Защита от падения: страховочные пояса и ремни, безопасные сетки, инерционные катушки, спусковые устройства.",
+            "Ограждение и безопасность территории: сигнальные конусы и ленты, цепи, жесткие и водоналивные ограждения, фонари.",
+            "СИЗ общего назначения: спецодежда, обувь, каски, очки, перчатки, беруши, наушники, балаклавы.",
+            "СИЗ для электротехнического персонала: диэлектрические перчатки и обувь, измерительные приборы, замки безопасности, указатели напряжения, изолирующие коврики и стремянки.",
+            "СИЗ для сварщиков: защитные костюмы, маски, наколенники, краги.",
+            "Такелажное оборудование: стропы, тросы, тали, обвязочные цепи, буксировочные ремни.",
+            "Охрана окружающей среды: контейнеры для отходов, поддоны, скипы, защитные ограждения.",
+            "Контрольно-измерительные приборы: шумомеры, люксметы, термометры, дозиметры, газоанализаторы, высотомеры, анемометры.",
+            "Прочее оборудование: транспортные тележки, насосы, тепловые пушки, генераторы, прожекторы, ПО для мониторинга.",
+            "Плакаты и знаки безопасности: информационные стенды, предупреждающие, запрещающие и указательные знаки.",
+            "Проведение вводных инструктажей для новых сотрудников и посетителей.",
+            "Оптимальное размещение офиса в зоне первого контакта с персоналом и посетителями."
+          ]
+        },
+        section4: {
+          title: "3. Обязанности и функции специалиста / службы по ОТ, ПБ, ООС и КК (БиОТ)",
+          list: [
+            "Внедрение систем обучения, матриц компетенций и развитие культуры безопасности (HSE).",
+            "Контроль приверженности руководства вопросам безопасности и обеспечение лидерства в этой области.",
+            "Выявление несоответствий, анализ первопричин, разработка и контроль выполнения корректирующих действий.",
+            "Подготовка ежедневных, ежемесячных и статистических отчетов.",
+            "Оформление нарядов-допусков и анализ безопасности работ повышенной опасности.",
+            "Проверка технического состояния оборудования, противопожарных систем и СИЗ.",
+            "Проведение плановых и внеплановых инспекций оборудования, средств пожаротушения, мест накопления отходов и рабочих мест.",
+            "Контроль сроков действия удостоверений (промышленная безопасность, H₂S, ПТМ, ОТ, первая помощь).",
+            "Организация инструктажей, тренингов и учений, включая ГО и ЧС.",
+            "Проведение внутренних аудитов, инспекций и оценок профессиональных рисков.",
+            "Ведение реестров сертификатов, журналов обслуживания, поверки и калибровки приборов.",
+            "Участие во внешних аудитах и проверках контролирующих органов, контроль устранения замечаний.",
+            "Актуализация информации на стендах и выпуск бюллетеней по безопасности.",
+            "Расследование аварий, инцидентов и несчастных случаев, оформление заключений.",
+            "Контроль безопасного вождения транспортных средств и деятельности подрядных организаций.",
+            "Совместные проверки санитарно-бытовых условий, медпунктов и мест общего пользования.",
+            "Консультации по выбору безопасного оборудования и СИЗ, планирование учений, составление годовых графиков обучения.",
+            "Постоянное совершенствование системы управления охраной труда и промышленной безопасностью."
+          ]
+        },
+        section5: {
+          title: "4. Преимущества работы с нами",
+          list: [
+            "Опыт успешного взаимодействия с государственными инспекциями и международными заказчиками.",
+            "Замена штатного специалиста полноценной командой экспертов.",
+            "Экономия бюджета на содержание штата и минимизация рисков штрафных санкций.",
+            "Гарантированное соблюдение сроков и требований нормативных стандартов.",
+            "Финансовые гарантии качества предоставляемых услуг."
+          ]
+        },
+        section6: {
+          title: "5. Для кого подходят наши услуги",
+          content: `
+            <div class="space-y-4">
+              <div class="bg-blue-50 p-6 rounded-xl">
+                <h3 class="font-bold text-lg mb-3 text-blue-700">Наши услуги подходят для:</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Предприятия малого, среднего и крупного бизнеса</li>
+                  <li>Компании с высоким уровнем риска: строительство, нефтегазовая отрасль, добывающая промышленность, производство</li>
+                </ul>
+              </div>
+              <p class="text-gray-700">Наша компания обеспечивает полное соответствие законодательству, корпоративным и тендерным требованиям, что позволяет клиентам снижать операционные риски и успешно проходить проверки и аудиты.</p>
+            </div>
+          `
+        },
+        section7: {
+          title: "Наша экспертиза",
+          content: `
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div class="bg-yellow-100 p-4 rounded-full">
+                  <i class="fas fa-award text-yellow-600 text-2xl"></i>
+                </div>
+                <div>
+                  <p class="text-gray-700">Мы предлагаем профессиональное сопровождение на основе более чем 30-летнего опыта работы в международных компаниях (ТШО, КПО, НКОК). Мы строим систему, которая не просто формально соответствует требованиям, но реально работает на вашу безопасность и эффективность.</p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        section8: {
+          title: "Контактная информация",
+          addressTitle: "Адрес",
+          addressText: "г. Уральск, Западно-Казахстанская область",
+          phonesTitle: "Телефоны",
+          phone1: "WhatsApp/Мобильный: +7 771 025 00 08",
+          phone2: "WhatsApp/Мобильный: +7 708 729 63 07",
+          phone3: "Городской: +7 (7112) 21-90-18",
+          emailText: "qhsesolutions5@gmail.com",
+          hoursTitle: "Время работы",
+          hoursText: "Без выходных 24/7",
+          socialTitle: "Социальные сети",
+          socialSubtitle: "Подписывайтесь на наши соцсети"
+        },
+        footer: {
+          content: `
+            <div class="text-center">
+              <p class="text-xl font-semibold mb-2">QHSE Solutions</p>
+              <p class="text-gray-400">© 2025 QHSE Solutions. Все права защищены.</p>
+            </div>
+          `
+        }
+      },
+      kz: {
+        homeButton: "Басты бет",
+        header: {
+          title: "Еңбек қауіпсіздігі және өнеркәсіптік қауіпсіздік аутсорсингі (БиОТ)",
+          subtitle: "Біз ЕҚ, ӨҚ, ҚҚ және ҚК қызметтерін атқарып, ҚР заңнамасына, тапсырыс берушілердің және халықаралық стандарттардың талаптарына сәйкестікті қамтамасыз етеміз."
+        },
+        section1: {
+          title: "1. Еңбек қауіпсіздігі және өнеркәсіптік қауіпсіздік аутсорсингі (БиОТ)",
+          list: [
+            "Еңбек қауіпсіздігі, өнеркәсіптік және өрт қауіпсіздігі менеджмент жүйелерін енгізу.",
+            "Қажетті құжаттаманы дайындау: саясаттар, нұсқаулықтар, есеп журналдары.",
+            "Қызметкерлерді оқыту және сертификаттау: БиОТ, ПТМ, өнеркәсіптік қауіпсіздік, электр қауіпсіздігі, алғашқы көмек.",
+            "Еңбек жағдайларын арнайы бағалау (СОУТ) және кәсіби тәуекелдерді басқару.",
+            "Медициналық тексерулерді және өндірістік денсаулық бағдарламаларын ұйымдастыру.",
+            "Өрт қауіпсіздігінің жағдайын бақылау.",
+            "Жазатайым оқиғаларды тергеу және ресімдеу.",
+            "Құжаттаманы, есептілікті және түзету шараларын жоспарлауды толық жүргізу."
+          ]
+        },
+        section2: {
+          title: "2. Қауіпсіздік инженерінің кеңсесін ұйымдастыру",
+          list: [
+            "Қауіпсіздік инженеріне арналған толыққанды жұмыс орнын құру, жабдықтарды қызмет көрсету құралдарын қоса алғанда.",
+            "Қызметкерлерге жеке қорғаныс құралдарын (ЖҚҚ) және арнайы жабдықтарды беруді басқару."
+          ]
+        },
+        section3: {
+          title: "Қызметкерлерге берілетін жабдықтар:",
+          list: [
+            "Өрт қауіпсіздігі: өрт сөндіргіштер, щиттер, шкафтар, гидранттар, дабыл жүйелері, өрт сөндіру жүйелері.",
+            "Авариялық жабдықтар: көзді жуу станциялары, авариялық душтар, носилкалар, дефибрилляторлар.",
+            "Химиялық қорғаныс: комбинезондар, қолғаптар мен етіктер, фартуктар, респираторлар, қорғаныс көзілдіріктері мен қалқандар.",
+            "Құлаудан қорғау: сақтандыру белдіктері мен белбеулер, қауіпсіздік торлары, инерциялық катушкалар, түсіру құрылғылары.",
+            "Қоршау және аумақ қауіпсіздігі: сигнал конустары мен таспалар, тізбектер, қатты және сумен толтырылатын қоршаулар, шамдар.",
+            "Жалпы мақсаттағы ЖҚҚ: арнайы киім, аяқ киім, дулығалар, көзілдіріктер, қолғаптар, құлақ тұтқылары, құлаққаптар, балаклавалар.",
+            "Электротехникалық қызметкерлерге арналған ЖҚҚ: диэлектрлік қолғаптар мен аяқ киім, өлшеуіш құралдар, қауіпсіздік құлпылары, кернеу көрсеткіштері, оқшаулаған киіздер мен баспалдақтар.",
+            "Дәнекерлеушілерге арналған ЖҚҚ: қорғаныс костюмдері, маскалар, тізеқаптар, крагтар.",
+            "Такелаждық жабдықтар: строптар, арқандар, талилар, байлау тізбектері, тартқыш белдіктер.",
+            "Қоршаған ортаны қорғау: қалдықтарға арналған контейнерлер, поддондар, скиптер, қорғаныс қоршаулары.",
+            "Бақылау-өлшеу аспаптары: шу өлшегіштер, люксметрлер, термометрлер, дозиметрлер, газ анализаторлары, биіктік өлшегіштер, анемометрлер.",
+            "Басқа жабдықтар: көлік арбалары, насостар, жылулық зеңбіректер, генераторлар, прожекторлар, мониторинг бағдарламалық жасақтамасы.",
+            "Қауіпсіздік плакаттары мен белгілері: ақпараттық стендтер, ескертуші, тыйым салатын және көрсеткіш белгілер.",
+            "Жаңа қызметкерлер мен қонақтарға кіріспе нұсқаулықтарын өткізу.",
+            "Кеңсені қызметкерлер мен қонақтармен бірінші байланыс аймағында орналастыру."
+          ]
+        },
+        section4: {
+          title: "3. ЕҚ, ӨҚ, ҚҚ және ҚК маманы / қызметінің міндеттері мен функциялары (БиОТ)",
+          list: [
+            "Оқыту жүйелерін, құзыреттілік матрицаларын енгізу және қауіпсіздік мәдениетін дамыту (HSE).",
+            "Басшылықтың қауіпсіздік мәселелеріне адалдығын бақылау және осы саладағы көшбасшылықты қамтамасыз ету.",
+            "Сәйкессіздіктерді анықтау, түпкі себептерді талдау, түзету шараларын әзірлеу және орындалуын бақылау.",
+            "Күнделікті, айлық және статистикалық есептер дайындау.",
+            "Рұқсатнамаларды ресімдеу және жоғары қауіпті жұмыстардың қауіпсіздігін талдау.",
+            "Жабдықтардың, өртке қарсы жүйелердің және ЖҚҚ-ның техникалық жағдайын тексеру.",
+            "Жабдықтарды, өрт сөндіру құралдарын, қалдықтарды жинау орындарын және жұмыс орындарын жоспарлы және жоспардан тыс тексеру.",
+            "Куәліктердің жарамдылық мерзімін бақылау (өнеркәсіптік қауіпсіздік, H₂S, ПТМ, ЕҚ, алғашқы көмек).",
+            "Нұсқаулықтар, тренингтер және оқу-жаттығулар ұйымдастыру, ГО және ТЖ кіреді.",
+            "Ішкі аудиттер, тексерулер және кәсіби тәуекелдерді бағалау өткізу.",
+            "Сертификаттар, қызмет көрсету журналдары, аспаптарды тексеру және калибрлеу реестрлерін жүргізу.",
+            "Сыртқы аудиттерге және бақылау органдарының тексерулеріне қатысу, ескертулерді жоюды бақылау.",
+            "Стендтердегі ақпаратты жаңарту және қауіпсіздік бюллетеньдерін шығару.",
+            "Апаттар, оқиғалар және жазатайым оқиғаларды тергеу, қорытындыларды ресімдеу.",
+            "Көлік құралдарын қауіпсіз жүргізуді және мердігерлік ұйымдардың қызметін бақылау.",
+            "Санитарлық-тұрмыстық жағдайларды, медициналық пункттерді және жалпы пайдаланатын орындарды бірлесіп тексеру.",
+            "Қауіпсіз жабдықтар мен ЖҚҚ таңдау бойынша кеңес беру, оқу-жаттығуларды жоспарлау, жылдық оқу кестелерін құрастыру.",
+            "Еңбек қауіпсіздігі және өнеркәсіптік қауіпсіздік басқару жүйесін үнемі жетілдіру."
+          ]
+        },
+        section5: {
+          title: "4. Бізбен жұмыс істеудің артықшылықтары",
+          list: [
+            "Мемлекеттік инспекциялармен және халықаралық тапсырыс берушілермен сәтті өзара іс-қимыл тәжірибесі.",
+            "Бір штаттық маманды толыққанды сарапшылар командасымен алмастыру.",
+            "Штатты ұстау бюджетін үнемдеу және айыппұл санкцияларының тәуекелдерін азайту.",
+            "Мерзімдер мен нормативтік стандарттар талаптарына сәйкестікке кепілдік.",
+            "Ұсынылатын қызметтер сапасына қаржылық кепілдік."
+          ]
+        },
+        section6: {
+          title: "5. Біздің қызметтеріміз кімдерге жарайды",
+          content: `
+            <div class="space-y-4">
+              <div class="bg-blue-50 p-6 rounded-xl">
+                <h3 class="font-bold text-lg mb-3 text-blue-700">Біздің қызметтер мыналарға жарайды:</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Шағын, орта және ірі бизнес кәсіпорындары</li>
+                  <li>Жоғары тәуекел деңгейі бар компаниялар: құрылыс, мұнай-газ саласы, өндіруші өнеркәсіп, өндіріс</li>
+                </ul>
+              </div>
+              <p class="text-gray-700">Біздің компания заңнамаға, корпоративтік және тендерлік талаптарға толық сәйкестікті қамтамасыз етеді, бұл клиенттерге операциялық тәуекелдерді азайтуға және тексерулер мен аудиттерден сәтті өтуге мүмкіндік береді.</p>
+            </div>
+          `
+        },
+        section7: {
+          title: "Біздің сараптама",
+          content: `
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div class="bg-yellow-100 p-4 rounded-full">
+                  <i class="fas fa-award text-yellow-600 text-2xl"></i>
+                </div>
+                <div>
+                  <p class="text-gray-700">Біз халықаралық компаниялардағы (ТШО, КПО, НКОК) 30 жылдан астам жұмыс тәжірибесіне негізделген кәсіби қолдау ұсынамыз. Біз тек талаптарға формальды түрде сәйкес келетін емес, сонымен қатар сіздің қауіпсіздігіңізге және тиімділігіңізге нақты жұмыс істейтін жүйені құрамыз.</p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        section8: {
+          title: "Байланыс ақпараты",
+          addressTitle: "Мекен-жай",
+          addressText: "Орал қаласы, Батыс Қазақстан облысы",
+          phonesTitle: "Телефондар",
+          phone1: "WhatsApp/Ұялы: +7 771 025 00 08",
+          phone2: "WhatsApp/Ұялы: +7 708 729 63 07",
+          phone3: "Қалалық: +7 (7112) 21-90-18",
+          emailText: "qhsesolutions5@gmail.com",
+          hoursTitle: "Жұмыс уақыты",
+          hoursText: "Тәулік бойы, демалыссыз (24/7)",
+          socialTitle: "Әлеуметтік желілер",
+          socialSubtitle: "Әлеуметтік желілерімізге жазылыңыз"
+        },
+        footer: {
+          content: `
+            <div class="text-center">
+              <p class="text-xl font-semibold mb-2">QHSE Solutions</p>
+              <p class="text-gray-400">© 2025 QHSE Solutions. Барлық құқықтар қорғалған.</p>
+              </div>
+          `
+        }
+      },
+      en: {
+        homeButton: "Home",
+        header: {
+          title: "Outsourcing of Occupational Health and Industrial Safety (HSE)",
+          subtitle: "We take over OHS, Industrial Safety, Environment and QC functions, ensuring compliance with Kazakhstan legislation, client requirements and international standards."
+        },
+        section1: {
+          title: "1. Occupational Health and Industrial Safety Outsourcing (HSE)",
+          list: [
+            "Implementation of occupational health, industrial and fire safety management systems.",
+            "Development of all necessary documentation: policies, instructions, record logs.",
+            "Organization of staff training and certification: HSE, fire safety, industrial safety, electrical safety, first aid.",
+            "Conducting special assessment of working conditions (SAWC) and occupational risk management.",
+            "Organization of medical examinations and workplace health programs.",
+            "Monitoring fire safety conditions.",
+            "Investigation and documentation of accidents.",
+            "Complete management of documentation, reporting and corrective action plans."
+          ]
+        },
+        section2: {
+          title: "2. Organization of Safety Engineer's Office",
+          list: [
+            "Creation of a full-fledged workplace for safety engineer, including equipment maintenance facilities.",
+            "Management of personal protective equipment (PPE) and specialized equipment issuance to personnel."
+          ]
+        },
+        section3: {
+          title: "Equipment for personnel issuance:",
+          list: [
+            "Fire safety: fire extinguishers, shields, cabinets, hydrants, alarm systems, fire suppression systems.",
+            "Emergency equipment: eye wash stations, emergency showers, stretchers, defibrillators.",
+            "Chemical protection: coveralls, gloves and boots, aprons, respirators, protective glasses and shields.",
+            "Fall protection: safety belts and harnesses, safety nets, inertia reels, descent devices.",
+            "Perimeter and site safety: signal cones and tapes, chains, rigid and water-filled barriers, lights.",
+            "General purpose PPE: workwear, footwear, helmets, glasses, gloves, earplugs, earmuffs, balaclavas.",
+            "PPE for electrical personnel: dielectric gloves and footwear, measuring instruments, safety locks, voltage indicators, insulating mats and ladders.",
+            "PPE for welders: protective suits, masks, knee pads, gauntlets.",
+            "Rigging equipment: slings, ropes, hoists, binding chains, towing straps.",
+            "Environmental protection: waste containers, pallets, skips, protective barriers.",
+            "Measuring instruments: noise meters, lux meters, thermometers, dosimeters, gas analyzers, altimeters, anemometers.",
+            "Other equipment: transport trolleys, pumps, heat guns, generators, floodlights, monitoring software.",
+            "Safety posters and signs: information boards, warning, prohibition and directional signs.",
+            "Conducting induction briefings for new employees and visitors.",
+            "Optimal placement of the office in the first contact zone with personnel and visitors."
+          ]
+        },
+        section4: {
+          title: "3. Duties and Functions of OHS, Industrial Safety, Environment and QC Specialist/Department (HSE)",
+          list: [
+            "Implementation of training systems, competency matrices and safety culture development (HSE).",
+            "Monitoring management commitment to safety and providing leadership in this area.",
+            "Identifying non-conformities, root cause analysis, developing and monitoring corrective actions.",
+            "Preparation of daily, monthly and statistical reports.",
+            "Issuance of work permits and safety analysis of high-risk work.",
+            "Checking technical condition of equipment, fire protection systems and PPE.",
+            "Conducting scheduled and unscheduled inspections of equipment, firefighting equipment, waste accumulation areas and workplaces.",
+            "Monitoring validity of certificates (industrial safety, H₂S, fire safety, OHS, first aid).",
+            "Organization of briefings, trainings and drills, including civil defense and emergencies.",
+            "Conducting internal audits, inspections and occupational risk assessments.",
+            "Maintaining registers of certificates, maintenance logs, verification and calibration of instruments.",
+            "Participation in external audits and inspections by regulatory authorities, monitoring elimination of findings.",
+            "Updating information on bulletin boards and issuing safety newsletters.",
+            "Investigation of accidents, incidents and occupational accidents, preparation of conclusions.",
+            "Monitoring safe vehicle operation and contractor activities.",
+            "Joint inspections of sanitary conditions, medical stations and common areas.",
+            "Consultations on selection of safe equipment and PPE, drill planning, preparation of annual training schedules.",
+            "Continuous improvement of occupational health and industrial safety management system."
+          ]
+        },
+        section5: {
+          title: "4. Benefits of Working with Us",
+          list: [
+            "Experience in successful interaction with government inspections and international clients.",
+            "Replacement of a staff specialist with a full team of experts.",
+            "Cost savings on staff maintenance and minimization of penalty risks.",
+            "Guaranteed compliance with deadlines and regulatory requirements.",
+            "Financial guarantees of service quality."
+          ]
+        },
+        section6: {
+          title: "5. Who Our Services Are For",
+          content: `
+            <div class="space-y-4">
+              <div class="bg-blue-50 p-6 rounded-xl">
+                <h3 class="font-bold text-lg mb-3 text-blue-700">Our services are suitable for:</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                  <li>Small, medium and large businesses</li>
+                  <li>High-risk companies: construction, oil and gas industry, mining industry, manufacturing</li>
+                </ul>
+              </div>
+              <p class="text-gray-700">Our company ensures full compliance with legislation, corporate and tender requirements, allowing clients to reduce operational risks and successfully pass inspections and audits.</p>
+            </div>
+          `
+        },
+        section7: {
+          title: "Our Expertise",
+          content: `
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div class="bg-yellow-100 p-4 rounded-full">
+                  <i class="fas fa-award text-yellow-600 text-2xl"></i>
+                </div>
+                <div>
+                  <p class="text-gray-700">We offer professional support based on over 30 years of experience in international companies (TCO, KPO, NCOC). We build a system that not only formally complies with requirements but actually works for your safety and efficiency.</p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        section8: {
+          title: "Contact Information",
+          addressTitle: "Address",
+          addressText: "Uralsk city, West Kazakhstan Region",
+          phonesTitle: "Phones",
+          phone1: "WhatsApp/Mobile: +7 771 025 00 08",
+          phone2: "WhatsApp/Mobile: +7 708 729 63 07",
+          phone3: "City phone: +7 (7112) 21-90-18",
+          emailText: "qhsesolutions5@gmail.com",
+          hoursTitle: "Working Hours",
+          hoursText: "Open 24/7",
+          socialTitle: "Social Networks",
+          socialSubtitle: "Follow us on social media"
+        },
+        footer: {
+          content: `
+            <div class="text-center">
+              <p class="text-xl font-semibold mb-2">QHSE Solutions</p>
+              <p class="text-gray-400">© 2025 QHSE Solutions. All rights reserved.</p>
+              </div>
+          `
+        }
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      
+      // Update home button text
+      document.getElementById("home-button-text").textContent = t.homeButton;
+      
+      // Update header
+      document.getElementById("header-title").textContent = t.header.title;
+      document.getElementById("header-subtitle").textContent = t.header.subtitle;
+      
+      // Update sections 1-5 (lists)
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById(`section${i}-title`).textContent = t[`section${i}`].title;
+        document.getElementById(`section${i}-list`).innerHTML = t[`section${i}`].list
+          .map(li => `<li class="flex items-start">
+                        <i class="fas fa-check text-yellow-500 mt-1 mr-3"></i>
+                        <span>${li}</span>
+                      </li>`)
+          .join("");
+      }
+      
+      // Update sections 6-7 (HTML content)
+      document.getElementById("section6-title").textContent = t.section6.title;
+      document.getElementById("section6-content").innerHTML = t.section6.content;
+      
+      document.getElementById("section7-title").textContent = t.section7.title;
+      document.getElementById("section7-content").innerHTML = t.section7.content;
+      
+      // Update contact section
+      document.getElementById("section8-title").textContent = t.section8.title;
+      document.getElementById("address-title").textContent = t.section8.addressTitle;
+      document.getElementById("address-text").textContent = t.section8.addressText;
+      document.getElementById("phones-title").textContent = t.section8.phonesTitle;
+      document.getElementById("phone1").textContent = t.section8.phone1;
+      document.getElementById("phone2").textContent = t.section8.phone2;
+      document.getElementById("phone3").textContent = t.section8.phone3;
+      document.getElementById("email-text").textContent = t.section8.emailText;
+      document.getElementById("hours-title").textContent = t.section8.hoursTitle;
+      document.getElementById("hours-text").textContent = t.section8.hoursText;
+      document.getElementById("social-title").textContent = t.section8.socialTitle;
+      document.getElementById("social-subtitle").textContent = t.section8.socialSubtitle;
+      
+      // Update footer
+      document.getElementById("footer-content").innerHTML = t.footer.content;
+    }
+
+    // Default language
+    setLanguage("ru");
+  </script>
+</body>
+</html>

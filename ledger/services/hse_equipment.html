@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наша продукция | Пожарное и защитное оборудование</title>
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        } 
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-btn {
+            background-color: white;
+            color: #e74c3c;
+            padding: 8px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .back-btn:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .lang-btn:hover,
+        .lang-btn.active {
+            background-color: white;
+            color: #e74c3c;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        /* Equipment Categories */
+        .equipment-categories {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e74c3c;
+        }
+        
+        .category-title:first-child {
+            margin-top: 0;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .equipment-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .equipment-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .equipment-item-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .equipment-item-desc {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        
+        /* Условия */
+        .conditions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .conditions p {
+            text-align: center;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .contact-details h3 {
+            font-size: 1.2rem;
+            color: #3498db;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-details p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-details a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: #3498db;
+        }
+        
+        .social-media h3 {
+            font-size: 1.2rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon.telegram:hover {
+            background-color: #0088cc;
+            color: white;
+        }
+        
+        .social-icon.facebook:hover {
+            background-color: #3b5998;
+            color: white;
+        }
+        
+        .social-icon.instagram:hover {
+            background-color: #e4405f;
+            color: white;
+        }
+        
+        .social-icon.youtube:hover {
+            background-color: #ff0000;
+            color: white;
+        }
+        
+        .contact-message {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+        }
+        
+        .contact-option:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .contact-option i {
+            font-size: 20px;
+            color: #3498db;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .back-home-btn {
+            background-color: #f39c12;
+            color: #2c3e50;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .back-home-btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+        
+        /* Многоязычность */
+        .lang {
+            display: none;
+        }
+        
+        .lang.active {
+            display: block;
+        }
+        
+        .lang-inline {
+            display: none;
+        }
+        
+        .lang-inline.active {
+            display: inline;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .close-modal {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .equipment-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .contact-option {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="lang lang-ru active">На главную</span>
+                    <span class="lang lang-en">Home</span>
+                    <span class="lang lang-kz">Басты бет</span>
+                </a>
+                
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="kz">KZ</button>
+                </div>
+            </div>
+            
+            <h1>
+                <span class="lang lang-ru active">Наша продукция</span>
+                <span class="lang lang-en">Our Products</span>
+                <span class="lang lang-kz">Біздің өнімдер</span>
+            </h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Equipment Categories -->
+        <section class="equipment-categories">
+            <h2 class="contact-title">
+                <span class="lang lang-ru active">Перечень оборудования</span>
+                <span class="lang lang-en">Equipment List</span>
+                <span class="lang lang-kz">Жабдық тізімі</span>
+            </h2>
+            
+            <div class="conditions">
+                <p>
+                    <span class="lang lang-ru active">Условия: Продажа, возможна аренда. Уточняйте актуальную стоимость.</span>
+                    <span class="lang lang-en">Conditions: Sale, rental possible. Check current cost.</span>
+                    <span class="lang lang-kz">Шарттар: Сату, жалға беру мүмкін. Ағымдағы құнды тексеріңіз.</span>
+                </p>
+            </div>
+            
+            <!-- Пожарная безопасность -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Пожарная безопасность:</span>
+                <span class="lang lang-en">Fire Safety:</span>
+                <span class="lang lang-kz">Өрт қауіпсіздігі:</span>
+            </h3>
+            <div class="equipment-list" id="fire-safety">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Аварийное оборудование -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Аварийное оборудование:</span>
+                <span class="lang lang-en">Emergency Equipment:</span>
+                <span class="lang lang-kz">Авариялық жабдық:</span>
+            </h3>
+            <div class="equipment-list" id="emergency-equipment">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Химическая защита -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Химическая защита:</span>
+                <span class="lang lang-en">Chemical Protection:</span>
+                <span class="lang lang-kz">Химиялық қорғаныс:</span>
+            </h3>
+            <div class="equipment-list" id="chemical-protection">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Защита от падения -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Защита от падения:</span>
+                <span class="lang lang-en">Fall Protection:</span>
+                <span class="lang lang-kz">Құлаудан қорғау:</span>
+            </h3>
+            <div class="equipment-list" id="fall-protection">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Ограждение -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Ограждение:</span>
+                <span class="lang lang-en">Barriers:</span>
+                <span class="lang lang-kz">Коршау:</span>
+            </h3>
+            <div class="equipment-list" id="barriers">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- СИЗ -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Средства индивидуальной защиты (СИЗ):</span>
+                <span class="lang lang-en">Personal Protective Equipment (PPE):</span>
+                <span class="lang lang-kz">Жеке қорғаныс құралдары (ЖҚҚ):</span>
+            </h3>
+            <div class="equipment-list" id="ppe">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Электробезопасность -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Электробезопасность:</span>
+                <span class="lang lang-en">Electrical Safety:</span>
+                <span class="lang lang-kz">Электр қауіпсіздігі:</span>
+            </h3>
+            <div class="equipment-list" id="electrical-safety">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Сварочное оборудование -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Сварочное оборудование и защита:</span>
+                <span class="lang lang-en">Welding Equipment and Protection:</span>
+                <span class="lang lang-kz">Дәнекерлеу жабдығы және қорғаныс:</span>
+            </h3>
+            <div class="equipment-list" id="welding-equipment">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Такелаж -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Такелаж и грузоперемещение:</span>
+                <span class="lang lang-en">Rigging and Cargo Handling:</span>
+                <span class="lang lang-kz">Такелаж және жүк тасымалдау:</span>
+            </h3>
+            <div class="equipment-list" id="rigging">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Прочее оборудование -->
+            <h3 class="category-title">
+                <span class="lang lang-ru active">Прочее оборудование и контроль:</span>
+                <span class="lang lang-en">Other Equipment and Control:</span>
+                <span class="lang lang-kz">Басқа жабдық және бақылау:</span>
+            </h3>
+            <div class="equipment-list" id="other-equipment">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2 class="contact-title">
+                <span class="lang lang-ru active">Контактная информация</span>
+                <span class="lang lang-en">Contact Information</span>
+                <span class="lang lang-kz">Байланыс ақпараты</span>
+            </h2>
+            
+            <div class="contact-grid">
+                <!-- Contact Details -->
+                <div class="contact-details">
+                    <div class="mb-6">
+                        <h3>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="lang lang-ru active">Адрес</span>
+                            <span class="lang lang-en">Address</span>
+                            <span class="lang lang-kz">Мекен-жай</span>
+                        </h3>
+                        <p>
+                            <span class="lang lang-ru active">г. Уральск, Западно-Казахстанская область</span>
+                            <span class="lang lang-en">Uralsk, West Kazakhstan Region</span>
+                            <span class="lang lang-kz">Орал қаласы, Батыс Қазақстан облысы</span>
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3>
+                            <i class="fas fa-phone"></i>
+                            <span class="lang lang-ru active">Телефоны</span>
+                            <span class="lang lang-en">Phones</span>
+                            <span class="lang lang-kz">Телефондар</span>
+                        </h3>
+                        <p>
+                            <i class="fas fa-mobile-alt"></i>
+                            <span class="lang lang-ru active">WhatsApp/Мобильный:</span>
+                            <span class="lang lang-en">WhatsApp/Mobile:</span>
+                            <span class="lang lang-kz">WhatsApp/Ұялы:</span>
+                            <a href="tel:+77710250008">+7 771 025 00 08</a>
+                        </p>
+                        <p>
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="tel:+77087296307">+7 708 729 63 07</a>
+                        </p>
+                        <p>
+                            <i class="fas fa-phone"></i>
+                            <span class="lang lang-ru active">Городской:</span>
+                            <span class="lang lang-en">City phone:</span>
+                            <span class="lang lang-kz">Қалалық:</span>
+                            <a href="tel:+77112219018">+7 (7112) 21-90-18</a>
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3>
+                            <i class="fas fa-envelope"></i>
+                            Email
+                        </h3>
+                        <p>
+                            <a href="mailto:qhsesolutions5@gmail.com">qhsesolutions5@gmail.com</a>
+                        </p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3>
+                            <i class="fas fa-clock"></i>
+                            <span class="lang lang-ru active">Время работы</span>
+                            <span class="lang lang-en">Working Hours</span>
+                            <span class="lang lang-kz">Жұмыс уақыты</span>
+                        </h3>
+                        <p>
+                            <span class="lang lang-ru active">Без выходных 24/7</span>
+                            <span class="lang lang-en">24/7 without days off</span>
+                            <span class="lang lang-kz">Демалыс күндерісіз 24/7</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Contact Options -->
+                    <div class="contact-options">
+                        <a href="https://wa.me/77087296307" target="_blank" class="contact-option">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <strong>WhatsApp me</strong>
+                                <div>+7 708 729 63 07</div>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:qhsesolutions5@gmail.com" class="contact-option">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email us</strong>
+                                <div>qhsesolutions5@gmail.com</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="social-media">
+                    <h3>
+                        <i class="fas fa-share-alt"></i>
+                        <span class="lang lang-ru active">Социальные сети</span>
+                        <span class="lang lang-en">Social Media</span>
+                        <span class="lang lang-kz">Әлеуметтік желілер</span>
+                    </h3>
+                    
+                    <div class="social-icons">
+                        <a href="https://t.me/qhsesolutions" target="_blank" class="social-icon telegram" title="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        
+                        <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" class="social-icon facebook" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        
+                        <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" class="social-icon instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@qhsesolutions" target="_blank" class="social-icon youtube" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-message">
+                        <p>
+                            <i class="fas fa-comment-dots"></i>
+                            <span class="lang lang-ru active">
+                                Свяжитесь с нами удобным для вас способом! Мы ответим на все ваши вопросы и поможем с выбором продукции.
+                            </span>
+                            <span class="lang lang-en">
+                                Contact us in any convenient way! We will answer all your questions and help you choose the right products.
+                            </span>
+                            <span class="lang lang-kz">
+                                Бізге қолайлы тәсілмен хабарласыңыз! Біз барлық сұрақтарыңызға жауап береміз және өнімді таңдауға көмектесеміз.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h2>QHSE Solutions</h2>
+                <p>
+                    <span class="lang lang-ru active">Ваш надежный партнер в области безопасности и защиты труда</span>
+                    <span class="lang lang-en">Your reliable partner in safety and occupational health</span>
+                    <span class="lang lang-kz">Қауіпсіздік және еңбекті қорғау саласындағы сенімді серігіңіз</span>
+                </p>
+                
+                <a href="index.html" class="back-home-btn">
+                    <i class="fas fa-home"></i>
+                    <span class="lang lang-ru active">Вернуться на главную</span>
+                    <span class="lang lang-en">Back to Home</span>
+                    <span class="lang lang-kz">Басты бетке оралу</span>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span class="lang lang-ru active">© 2025 QHSE Solutions. Все права защищены</span>
+                    <span class="lang lang-en">© 2025 QHSE Solutions. All rights reserved</span>
+                    <span class="lang lang-kz">© 2025 QHSE Solutions. Барлық құқықтар қорғалған</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h2 class="modal-title">
+                <span class="lang lang-ru active">Свяжитесь с нами</span>
+                <span class="lang lang-en">Contact Us</span>
+                <span class="lang lang-kz">Бізбен хабарласыңыз</span>
+            </h2>
+            <div id="modalProductInfo"></div>
+            <div class="contact-options">
+                <a href="https://wa.me/77087296307" target="_blank" class="contact-option" id="whatsappLink">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>WhatsApp me</strong>
+                        <div>+7 708 729 63 07</div>
+                    </div>
+                </a>
+                
+                <a href="mailto:qhsesolutions5@gmail.com" class="contact-option" id="emailLink">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email us</strong>
+                        <div>qhsesolutions5@gmail.com</div>
+                    </div>
+                </a>
+                
+                <a href="tel:+77710250008" class="contact-option">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Позвонить</strong>
+                        <div>+7 771 025 00 08</div>
+                    </div>
+                </a>
+            </div>
+            <div class="modal-actions">
+                <button class="close-modal" onclick="closeModal()">
+                    <span class="lang lang-ru active">Закрыть</span>
+                    <span class="lang lang-en">Close</span>
+                    <span class="lang lang-kz">Жабу</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Полный перечень 164 товаров на трех языках
+        const allProducts = {
+            ru: [
+                { id: 1, name: "Пожарный гидрант", description: "Надежный пожарный гидрант для тушения пожаров", category: "fire-safety" },
+                { id: 2, name: "Пожарный кран", description: "Пожарный кран с комплектом подключения", category: "fire-safety" },
+                { id: 3, name: "Пожарный рукав", description: "Прочный пожарный рукав 20м", category: "fire-safety" },
+                { id: 4, name: "Соединительная головка", description: "Качественная соединительная головка для пожарного оборудования", category: "fire-safety" },
+                { id: 5, name: "Пожарный ствол", description: "Эффективный пожарный ствол для тушения пожаров", category: "fire-safety" },
+                { id: 6, name: "Пожарный насос", description: "Мощный пожарный насос", category: "fire-safety" },
+                { id: 7, name: "Пожарный щит (комплект)", description: "Комплектный пожарный щит", category: "fire-safety" },
+                { id: 8, name: "Пожарные шкафы", description: "Пожарные шкафы для хранения оборудования", category: "fire-safety" },
+                { id: 9, name: "Боевая одежда пожарного", description: "Защитная боевая одежда пожарного", category: "ppe" },
+                { id: 10, name: "Оповещатель пожарный", description: "Пожарный оповещатель", category: "fire-safety" },
+                { id: 11, name: "Пожарный детектор", description: "Детектор пожарной сигнализации", category: "fire-safety" },
+                { id: 12, name: "Бирки для огнетушителей", description: "Бирки для маркировки огнетушителей", category: "fire-safety" },
+                { id: 13, name: "Пенный огнетушитель", description: "Пенный огнетушитель для тушения пожаров", category: "fire-safety" },
+                { id: 14, name: "Порошковый огнетушитель", description: "Порошковый огнетушитель", category: "fire-safety" },
+                { id: 15, name: "Углекислотный огнетушитель", description: "Углекислотный огнетушитель", category: "fire-safety" },
+                { id: 16, name: "Противопожарные маски", description: "Защитные противопожарные маски", category: "ppe" },
+                { id: 17, name: "Контейнер для хранения ЛВЖ", description: "Контейнер для безопасного хранения легковоспламеняющихся жидкостей", category: "other-equipment" },
+                { id: 18, name: "Аварийный дорожный знак", description: "Аварийный дорожный знак. Можно приобрести или взять в аренду.", category: "emergency-equipment" },
+                { id: 19, name: "Фонарь сигнальный", description: "Сигнальный фонарь для аварийных ситуаций. Доступен как для покупки, так и для аренды.", category: "emergency-equipment" },
+                { id: 20, name: "Станция для промывки глаз", description: "Станция для экстренной промывки глаз. Доступна для покупки и аренды.", category: "emergency-equipment" },
+                { id: 21, name: "Громкоговоритель", description: "Аварийный громкоговоритель. Предлагается в продажу и аренду.", category: "emergency-equipment" },
+                { id: 22, name: "Носилки спасательные", description: "Спасательные носилки для эвакуации. Можно приобрести или взять в аренду.", category: "emergency-equipment" },
+                { id: 23, name: "Детектор сероводорода", description: "Детектор для обнаружения сероводорода. Доступен для покупки и аренды.", category: "other-equipment" },
+                { id: 24, name: "Анализатор газа 4-компонентный", description: "Многофункциональный газоанализатор. Предлагается в продажу и аренду.", category: "other-equipment" },
+                { id: 25, name: "Станция для чистки СИЗ глаз", description: "Станция для очистки средств индивидуальной защиты. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 26, name: "Аварийный душ", description: "Аварийный душ для экстренной дезактивации. Доступен как для покупки, так и для аренды.", category: "emergency-equipment" },
+                { id: 27, name: "ВДА 30 мин", description: "Изолирующий дыхательный аппарат (30 минут). Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 28, name: "ВДА 15 мин", description: "Изолирующий дыхательный аппарат (15 минут). Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 29, name: "Минифильтры для СИЗОД", description: "Сменные минифильтры для средств индивидуальной защиты. Доступны для покупки и аренды.", category: "ppe" },
+                { id: 30, name: "Дефибриллятор (AED)", description: "Автоматический нарульный дефибриллятор. Предлагается в продажу и аренду.", category: "emergency-equipment" },
+                { id: 31, name: "Аптечка первой помощи", description: "Комплектная аптечка первой помощи. Можно приобрести или взять в аренду.", category: "emergency-equipment" },
+                { id: 32, name: "Крюк для спасения", description: "Спасательный крюк для эвакуации. Доступен для покупки и аренды.", category: "emergency-equipment" },
+                { id: 33, name: "Устройство для аварийного спуска", description: "Устройство для безопасной эвакуации с высоты. Предлагается в продажу и аренду.", category: "emergency-equipment" },
+                { id: 34, name: "Резиновые перчатки", description: "Защитные резиновые перчатки для работы с химическими веществами. Доступны для покупки и аренды.", category: "chemical-protection" },
+                { id: 35, name: "Резиновые сапоги", description: "Резиновые сапоги для защиты от химических веществ. Предлагаются в продажу и аренду.", category: "chemical-protection" },
+                { id: 36, name: "Брызгозащитные очки", description: "Защитные очки от брызг химических веществ. Можно приобрести или взять в аренду.", category: "chemical-protection" },
+                { id: 37, name: "Фартук", description: "Защитный фартук для работы с химикатами. Доступен для покупки и аренды.", category: "chemical-protection" },
+                { id: 38, name: "Защитный щиток", description: "Защитный щиток для лица от химических брызг. Предлагается в продажу и аренду.", category: "chemical-protection" },
+                { id: 39, name: "Полная маска для СИЗОД", description: "Полнолицевая маска для систем изолирования дыхания. Можно приобрести или взять в аренду.", category: "chemical-protection" },
+                { id: 40, name: "Химический защитный комбинезон", description: "Полный защитный комбинезон от химических воздействий. Доступен как для покупки, так и для аренды.", category: "chemical-protection" },
+                { id: 41, name: "Респиратор FFP1", description: "Респиратор класса защиты FFP1. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 42, name: "Респиратор FFP2", description: "Респиратор класса защиты FFP2. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 43, name: "Респиратор FFP3", description: "Респиратор класса защиты FFP3. Доступен для покупки и аренды.", category: "ppe" },
+                { id: 44, name: "Респиратор-полумаска", description: "Респиратор-полумаска для защиты органов дыхания. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 45, name: "Фильтры (пыль, газы, пары)", description: "Сменные фильтры для респираторов от пыли, газов и паров. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 46, name: "Защитный крем для кожи", description: "Специальный защитный крем для кожи от химических воздействий. Доступен для покупки и аренды.", category: "ppe" },
+                { id: 47, name: "Пояс страховочный с фалами", description: "Страховочный пояс с фалами для защиты от падения. Доступен для покупки и аренды.", category: "fall-protection" },
+                { id: 48, name: "Пояс страховочный (Нано)", description: "Современный страховочный пояс Нано серии. Предлагается в продажу и аренду.", category: "fall-protection" },
+                { id: 49, name: "Ремень безопасности с сидением", description: "Ремень безопасности с удобным сидением для высотных работ. Можно приобрести или взять в аренду.", category: "fall-protection" },
+                { id: 50, name: "Стропы против зависания", description: "Специальные стропы для предотвращения зависания при падении. Доступны для покупки и аренды.", category: "fall-protection" },
+                { id: 51, name: "Вертикальная линия защиты", description: "Вертикальная система защиты от падения. Предлагается в продажу и аренду.", category: "fall-protection" },
+                { id: 52, name: "Горизонтальная линия защиты", description: "Горизонтальная система защиты от падения. Можно приобрести или взять в аренду.", category: "fall-protection" },
+                { id: 53, name: "Инерционная катушка", description: "Инерционная катушка для систем защиты от падения. Доступна для покупки и аренды.", category: "fall-protection" },
+                { id: 54, name: "Устройство аварийного спуска", description: "Устройство для безопасного аварийного спуска с высоты. Предлагается в продажу и аренду.", category: "fall-protection" },
+                { id: 55, name: "Лестница-стремянка алюминиевая", description: "Прочная алюминиевая лестница-стремянка для высотных работ. Можно приобрести или взять в аренду.", category: "fall-protection" },
+                { id: 56, name: "Сумка для инструмента", description: "Специальная сумка для переноски инструмента на высоте. Доступна для покупки и аренды.", category: "fall-protection" },
+                { id: 57, name: "Корзина для подъема персонала", description: "Безопасная корзина для подъема персонала на высоту. Предлагается в продажу и аренду.", category: "fall-protection" },
+                { id: 58, name: "Предохранительные пояса", description: "Надежные предохранительные пояса для защиты от падения. Можно приобрести или взять в аренду.", category: "fall-protection" },
+                { id: 59, name: "Ленты для ограждения", description: "Сигнальные ленты для ограждения опасных зон. Доступны для покупки и аренды.", category: "barriers" },
+                { id: 60, name: "Конусы для ограждения", description: "Сигнальные конусы для временного ограждения зон. Предлагаются в продажу и аренду.", category: "barriers" },
+                { id: 61, name: "Цепи для ограждения", description: "Прочные цепи для организации ограждений. Можно приобрести или взять в аренду.", category: "barriers" },
+                { id: 62, name: "Жесткие ограждения", description: "Жесткие металлические ограждения для безопасности. Доступны для покупки и аренды.", category: "barriers" },
+                { id: 63, name: "Водоналивное барьерное ограждение", description: "Водоналивные барьеры для дорожных ограждений. Предлагаются в продажу и аренду.", category: "barriers" },
+                { id: 64, name: "Пластиковые столбики", description: "Пластиковые сигнальные столбики для разметки. Можно приобрести или взять в аренду.", category: "barriers" },
+                { id: 65, name: "Светоотражающие знаки", description: "Светоотражающие знаки для ограждения и предупреждения. Доступны для покупки и аренды.", category: "barriers" },
+                { id: 66, name: "Комбинезон летний", description: "Летний защитный комбинезон. Доступен для покупки и аренды.", category: "ppe" },
+                { id: 67, name: "Комбинезон зимний", description: "Утепленный зимний защитный комбинезон. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 68, name: "Каска-панамка", description: "Защитная каска-панамка от солнца. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 69, name: "Каска обычная", description: "Стандартная защитная каска. Доступна для покупки и аренды.", category: "ppe" },
+                { id: 70, name: "Зимняя куртка", description: "Теплая зимняя защитная куртка. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 71, name: "Зимний комбинезон", description: "Теплый зимний защитный комбинезон. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 72, name: "Зимние сапоги", description: "Утепленные зимние защитные сапоги. Доступны для покупки и аренды.", category: "ppe" },
+                { id: 73, name: "Летние сапоги", description: "Летние защитные сапоги. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 74, name: "Ботинки летние", description: "Летние защитные ботинки. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 75, name: "Ботинки зимние", description: "Утепленные зимние защитные ботинки. Доступны для покупки и аренды.", category: "ppe" },
+                { id: 76, name: "Очки темные", description: "Защитные очки с затемненными линзами. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 77, name: "Очки светлые", description: "Защитные очки со светлыми линзами. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 78, name: "Нательное белье", description: "Защитное нательное белье. Доступно для покупки и аренды.", category: "ppe" },
+                { id: 79, name: "Москитная сетка", description: "Защитная москитная сетка. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 80, name: "Брызгозащитные очки", description: "Очки защитные от брызг. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 81, name: "Защитная маска", description: "Защитная маска для лица. Доступна для покупки и аренды.", category: "ppe" },
+                { id: 82, name: "Зимние носки", description: "Теплые зимние защитные носки. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 83, name: "Балаклава", description: "Защитная балаклава. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 84, name: "Респиратор", description: "Защитный респиратор. Доступен для покупки и аренды.", category: "ppe" },
+                { id: 85, name: "Наушники", description: "Защитные наушники от шума. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 86, name: "Беруши", description: "Защитные беруши. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 87, name: "Перчатки летние", description: "Летние защитные перчатки. Доступны для покупки и аренды.", category: "ppe" },
+                { id: 88, name: "Перчатки зимние", description: "Утепленные зимние защитные перчатки. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 89, name: "Противоударные перчатки", description: "Противоударные защитные перчатки. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 90, name: "Перчатка-кольчуга", description: "Защитная перчатка-кольчуга от порезов. Доступна для покупки и аренды.", category: "ppe" },
+                { id: 91, name: "Антивибрационные перчатки", description: "Антивибрационные защитные перчатки. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 92, name: "Подшлемник", description: "Защитный подшлемник. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 93, name: "Шлем для пескоструя", description: "Специальный шлем для пескоструйных работ. Доступен для покупки и аренды.", category: "ppe" },
+                { id: 94, name: "Лицевой щиток", description: "Защитный лицевой щиток. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 95, name: "Дождевик", description: "Защитный дождевик от влаги. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 96, name: "Маска от холода", description: "Защитная маска от холода. Доступна для покупки и аренды.", category: "ppe" },
+                { id: 97, name: "Маска от солнца", description: "Защитная маска от солнца. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 98, name: "Светоотражающий жилет", description: "Светоотражающий защитный жилет. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 99, name: "Наушник на каску", description: "Наушник для крепления на каску. Доступен для покупки и аренды.", category: "ppe" },
+                { id: 100, name: "Защитный крем", description: "Защитный крем для кожи. Предлагается в продажу и аренду.", category: "ppe" },
+                { id: 101, name: "Крем-мыло", description: "Защитное крем-мыло. Можно приобрести или взять в аренду.", category: "ppe" },
+                { id: 102, name: "Мыло для отмывания масла", description: "Специальное мыло для отмывания масел. Доступно для покупки и аренды.", category: "ppe" },
+                { id: 103, name: "Репелленты", description: "Защитные репелленты от насекомых. Предлагаются в продажу и аренду.", category: "ppe" },
+                { id: 104, name: "Диэлектрические перчатки", description: "Электрозащитные перчатки для работы с электрооборудованием под напряжением", category: "electrical-safety" },
+                { id: 105, name: "Диэлектрические боты", description: "Электрозащитная обувь для работы в электроустановках", category: "electrical-safety" },
+                { id: 106, name: "Диэлектрический коврик", description: "Изолирующее напольное покрытие для электробезопасности", category: "electrical-safety" },
+                { id: 107, name: "Крюк для спасения", description: "Спасательное устройство для эвакуации из электроустановки", category: "electrical-safety" },
+                { id: 108, name: "Инструмент с изоляцией", description: "Ручной инструмент с изолированными ручками для электромонтажных работ", category: "electrical-safety" },
+                { id: 109, name: "Указатели напряжения", description: "Приборы для определения наличия напряжения в электроустановках", category: "electrical-safety" },
+                { id: 110, name: "Мегаомметр", description: "Прибор для измерения сопротивления изоляции электрооборудования", category: "electrical-safety" },
+                { id: 111, name: "Измеритель эл/магнитных полей", description: "Прибор для измерения уровня электромагнитного излучения", category: "electrical-safety" },
+                { id: 112, name: "Костюм сварщика", description: "Защитный костюм для сварочных работ", category: "welding-equipment" },
+                { id: 113, name: "Фартуки сварщика", description: "Защитные фартуки для сварочных работ", category: "welding-equipment" },
+                { id: 114, name: "Нарукавники сварщика", description: "Защитные нарукавники для сварочных работ", category: "welding-equipment" },
+                { id: 115, name: "Обувь сварщика", description: "Специальная обувь для защиты при сварочных работах", category: "welding-equipment" },
+                { id: 116, name: "Подшлемники/пелерина", description: "Защитные подшлемники и пелерины для сварщиков", category: "welding-equipment" },
+                { id: 117, name: "Средства защиты дыхания", description: "Респираторы и средства защиты органов дыхания", category: "welding-equipment" },
+                { id: 118, name: "Щитки и маски", description: "Защитные щитки и маски для сварочных работ", category: "welding-equipment" },
+                { id: 119, name: "Защитные очки", description: "Специальные защитные очки для сварщиков", category: "welding-equipment" },
+                { id: 120, name: "Средства защиты слуха", description: "Противошумные наушники и беруши", category: "welding-equipment" },
+                { id: 121, name: "Наколенники/налокотники", description: "Защитные наколенники и налокотники", category: "welding-equipment" },
+                { id: 122, name: "Краги/перчатки", description: "Защитные краги и перчатки для сварщиков", category: "welding-equipment" },
+                { id: 123, name: "Диэлектрические коврики", description: "Диэлектрические коврики для дополнительной защиты", category: "electrical-safety" },
+                { id: 124, name: "Нейлоновые стропы", description: "Прочные нейлоновые стропы для такелажных работ", category: "rigging" },
+                { id: 125, name: "Канатные стропы", description: "Надёжные канатные стропы для подъёма грузов", category: "rigging" },
+                { id: 126, name: "Канатные пауки", description: "Канатные пауки для равномерного распределения нагрузки", category: "rigging" },
+                { id: 127, name: "Стяжные ремни", description: "Прочные стяжные ремни для фиксации грузов", category: "rigging" },
+                { id: 128, name: "Обвязочный цепь", description: "Цепь для обвязки и крепления грузов", category: "rigging" },
+                { id: 129, name: "Push Pull Stick", description: "Инструмент для безопасного перемещения грузов", category: "rigging" },
+                { id: 130, name: "Рычажный механизм", description: "Рычажный механизм для подъёма тяжелых грузов", category: "rigging" },
+                { id: 131, name: "Буксировочный ремень", description: "Прочный буксировочный ремень для транспортировки", category: "rigging" },
+                { id: 132, name: "Буксировочный трос", description: "Надёчный буксировочный трос для тяжёлых грузов", category: "rigging" },
+                { id: 133, name: "Серьги", description: "Такелажные серьги для крепления грузов", category: "rigging" },
+                { id: 134, name: "Тали цепные", description: "Цепные тали для подъёма и перемещения грузов", category: "rigging" },
+                { id: 135, name: "Гидравлическая тележка", description: "Гидравлическая тележка для перемещения грузов", category: "rigging" },
+                { id: 136, name: "Тележка для бочек", description: "Специальная тележка для транспортировки бочек", category: "rigging" },
+                { id: 137, name: "Лестничная тележка", description: "Тележка для безопасного перемещения по лестницам", category: "rigging" },
+                { id: 138, name: "Fingersaver", description: "Защитное приспособление для пальцев", category: "rigging" },
+                { id: 139, name: "Шкаф сушильный", description: "Шкаф для сушки рабочей одежды и обуви", category: "other-equipment" },
+                { id: 140, name: "Сушилка для ботинок", description: "Устройство для сушки рабочей обуви", category: "other-equipment" },
+                { id: 141, name: "Щетка для чистки", description: "Щетка для очистки рабочей одежды и обуви", category: "other-equipment" },
+                { id: 142, name: "Тонометр", description: "Прибор для измерения артериального давления", category: "other-equipment" },
+                { id: 143, name: "Зажим для перчаток", description: "Зажим для удобного хранения перчаток", category: "ppe" },
+                { id: 144, name: "Фонарь рабочий", description: "Рабочий фонарь для освещения на производстве", category: "other-equipment" },
+                { id: 145, name: "Ветроуказатель", description: "Указатель направления и силы ветра", category: "other-equipment" },
+                { id: 146, name: "Эргономический помощник", description: "Устройство для снижения нагрузки на работника", category: "other-equipment" },
+                { id: 147, name: "Тележка для мешков", description: "Тележка для транспортировки мешков", category: "rigging" },
+                { id: 148, name: "Тележка сварщика", description: "Специализированная тележка для сварщика", category: "welding-equipment" },
+                { id: 149, name: "Противоскользящая мата", description: "Маты для предотвращения скольжения на поверхности", category: "other-equipment" },
+                { id: 150, name: "Калориферы", description: "Обогреватели для производственных помещений", category: "other-equipment" },
+                { id: 151, name: "Термометр бесконтактный", description: "Бесконтактный измеритель температуры", category: "other-equipment" },
+                { id: 152, name: "Дальномер", description: "Прибор для точного измерения расстояний", category: "other-equipment" },
+                { id: 153, name: "Анемометр", description: "Измеритель скорости ветра и воздушного потока", category: "other-equipment" },
+                { id: 154, name: "Дорожный радар", description: "Радар для контроля скорости транспортных средств", category: "other-equipment" },
+                { id: 155, name: "Люксметр", description: "Прибор для измерения освещенности", category: "other-equipment" },
+                { id: 156, name: "Толщиномер", description: "Измеритель толщины покрытий и материалов", category: "other-equipment" },
+                { id: 157, name: "Анализатор пыли", description: "Прибор для измерения концентрации пыли в воздухе", category: "other-equipment" },
+                { id: 158, name: "Измеритель вибрации", description: "Прибор для измерения уровня вибрации оборудования", category: "other-equipment" },
+                { id: 159, name: "Измеритель микроклимата", description: "Многофункциональный измеритель параметров микроклимата", category: "other-equipment" },
+                { id: 160, name: "Дозиметр радиации", description: "Прибор для измерения уровня радиации", category: "other-equipment" },
+                { id: 161, name: "Анализатор вредных веществ", description: "Прибор для анализа содержания вредных веществ в воздухе", category: "other-equipment" },
+                { id: 162, name: "Тепломер", description: "Измеритель теплового излучения и температуры поверхностей", category: "other-equipment" },
+                { id: 163, name: "Шумомер", description: "Прибор для измерения уровня шума", category: "other-equipment" },
+                { id: 164, name: "Алкотестер", description: "Прибор для измерения содержания алкоголя в выдыхаемом воздухе", category: "other-equipment" }
+            ],
+            en: [
+                { id: 1, name: "Fire hydrant", description: "Reliable fire hydrant for fire extinguishing", category: "fire-safety" },
+                { id: 2, name: "Fire valve", description: "Fire valve with connection kit", category: "fire-safety" },
+                { id: 3, name: "Fire hose", description: "Durable fire hose 20m", category: "fire-safety" },
+                { id: 4, name: "Connection head", description: "High-quality connection head for fire equipment", category: "fire-safety" },
+                { id: 5, name: "Fire nozzle", description: "Effective fire nozzle for fire extinguishing", category: "fire-safety" },
+                { id: 6, name: "Fire pump", description: "Powerful fire pump", category: "fire-safety" },
+                { id: 7, name: "Fire shield (set)", description: "Complete fire shield", category: "fire-safety" },
+                { id: 8, name: "Fire cabinets", description: "Fire cabinets for equipment storage", category: "fire-safety" },
+                { id: 9, name: "Firefighter combat clothing", description: "Protective firefighter combat clothing", category: "ppe" },
+                { id: 10, name: "Fire alarm", description: "Fire alarm", category: "fire-safety" },
+                { id: 11, name: "Fire detector", description: "Fire alarm detector", category: "fire-safety" },
+                { id: 12, name: "Fire extinguisher tags", description: "Tags for fire extinguisher marking", category: "fire-safety" },
+                { id: 13, name: "Foam fire extinguisher", description: "Foam fire extinguisher for fire extinguishing", category: "fire-safety" },
+                { id: 14, name: "Powder fire extinguisher", description: "Powder fire extinguisher", category: "fire-safety" },
+                { id: 15, name: "CO2 fire extinguisher", description: "CO2 fire extinguisher", category: "fire-safety" },
+                { id: 16, name: "Fire masks", description: "Protective fire masks", category: "ppe" },
+                { id: 17, name: "Flammable liquid storage container", description: "Container for safe storage of flammable liquids", category: "other-equipment" },
+                { id: 18, name: "Emergency road sign", description: "Emergency road sign. Can be purchased or rented.", category: "emergency-equipment" },
+                { id: 19, name: "Signal flashlight", description: "Signal flashlight for emergency situations. Available for purchase and rental.", category: "emergency-equipment" },
+                { id: 20, name: "Eye wash station", description: "Station for emergency eye washing. Available for purchase and rental.", category: "emergency-equipment" },
+                { id: 21, name: "Loudspeaker", description: "Emergency loudspeaker. Offered for sale and rental.", category: "emergency-equipment" },
+                { id: 22, name: "Rescue stretchers", description: "Rescue stretchers for evacuation. Can be purchased or rented.", category: "emergency-equipment" },
+                { id: 23, name: "Hydrogen sulfide detector", description: "Detector for hydrogen sulfide detection. Available for purchase and rental.", category: "other-equipment" },
+                { id: 24, name: "4-component gas analyzer", description: "Multifunctional gas analyzer. Offered for sale and rental.", category: "other-equipment" },
+                { id: 25, name: "PPE eye cleaning station", description: "Station for cleaning personal protective equipment. Can be purchased or rented.", category: "ppe" },
+                { id: 26, name: "Emergency shower", description: "Emergency shower for emergency decontamination. Available for purchase and rental.", category: "emergency-equipment" },
+                { id: 27, name: "SCBA 30 min", description: "Self-contained breathing apparatus (30 minutes). Offered for sale and rental.", category: "ppe" },
+                { id: 28, name: "SCBA 15 min", description: "Self-contained breathing apparatus (15 minutes). Can be purchased or rented.", category: "ppe" },
+                { id: 29, name: "SCBA mini filters", description: "Replaceable mini filters for personal protective equipment. Available for purchase and rental.", category: "ppe" },
+                { id: 30, name: "Defibrillator (AED)", description: "Automatic external defibrillator. Offered for sale and rental.", category: "emergency-equipment" },
+                { id: 31, name: "First aid kit", description: "Complete first aid kit. Can be purchased or rented.", category: "emergency-equipment" },
+                { id: 32, name: "Rescue hook", description: "Rescue hook for evacuation. Available for purchase and rental.", category: "emergency-equipment" },
+                { id: 33, name: "Emergency descent device", description: "Device for safe evacuation from height. Offered for sale and rental.", category: "emergency-equipment" },
+                { id: 34, name: "Rubber gloves", description: "Protective rubber gloves for working with chemicals. Available for purchase and rental.", category: "chemical-protection" },
+                { id: 35, name: "Rubber boots", description: "Rubber boots for protection from chemicals. Offered for sale and rental.", category: "chemical-protection" },
+                { id: 36, name: "Splash-proof goggles", description: "Protective goggles from chemical splashes. Can be purchased or rented.", category: "chemical-protection" },
+                { id: 37, name: "Apron", description: "Protective apron for working with chemicals. Available for purchase and rental.", category: "chemical-protection" },
+                { id: 38, name: "Face shield", description: "Protective face shield from chemical splashes. Offered for sale and rental.", category: "chemical-protection" },
+                { id: 39, name: "Full face mask for SCBA", description: "Full face mask for breathing isolation systems. Can be purchased or rented.", category: "chemical-protection" },
+                { id: 40, name: "Chemical protective suit", description: "Complete protective suit from chemical exposures. Available for purchase and rental.", category: "chemical-protection" },
+                { id: 41, name: "Respirator FFP1", description: "FFP1 class respirator. Offered for sale and rental.", category: "ppe" },
+                { id: 42, name: "Respirator FFP2", description: "FFP2 class respirator. Can be purchased or rented.", category: "ppe" },
+                { id: 43, name: "Respirator FFP3", description: "FFP3 class respirator. Available for purchase and rental.", category: "ppe" },
+                { id: 44, name: "Half mask respirator", description: "Half mask respirator for respiratory protection. Offered for sale and rental.", category: "ppe" },
+                { id: 45, name: "Filters (dust, gases, vapors)", description: "Replaceable filters for respirators from dust, gases and vapors. Can be purchased or rented.", category: "ppe" },
+                { id: 46, name: "Protective skin cream", description: "Special protective cream for skin from chemical exposures. Available for purchase and rental.", category: "ppe" },
+                { id: 47, name: "Safety harness with lanyards", description: "Safety harness with lanyards for fall protection. Available for purchase and rental.", category: "fall-protection" },
+                { id: 48, name: "Safety harness (Nano)", description: "Modern Nano series safety harness. Offered for sale and rental.", category: "fall-protection" },
+                { id: 49, name: "Safety belt with seat", description: "Safety belt with comfortable seat for height work. Can be purchased or rented.", category: "fall-protection" },
+                { id: 50, name: "Anti-suspension straps", description: "Special straps for preventing suspension in falls. Available for purchase and rental.", category: "fall-protection" },
+                { id: 51, name: "Vertical lifeline", description: "Vertical fall protection system. Offered for sale and rental.", category: "fall-protection" },
+                { id: 52, name: "Horizontal lifeline", description: "Horizontal fall protection system. Can be purchased or rented.", category: "fall-protection" },
+                { id: 53, name: "Inertia reel", description: "Inertia reel for fall protection systems. Available for purchase and rental.", category: "fall-protection" },
+                { id: 54, name: "Emergency descent device", description: "Device for safe emergency descent from height. Offered for sale and rental.", category: "fall-protection" },
+                { id: 55, name: "Aluminum stepladder", description: "Durable aluminum stepladder for height work. Can be purchased or rented.", category: "fall-protection" },
+                { id: 56, name: "Tool bag", description: "Special bag for carrying tools at height. Available for purchase and rental.", category: "fall-protection" },
+                { id: 57, name: "Personnel lifting basket", description: "Safe basket for lifting personnel to height. Offered for sale and rental.", category: "fall-protection" },
+                { id: 58, name: "Safety belts", description: "Reliable safety belts for fall protection. Can be purchased or rented.", category: "fall-protection" },
+                { id: 59, name: "Barrier tapes", description: "Warning tapes for fencing dangerous areas. Available for purchase and rental.", category: "barriers" },
+                { id: 60, name: "Traffic cones", description: "Warning cones for temporary area fencing. Offered for sale and rental.", category: "barriers" },
+                { id: 61, name: "Barrier chains", description: "Durable chains for organizing fencing. Can be purchased or rented.", category: "barriers" },
+                { id: 62, name: "Rigid barriers", description: "Rigid metal barriers for safety. Available for purchase and rental.", category: "barriers" },
+                { id: 63, name: "Water-filled barrier", description: "Water-filled barriers for road fencing. Offered for sale and rental.", category: "barriers" },
+                { id: 64, name: "Plastic posts", description: "Plastic warning posts for marking. Can be purchased or rented.", category: "barriers" },
+                { id: 65, name: "Reflective signs", description: "Reflective signs for fencing and warning. Available for purchase and rental.", category: "barriers" },
+                { id: 66, name: "Summer coverall", description: "Summer protective coverall. Available for purchase and rental.", category: "ppe" },
+                { id: 67, name: "Winter coverall", description: "Insulated winter protective coverall. Offered for sale and rental.", category: "ppe" },
+                { id: 68, name: "Hardhat with brim", description: "Protective hardhat with brim from sun. Can be purchased or rented.", category: "ppe" },
+                { id: 69, name: "Standard hardhat", description: "Standard protective hardhat. Available for purchase and rental.", category: "ppe" },
+                { id: 70, name: "Winter jacket", description: "Warm winter protective jacket. Offered for sale and rental.", category: "ppe" },
+                { id: 71, name: "Winter coverall", description: "Warm winter protective coverall. Can be purchased or rented.", category: "ppe" },
+                { id: 72, name: "Winter boots", description: "Insulated winter protective boots. Available for purchase and rental.", category: "ppe" },
+                { id: 73, name: "Summer boots", description: "Summer protective boots. Offered for sale and rental.", category: "ppe" },
+                { id: 74, name: "Summer shoes", description: "Summer protective shoes. Can be purchased or rented.", category: "ppe" },
+                { id: 75, name: "Winter shoes", description: "Insulated winter protective shoes. Available for purchase and rental.", category: "ppe" },
+                { id: 76, name: "Dark glasses", description: "Protective glasses with tinted lenses. Offered for sale and rental.", category: "ppe" },
+                { id: 77, name: "Clear glasses", description: "Protective glasses with clear lenses. Offered for sale and rental.", category: "ppe" },
+                { id: 78, name: "Underwear", description: "Protective underwear. Available for purchase and rental.", category: "ppe" },
+                { id: 79, name: "Mosquito net", description: "Protective mosquito net. Offered for sale and rental.", category: "ppe" },
+                { id: 80, name: "Splash-proof goggles", description: "Goggles protective from splashes. Can be purchased or rented.", category: "ppe" },
+                { id: 81, name: "Protective mask", description: "Protective face mask. Available for purchase and rental.", category: "ppe" },
+                { id: 82, name: "Winter socks", description: "Warm winter protective socks. Offered for sale and rental.", category: "ppe" },
+                { id: 83, name: "Balaclava", description: "Protective balaclava. Can be purchased or rented.", category: "ppe" },
+                { id: 84, name: "Respirator", description: "Protective respirator. Available for purchase and rental.", category: "ppe" },
+                { id: 85, name: "Ear muffs", description: "Protective ear muffs from noise. Offered for sale and rental.", category: "ppe" },
+                { id: 86, name: "Ear plugs", description: "Protective ear plugs. Can be purchased or rented.", category: "ppe" },
+                { id: 87, name: "Summer gloves", description: "Summer protective gloves. Available for purchase and rental.", category: "ppe" },
+                { id: 88, name: "Winter gloves", description: "Insulated winter protective gloves. Offered for sale and rental.", category: "ppe" },
+                { id: 89, name: "Impact-resistant gloves", description: "Impact-resistant protective gloves. Can be purchased or rented.", category: "ppe" },
+                { id: 90, name: "Chainmail glove", description: "Protective chainmail glove from cuts. Available for purchase and rental.", category: "ppe" },
+                { id: 91, name: "Anti-vibration gloves", description: "Anti-vibration protective gloves. Offered for sale and rental.", category: "ppe" },
+                { id: 92, name: "Hood", description: "Protective hood. Can be purchased or rented.", category: "ppe" },
+                { id: 93, name: "Sandblasting helmet", description: "Special helmet for sandblasting work. Available for purchase and rental.", category: "ppe" },
+                { id: 94, name: "Face shield", description: "Protective face shield. Offered for sale and rental.", category: "ppe" },
+                { id: 95, name: "Raincoat", description: "Protective raincoat from moisture. Can be purchased or rented.", category: "ppe" },
+                { id: 96, name: "Cold mask", description: "Protective mask from cold. Available for purchase and rental.", category: "ppe" },
+                { id: 97, name: "Sun mask", description: "Protective mask from sun. Offered for sale and rental.", category: "ppe" },
+                { id: 98, name: "Reflective vest", description: "Reflective protective vest. Can be purchased or rented.", category: "ppe" },
+                { id: 99, name: "Hardhat ear muff", description: "Ear muff for mounting on hardhat. Available for purchase and rental.", category: "ppe" },
+                { id: 100, name: "Protective cream", description: "Protective cream for skin. Offered for sale and rental.", category: "ppe" },
+                { id: 101, name: "Cream soap", description: "Protective cream soap. Can be purchased or rented.", category: "ppe" },
+                { id: 102, name: "Oil cleaning soap", description: "Special soap for cleaning oils. Available for purchase and rental.", category: "ppe" },
+                { id: 103, name: "Repellents", description: "Protective repellents from insects. Offered for sale and rental.", category: "ppe" },
+                { id: 104, name: "Dielectric gloves", description: "Electrical protective gloves for working with live equipment", category: "electrical-safety" },
+                { id: 105, name: "Dielectric boots", description: "Electrical protective footwear for work in electrical installations", category: "electrical-safety" },
+                { id: 106, name: "Dielectric mat", description: "Insulating floor covering for electrical safety", category: "electrical-safety" },
+                { id: 107, name: "Rescue hook", description: "Rescue device for evacuation from electrical installation", category: "electrical-safety" },
+                { id: 108, name: "Insulated tools", description: "Hand tools with insulated handles for electrical work", category: "electrical-safety" },
+                { id: 109, name: "Voltage indicators", description: "Devices for determining voltage presence in electrical installations", category: "electrical-safety" },
+                { id: 110, name: "Megohmmeter", description: "Device for measuring insulation resistance of electrical equipment", category: "electrical-safety" },
+                { id: 111, name: "EMF meter", description: "Device for measuring electromagnetic field level", category: "electrical-safety" },
+                { id: 112, name: "Welding suit", description: "Protective suit for welding work", category: "welding-equipment" },
+                { id: 113, name: "Welding aprons", description: "Protective aprons for welding work", category: "welding-equipment" },
+                { id: 114, name: "Welding sleeves", description: "Protective sleeves for welding work", category: "welding-equipment" },
+                { id: 115, name: "Welding footwear", description: "Special footwear for protection during welding work", category: "welding-equipment" },
+                { id: 116, name: "Welding hoods/capes", description: "Protective hoods and capes for welders", category: "welding-equipment" },
+                { id: 117, name: "Respiratory protection", description: "Respirators and respiratory protection equipment", category: "welding-equipment" },
+                { id: 118, name: "Welding shields and masks", description: "Protective shields and masks for welding work", category: "welding-equipment" },
+                { id: 119, name: "Protective glasses", description: "Special protective glasses for welders", category: "welding-equipment" },
+                { id: 120, name: "Hearing protection", description: "Noise-cancelling ear muffs and ear plugs", category: "welding-equipment" },
+                { id: 121, name: "Knee/elbow pads", description: "Protective knee and elbow pads", category: "welding-equipment" },
+                { id: 122, name: "Welding gloves/gauntlets", description: "Protective gauntlets and gloves for welders", category: "welding-equipment" },
+                { id: 123, name: "Dielectric mats", description: "Dielectric mats for additional protection", category: "electrical-safety" },
+                { id: 124, name: "Nylon slings", description: "Durable nylon slings for rigging work", category: "rigging" },
+                { id: 125, name: "Rope slings", description: "Reliable rope slings for lifting loads", category: "rigging" },
+                { id: 126, name: "Rope spiders", description: "Rope spiders for even load distribution", category: "rigging" },
+                { id: 127, name: "Ratchet straps", description: "Durable ratchet straps for securing loads", category: "rigging" },
+                { id: 128, name: "Binding chain", description: "Chain for binding and securing loads", category: "rigging" },
+                { id: 129, name: "Push Pull Stick", description: "Tool for safe load moving", category: "rigging" },
+                { id: 130, name: "Lever mechanism", description: "Lever mechanism for lifting heavy loads", category: "rigging" },
+                { id: 131, name: "Tow strap", description: "Durable tow strap for transportation", category: "rigging" },
+                { id: 132, name: "Tow cable", description: "Reliable tow cable for heavy loads", category: "rigging" },
+                { id: 133, name: "Shackles", description: "Rigging shackles for load securing", category: "rigging" },
+                { id: 134, name: "Chain hoists", description: "Chain hoists for lifting and moving loads", category: "rigging" },
+                { id: 135, name: "Hydraulic trolley", description: "Hydraulic trolley for load moving", category: "rigging" },
+                { id: 136, name: "Barrel trolley", description: "Special trolley for barrel transportation", category: "rigging" },
+                { id: 137, name: "Stair trolley", description: "Trolley for safe movement on stairs", category: "rigging" },
+                { id: 138, name: "Fingersaver", description: "Protective device for fingers", category: "rigging" },
+                { id: 139, name: "Drying cabinet", description: "Cabinet for drying work clothes and footwear", category: "other-equipment" },
+                { id: 140, name: "Boot dryer", description: "Device for drying work footwear", category: "other-equipment" },
+                { id: 141, name: "Cleaning brush", description: "Brush for cleaning work clothes and footwear", category: "other-equipment" },
+                { id: 142, name: "Blood pressure monitor", description: "Device for measuring blood pressure", category: "other-equipment" },
+                { id: 143, name: "Glove clip", description: "Clip for convenient glove storage", category: "ppe" },
+                { id: 144, name: "Work flashlight", description: "Work flashlight for lighting in production", category: "other-equipment" },
+                { id: 145, name: "Wind indicator", description: "Wind direction and strength indicator", category: "other-equipment" },
+                { id: 146, name: "Ergonomic assistant", description: "Device for reducing worker load", category: "other-equipment" },
+                { id: 147, name: "Sack trolley", description: "Trolley for transporting sacks", category: "rigging" },
+                { id: 148, name: "Welding trolley", description: "Specialized trolley for welder", category: "welding-equipment" },
+                { id: 149, name: "Anti-slip mat", description: "Mats for preventing surface slipping", category: "other-equipment" },
+                { id: 150, name: "Heaters", description: "Heaters for production premises", category: "other-equipment" },
+                { id: 151, name: "Non-contact thermometer", description: "Non-contact temperature meter", category: "other-equipment" },
+                { id: 152, name: "Distance meter", description: "Device for accurate distance measurement", category: "other-equipment" },
+                { id: 153, name: "Anemometer", description: "Wind speed and airflow meter", category: "other-equipment" },
+                { id: 154, name: "Road radar", description: "Radar for vehicle speed control", category: "other-equipment" },
+                { id: 155, name: "Lux meter", description: "Device for measuring illumination", category: "other-equipment" },
+                { id: 156, name: "Thickness gauge", description: "Coating and material thickness meter", category: "other-equipment" },
+                { id: 157, name: "Dust analyzer", description: "Device for measuring dust concentration in air", category: "other-equipment" },
+                { id: 158, name: "Vibration meter", description: "Device for measuring equipment vibration level", category: "other-equipment" },
+                { id: 159, name: "Microclimate meter", description: "Multifunctional microclimate parameter meter", category: "other-equipment" },
+                { id: 160, name: "Radiation dosimeter", description: "Device for measuring radiation level", category: "other-equipment" },
+                { id: 161, name: "Harmful substance analyzer", description: "Device for analyzing harmful substance content in air", category: "other-equipment" },
+                { id: 162, name: "Heat meter", description: "Thermal radiation and surface temperature meter", category: "other-equipment" },
+                { id: 163, name: "Noise meter", description: "Device for measuring noise level", category: "other-equipment" },
+                { id: 164, name: "Breathalyzer", description: "Device for measuring alcohol content in exhaled air", category: "other-equipment" }
+            ],
+            kz: [
+                { id: 1, name: "Өрт гидранты", description: "Өрт сөндіру үшін сенімді өрт гидранты", category: "fire-safety" },
+                { id: 2, name: "Өрт краны", description: "Қосылу жинағы бар өрт краны", category: "fire-safety" },
+                { id: 3, name: "Өрт шлангы", description: "Мықты өрт шлангы 20м", category: "fire-safety" },
+                { id: 4, name: "Қосылу басы", description: "Өрт жабдықтары үшін сапалы қосылу басы", category: "fire-safety" },
+                { id: 5, name: "Өрт стволы", description: "Өрт сөндіру үшін тиімді өрт стволы", category: "fire-safety" },
+                { id: 6, name: "Өрт сорғысы", description: "Қуатты өрт сорғысы", category: "fire-safety" },
+                { id: 7, name: "Өрт щиты (жиынтық)", description: "Толық өрт щиты", category: "fire-safety" },
+                { id: 8, name: "Өрт сөрелері", description: "Жабдықтарды сақтау үшін өрт сөрелері", category: "fire-safety" },
+                { id: 9, name: "Өрт сөндірушінің соғыс киімі", description: "Өрт сөндірушінің қорғаныс киімі", category: "ppe" },
+                { id: 10, name: "Өрт дабылдағышы", description: "Өрт дабылдағышы", category: "fire-safety" },
+                { id: 11, name: "Өрт детекторы", description: "Өрт дабыл жүйесінің детекторы", category: "fire-safety" },
+                { id: 12, name: "Өрт сөндіргіш белгілері", description: "Өрт сөндіргіштерді белгілеу үшін белгілер", category: "fire-safety" },
+                { id: 13, name: "Көбік өрт сөндіргіші", description: "Өрт сөндіру үшін көбік өрт сөндіргіші", category: "fire-safety" },
+                { id: 14, name: "Ұнтақ өрт сөндіргіші", description: "Ұнтақ өрт сөндіргіші", category: "fire-safety" },
+                { id: 15, name: "Көмірқышқыл газы өрт сөндіргіші", description: "Көмірқышқыл газы өрт сөндіргіші", category: "fire-safety" },
+                { id: 16, name: "Өрт масқалары", description: "Өрттен қорғайтын маскалар", category: "ppe" },
+                { id: 17, name: "Жанғыш сұйықтықтарды сақтау контейнері", description: "Жанғыш сұйықтықтарды қауіпсіз сақтау үшін контейнер", category: "other-equipment" },
+                { id: 18, name: "Авариялық жол белгісі", description: "Авариялық жол белгісі. Сатып алуға немесе жалға алуға болады.", category: "emergency-equipment" },
+                { id: 19, name: "Сигнал шамшырағы", description: "Авариялық жағдайлар үшін сигнал шамшырағы. Сатып алуға және жалға алуға болады.", category: "emergency-equipment" },
+                { id: 20, name: "Көзді жуу станциясы", description: "Көзді жедел жуу үшін станция. Сатып алуға және жалға алуға болады.", category: "emergency-equipment" },
+                { id: 21, name: "Дауыс күшейткіш", description: "Авариялық дауыс күшейткіш. Сатуға және жалға беруге ұсынылады.", category: "emergency-equipment" },
+                { id: 22, name: "Күтқару сатысы", description: "Эвакуациялау үшін күтқару сатылары. Сатып алуға немесе жалға алуға болады.", category: "emergency-equipment" },
+                { id: 23, name: "Күкіртсутек детекторы", description: "Күкіртсутекті анықтау үшін детектор. Сатып алуға және жалға алуға болады.", category: "other-equipment" },
+                { id: 24, name: "4-компонентті газ талдағышы", description: "Көпфункциялы газ талдағышы. Сатуға және жалға беруге ұсынылады.", category: "other-equipment" },
+                { id: 25, name: "ЖҚҚ көзді тазалау станциясы", description: "Жеке қорғаныс құралдарын тазалау станциясы. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 26, name: "Авариялық душ", description: "Жедел дезактивациялау үшін авариялық душ. Сатып алуға және жалға алуға болады.", category: "emergency-equipment" },
+                { id: 27, name: "ВДА 30 мин", description: "Тәуелсіз тыныс алу аппараты (30 минут). Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 28, name: "ВДА 15 мин", description: "Тәуелсіз тыныс алу аппараты (15 минут). Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 29, name: "ЖҚҚ минифильтрлері", description: "Жеке қорғаныс құралдары үшін ауыстырылатын минифильтрлер. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 30, name: "Дефибриллятор (AED)", description: "Автоматты сыртқы дефибриллятор. Сатуға және жалға беруге ұсынылады.", category: "emergency-equipment" },
+                { id: 31, name: "Алғашқы көмек жинағы", description: "Толық алғашқы көмек жинағы. Сатып алуға немесе жалға алуға болады.", category: "emergency-equipment" },
+                { id: 32, name: "Күтқару ілгегі", description: "Эвакуациялау үшін күтқару ілгегі. Сатып алуға және жалға алуға болады.", category: "emergency-equipment" },
+                { id: 33, name: "Авариялық түсіру құрылғысы", description: "Биіктіктен қауіпсіз эвакуациялау үшін құрылғы. Сатуға және жалға беруге ұсынылады.", category: "emergency-equipment" },
+                { id: 34, name: "Резина қолғаптар", description: "Химиялық заттармен жұмыс істеу үшін қорғаныс резина қолғаптары. Сатып алуға және жалға алуға болады.", category: "chemical-protection" },
+                { id: 35, name: "Резина етіктер", description: "Химиялық заттардан қорғау үшін резина етіктер. Сатуға және жалға беруге ұсынылады.", category: "chemical-protection" },
+                { id: 36, name: "Шашырағаннан қорғайтын көзілдіріктер", description: "Химиялық заттардың шашырауынан қорғайтын көзілдіріктер. Сатып алуға немесе жалға алуға болады.", category: "chemical-protection" },
+                { id: 37, name: "Фартук", description: "Химикаттармен жұмыс істеу үшін қорғаныс фартугы. Сатып алуға және жалға алуға болады.", category: "chemical-protection" },
+                { id: 38, name: "Бет қалқаны", description: "Химиялық шашыраулардан бетті қорғайтын қалқан. Сатуға және жалға беруге ұсынылады.", category: "chemical-protection" },
+                { id: 39, name: "ВДА үшін толық бет маскасы", description: "Тыныс алуды оқшаулау жүйелері үшін толық бет маскасы. Сатып алуға немесе жалға алуға болады.", category: "chemical-protection" },
+                { id: 40, name: "Химиялық қорғаныс комбинезоны", description: "Химиялық әсерлерден толық қорғаныс комбинезоны. Сатып алуға және жалға алуға болады.", category: "chemical-protection" },
+                { id: 41, name: "Респиратор FFP1", description: "FFP1 сыныбы респираторы. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 42, name: "Респиратор FFP2", description: "FFP2 сыныбы респираторы. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 43, name: "Респиратор FFP3", description: "FFP3 сыныбы респираторы. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 44, name: "Жартылай маска респираторы", description: "Тыныс алу мүшелерін қорғау үшін жартылай маска респираторы. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 45, name: "Сүзгілер (шаң, газдар, булар)", description: "Шаңнан, газдардан және булардан респираторларға ауыстырылатын сүзгілер. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 46, name: "Теріні қорғайтын крем", description: "Химиялық әсерлерден теріні қорғайтын арнайы крем. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 47, name: "Фалдармен қауіпсіздік белдігі", description: "Құлаудан қорғау үшін фалдармен қауіпсіздік белдігі. Сатып алуға және жалға алуға болады.", category: "fall-protection" },
+                { id: 48, name: "Қауіпсіздік белдігі (Нано)", description: "Нано сериясының заманауи қауіпсіздік белдігі. Сатуға және жалға беруге ұсынылады.", category: "fall-protection" },
+                { id: 49, name: "Орындықпен қауіпсіздік белдігі", description: "Биіктікте жұмыс істеу үшін ыңғайлы орындықпен қауіпсіздік белдігі. Сатып алуға немесе жалға алуға болады.", category: "fall-protection" },
+                { id: 50, name: "Аспалы тұруға қарсы строптар", description: "Құлау кезінде аспалы тұрудың алдын алу үшін арнайы строптар. Сатып алуға және жалға алуға болады.", category: "fall-protection" },
+                { id: 51, name: "Тік қорғаныс желісі", description: "Тік құлаудан қорғау жүйесі. Сатуға және жалға беруге ұсынылады.", category: "fall-protection" },
+                { id: 52, name: "Көлденең қорғаныс желісі", description: "Көлденең құлаудан қорғау жүйесі. Сатып алуға немесе жалға алуға болады.", category: "fall-protection" },
+                { id: 53, name: "Инерциялық орам", description: "Құлаудан қорғау жүйелері үшін инерциялық орам. Сатып алуға және жалға алуға болады.", category: "fall-protection" },
+                { id: 54, name: "Авариялық түсіру құрылғысы", description: "Биіктіктен қауіпсіз авариялық түсіру үшін құрылғы. Сатуға және жалға беруге ұсынылады.", category: "fall-protection" },
+                { id: 55, name: "Алюминий баспалдақ", description: "Биіктікте жұмыс істеу үшін мықты алюминий баспалдақ. Сатып алуға немесе жалға алуға болады.", category: "fall-protection" },
+                { id: 56, name: "Құрал сөмкесі", description: "Биіктікте құрал тасымалдау үшін арнайы сөмке. Сатып алуға және жалға алуға болады.", category: "fall-protection" },
+                { id: 57, name: "Персоналды көтеруге арналған себет", description: "Персоналды биіктікке көтеруге арналған қауіпсіз себет. Сатуға және жалға беруге ұсынылады.", category: "fall-protection" },
+                { id: 58, name: "Қауіпсіздік белдіктері", description: "Құлаудан қорғау үшін сенімді қауіпсіздік белдіктері. Сатып алуға немесе жалға алуға болады.", category: "fall-protection" },
+                { id: 59, name: "Коршау ленталары", description: "Қауіпті аймақтарды қоршау үшін сигналдық ленталар. Сатып алуға және жалға алуға болады.", category: "barriers" },
+                { id: 60, name: "Коршау конустары", description: "Уақытша аймақты қоршау үшін сигналдық конустар. Сатуға және жалға беруге ұсынылады.", category: "barriers" },
+                { id: 61, name: "Коршау тізбектері", description: "Коршауларды ұйымдастыру үшін мықты тізбектер. Сатып алуға немесе жалға алуға болады.", category: "barriers" },
+                { id: 62, name: "Қатты коршаулар", description: "Қауіпсіздік үшін қатты металл коршаулар. Сатып алуға және жалға алуға болады.", category: "barriers" },
+                { id: 63, name: "Сумен толтырылатын коршау", description: "Жол коршаулары үшін сумен толтырылатын коршаулар. Сатуға және жалға беруге ұсынылады.", category: "barriers" },
+                { id: 64, name: "Пластик бағандар", description: "Белгілеу үшін пластик сигналдық бағандар. Сатып алуға немесе жалға алуға болады.", category: "barriers" },
+                { id: 65, name: "Жарық шағылыстыратын белгілер", description: "Коршау және ескерту үшін жарық шағылыстыратын белгілер. Сатып алуға және жалға алуға болады.", category: "barriers" },
+                { id: 66, name: "Жазғы комбинезон", description: "Жазғы қорғаныс комбинезоны. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 67, name: "Қысқы комбинезон", description: "Жылытылған қысқы қорғаныс комбинезоны. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 68, name: "Каска-панама", description: "Күннен қорғайтын каска-панама. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 69, name: "Кәдімгі каска", description: "Стандартты қорғаныс каскасы. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 70, name: "Қысқы куртка", description: "Жылы қысқы қорғаныс курткасы. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 71, name: "Қысқы комбинезон", description: "Жылы қысқы қорғаныс комбинезоны. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 72, name: "Қысқы етіктер", description: "Жылытылған қысқы қорғаныс етіктері. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 73, name: "Жазғы етіктер", description: "Жазғы қорғаныс етіктері. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 74, name: "Жазғы аяқкиімдер", description: "Жазғы қорғаныс аяқкиімдері. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 75, name: "Қысқы аяқкиімдер", description: "Жылытылған қысқы қорғаныс аяқкиімдері. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 76, name: "Қараңғы көзілдіріктер", description: "Қараңғыталдырылған линзалары бар қорғаныс көзілдіріктері. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 77, name: "Ашық көзілдіріктер", description: "Ашық линзалары бар қорғаныс көзілдіріктері. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 78, name: "Ішкі киім", description: "Қорғаныс ішкі киімі. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 79, name: "Масалар торы", description: "Қорғаныс масалар торы. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 80, name: "Шашырағаннан қорғайтын көзілдіріктер", description: "Шашыраудан қорғайтын көзілдіріктер. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 81, name: "Қорғаныс маскасы", description: "Бетті қорғайтын маска. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 82, name: "Қысқы шұлықтар", description: "Жылы қысқы қорғаныс шұлықтары. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 83, name: "Балаклава", description: "Қорғаныс балаклавасы. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 84, name: "Респиратор", description: "Қорғаныс респираторы. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 85, name: "Құлаққаптар", description: "Шуден қорғайтын құлаққаптар. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 86, name: "Құлақ тұтқалары", description: "Қорғаныс құлақ тұтқалары. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 87, name: "Жазғы қолғаптар", description: "Жазғы қорғаныс қолғаптары. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 88, name: "Қысқы қолғаптар", description: "Жылытылған қысқы қорғаныс қолғаптары. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 89, name: "Соққыға төзімді қолғаптар", description: "Соққыға төзімді қорғаныс қолғаптары. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 90, name: "Шынжыр қолғап", description: "Кесулерден қорғайтын шынжыр қолғап. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 91, name: "Дірілге қарсы қолғаптар", description: "Дірілге қарсы қорғаныс қолғаптары. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 92, name: "Каска асты", description: "Қорғаныс каска асты. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 93, name: "Құм атылған шлем", description: "Құм ату жұмыстары үшін арнайы шлем. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 94, name: "Бет қалқаны", description: "Қорғаныс бет қалқаны. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 95, name: "Жаңбырлық", description: "Ылғалдан қорғайтын жаңбырлық. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 96, name: "Суықтан қорғайтын маска", description: "Суықтан қорғайтын маска. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 97, name: "Күннен қорғайтын маска", description: "Күннен қорғайтын маска. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 98, name: "Жарық шағылыстыратын жилет", description: "Жарық шағылыстыратын қорғаныс жилеті. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 99, name: "Каскаға арналған құлаққап", description: "Каскаға бекіту үшін құлаққап. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 100, name: "Қорғаныс кремы", description: "Теріні қорғайтын крем. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 101, name: "Крем-сабын", description: "Қорғаныс крем-сабыны. Сатып алуға немесе жалға алуға болады.", category: "ppe" },
+                { id: 102, name: "Майды жууға арналған сабын", description: "Майларды жууға арналған арнайы сабын. Сатып алуға және жалға алуға болады.", category: "ppe" },
+                { id: 103, name: "Репелленттер", description: "Жәндіктерден қорғайтын репелленттер. Сатуға және жалға беруге ұсынылады.", category: "ppe" },
+                { id: 104, name: "Диэлектрлік қолғаптар", description: "Кернеу астындағы электр жабдықтарымен жұмыс істеу үшін электр қорғаныс қолғаптары", category: "electrical-safety" },
+                { id: 105, name: "Диэлектрлік етіктер", description: "Электроқондырғыларда жұмыс істеу үшін электр қорғаныс аяқкиімдері", category: "electrical-safety" },
+                { id: 106, name: "Диэлектрлік кілемше", description: "Электр қауіпсіздігі үшін оқшаулағыш еден жабыны", category: "electrical-safety" },
+                { id: 107, name: "Күтқару ілгегі", description: "Электроқондырғыдан эвакуациялау үшін күтқару құрылғысы", category: "electrical-safety" },
+                { id: 108, name: "Оқшауланған құралдар", description: "Электр монтажы жұмыстары үшін оқшауланған саптары бар қол құралдары", category: "electrical-safety" },
+                { id: 109, name: "Кернеу көрсеткіштері", description: "Электроқондырғылардағы кернеудің болуын анықтау үшін құрылғылар", category: "electrical-safety" },
+                { id: 110, name: "Мегаомметр", description: "Электр жабдықтарының оқшаулау кедергісін өлшеу үшін құрылғы", category: "electrical-safety" },
+                { id: 111, name: "Электр/магниттік өрістер өлшегіші", description: "Электромагниттік сәулелену деңгейін өлшеу үшін құрылғы", category: "electrical-safety" },
+                { id: 112, name: "Дәнекерлеушінің костюмі", description: "Дәнекерлеу жұмыстары үшін қорғаныс костюмі", category: "welding-equipment" },
+                { id: 113, name: "Дәнекерлеушінің фартуктары", description: "Дәнекерлеу жұмыстары үшін қорғаныс фартуктары", category: "welding-equipment" },
+                { id: 114, name: "Дәнекерлеушінің жеңдері", description: "Дәнекерлеу жұмыстары үшін қорғаныс жеңдері", category: "welding-equipment" },
+                { id: 115, name: "Дәнекерлеушінің аяқкиімдері", description: "Дәнекерлеу жұмыстары кезінде қорғау үшін арнайы аяқкиімдер", category: "welding-equipment" },
+                { id: 116, name: "Дәнекерлеушінің каска астары/пелериналары", description: "Дәнекерлеушілер үшін қорғаныс каска астары мен пелериналары", category: "welding-equipment" },
+                { id: 117, name: "Тыныс алу мүшелерін қорғау құралдары", description: "Респираторлар және тыныс алу мүшелерін қорғау құралдары", category: "welding-equipment" },
+                { id: 118, name: "Дәнекерлеу қалқандары мен маскалары", description: "Дәнекерлеу жұмыстары үшін қорғаныс қалқандары мен маскалары", category: "welding-equipment" },
+                { id: 119, name: "Қорғаныс көзілдіріктері", description: "Дәнекерлеушілер үшін арнайы қорғаныс көзілдіріктері", category: "welding-equipment" },
+                { id: 120, name: "Естуді қорғау құралдары", description: "Шуға қарсы құлаққаптар және құлақ тұтқалары", category: "welding-equipment" },
+                { id: 121, name: "Тізе/шынтақ қорғағыштары", description: "Қорғаныс тізе және шынтақ қорғағыштары", category: "welding-equipment" },
+                { id: 122, name: "Дәнекерлеу білезіктері/қолғаптары", description: "Дәнекерлеушілер үшін қорғаныс білезіктері мен қолғаптары", category: "welding-equipment" },
+                { id: 123, name: "Диэлектрлік кілемшелер", description: "Қосымша қорғаныс үшін диэлектрлік кілемшелер", category: "electrical-safety" },
+                { id: 124, name: "Нейлон строптар", description: "Такелаж жұмыстары үшін мықты нейлон строптар", category: "rigging" },
+                { id: 125, name: "Арқан строптар", description: "Жүктерді көтеру үшін сенімді арқан строптар", category: "rigging" },
+                { id: 126, name: "Арқан өрмектері", description: "Жүктерді тең бөлу үшін арқан өрмектері", category: "rigging" },
+                { id: 127, name: "Тарантты ременьдер", description: "Жүктерді бекіту үшін мықты тарантты ременьдер", category: "rigging" },
+                { id: 128, name: "Байлау тізбегі", description: "Жүктерді байлау және бекіту үшін тізбек", category: "rigging" },
+                { id: 129, name: "Push Pull Stick", description: "Жүктерді қауіпсіз жылжыту үшін құрал", category: "rigging" },
+                { id: 130, name: "Рычагты механизм", description: "Ауыр жүктерді көтеру үшін рычагты механизм", category: "rigging" },
+                { id: 131, name: "Арқан тартқыш ремень", description: "Тасымалдау үшін мықты арқан тартқыш ремень", category: "rigging" },
+                { id: 132, name: "Арқан тартқыш трос", description: "Ауыр жүктер үшін сенімді арқан тартқыш трос", category: "rigging" },
+                { id: 133, name: "Сырғалар", description: "Жүктерді бекіту үшін такелаж сырғалары", category: "rigging" },
+                { id: 134, name: "Тізбек тальдар", description: "Жүктерді көтеру және жылжыту үшін тізбек тальдар", category: "rigging" },
+                { id: 135, name: "Гидравликалық арба", description: "Жүктерді жылжыту үшін гидравликалық арба", category: "rigging" },
+                { id: 136, name: "Бөшке арбасы", description: "Бөшкелерді тасымалдау үшін арнайы арба", category: "rigging" },
+                { id: 137, name: "Баспалдақ арбасы", description: "Баспалдақтар бойынша қауіпсіз жылжу үшін арба", category: "rigging" },
+                { id: 138, name: "Fingersaver", description: "Саусақтарды қорғау үшін қорғаныс құрылғысы", category: "rigging" },
+                { id: 139, name: "Кептіру сөресі", description: "Жұмыс киімдері мен аяқкиімдерін кептіру үшін сөре", category: "other-equipment" },
+                { id: 140, name: "Етік кептіргіші", description: "Жұмыс аяқкиімдерін кептіру үшін құрылғы", category: "other-equipment" },
+                { id: 141, name: "Тазалау щеткасы", description: "Жұмыс киімдері мен аяқкиімдерін тазалау үшін щетка", category: "other-equipment" },
+                { id: 142, name: "Тонометр", description: "Қан қысымын өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 143, name: "Қолғап ілгектері", description: "Қолғаптарды ыңғайлы сақтау үшін ілгектер", category: "ppe" },
+                { id: 144, name: "Жұмыс шамшырағы", description: "Өндірісте жарықтандыру үшін жұмыс шамшырағы", category: "other-equipment" },
+                { id: 145, name: "Жел көрсеткіші", description: "Жел бағыты мен күшін көрсеткіш", category: "other-equipment" },
+                { id: 146, name: "Эргономикалық көмекші", description: "Жұмысшының жүктемесін азайту үшін құрылғы", category: "other-equipment" },
+                { id: 147, name: "Қап арбасы", description: "Қаптарды тасымалдау үшін арба", category: "rigging" },
+                { id: 148, name: "Дәнекерлеушінің арбасы", description: "Дәнекерлеушіге арналған мамандандырылған арба", category: "welding-equipment" },
+                { id: 149, name: "Таяушылыққа қарсы кілемше", description: "Беттің таяушылығын болдырмау үшін кілемшелер", category: "other-equipment" },
+                { id: 150, name: "Жылытқыштар", description: "Өндіріс үй-жайлары үшін жылытқыштар", category: "other-equipment" },
+                { id: 151, name: "Тиімсіз термометр", description: "Тиімсіз температура өлшегіші", category: "other-equipment" },
+                { id: 152, name: "Қашықтық өлшегіші", description: "Қашықтықты дәл өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 153, name: "Анемометр", description: "Жел жылдамдығы мен ауа ағынын өлшегіш", category: "other-equipment" },
+                { id: 154, name: "Жол радары", description: "Көлік құралдарының жылдамдығын бақылау үшін радар", category: "other-equipment" },
+                { id: 155, name: "Люксметр", description: "Жарықтандыруды өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 156, name: "Қалыңдық өлшегіші", description: "Қаптамалар мен материалдардың қалыңдығын өлшегіш", category: "other-equipment" },
+                { id: 157, name: "Шан талдағышы", description: "Ауадағы шаң концентрациясын өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 158, name: "Діріл өлшегіші", description: "Жабдықтың діріл деңгейін өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 159, name: "Микроклимат өлшегіші", description: "Микроклимат параметрлерін өлшеу үшін көпфункциялы өлшегіш", category: "other-equipment" },
+                { id: 160, name: "Радиация дозиметрі", description: "Радиация деңгейін өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 161, name: "Зиянды заттар талдағышы", description: "Ауадағы зиянды заттардың құрамын талдау үшін құрылғы", category: "other-equipment" },
+                { id: 162, name: "Жылу өлшегіші", description: "Жылу сәулеленуі мен беттердің температурасын өлшегіш", category: "other-equipment" },
+                { id: 163, name: "Шу өлшегіші", description: "Шу деңгейін өлшеу үшін құрылғы", category: "other-equipment" },
+                { id: 164, name: "Алкотестер", description: "Шығарылған ауадағы алкогольдің құрамын өлшеу үшін құрылғы", category: "other-equipment" }
+            ]
+        };
+
+        // Текущий язык
+        let currentLang = 'ru';
+
+        // Функция для отображения списка оборудования по категориям
+        function displayEquipmentCategories(lang = 'ru') {
+            const products = allProducts[lang];
+            
+            // Группировка товаров по категориям
+            const equipmentByCategory = {
+                "fire-safety": products.filter(p => p.category === "fire-safety"),
+                "emergency-equipment": products.filter(p => p.category === "emergency-equipment"),
+                "chemical-protection": products.filter(p => p.category === "chemical-protection"),
+                "fall-protection": products.filter(p => p.category === "fall-protection"),
+                "barriers": products.filter(p => p.category === "barriers"),
+                "ppe": products.filter(p => p.category === "ppe"),
+                "electrical-safety": products.filter(p => p.category === "electrical-safety"),
+                "welding-equipment": products.filter(p => p.category === "welding-equipment"),
+                "rigging": products.filter(p => p.category === "rigging"),
+                "other-equipment": products.filter(p => p.category === "other-equipment")
+            };
+            
+            for (const [categoryId, equipmentList] of Object.entries(equipmentByCategory)) {
+                const container = document.getElementById(categoryId);
+                if (container) {
+                    container.innerHTML = '';
+                    
+                    equipmentList.forEach(item => {
+                        const equipmentItem = document.createElement('div');
+                        equipmentItem.className = 'equipment-item';
+                        equipmentItem.innerHTML = `
+                            <div class="equipment-item-title">${item.name}</div>
+                            <div class="equipment-item-desc">${item.description}</div>
+                        `;
+                        
+                        // Добавляем обработчик клика для открытия модального окна
+                        equipmentItem.addEventListener('click', () => {
+                            showContactModal(item.name, item.description, lang);
+                        });
+                        
+                        container.appendChild(equipmentItem);
+                    });
+                }
+            }
+        }
+
+        // Функция для показа модального окна контактов с информацией о товаре
+        function showContactModal(productName, productDescription, lang = 'ru') {
+            const modal = document.getElementById('contactModal');
+            const productInfo = document.getElementById('modalProductInfo');
+            
+            let title = '';
+            let whatsappMessage = '';
+            let emailSubject = '';
+            let emailBody = '';
+            
+            if (lang === 'ru') {
+                title = `Интересует: ${productName}`;
+                whatsappMessage = `Здравствуйте! Меня интересует товар: ${productName} (${productDescription}). Можете предоставить информацию о стоимости и наличии?`;
+                emailSubject = `Запрос по товару: ${productName}`;
+                emailBody = `Здравствуйте!\n\nМеня интересует товар: ${productName}\nОписание: ${productDescription}\n\nПрошу предоставить информацию о стоимости, условиях аренды/покупки и наличии.\n\nС уважением,`;
+            } else if (lang === 'en') {
+                title = `Interested in: ${productName}`;
+                whatsappMessage = `Hello! I'm interested in the product: ${productName} (${productDescription}). Can you provide information about cost and availability?`;
+                emailSubject = `Inquiry about product: ${productName}`;
+                emailBody = `Hello!\n\nI'm interested in the product: ${productName}\nDescription: ${productDescription}\n\nPlease provide information about cost, rental/purchase terms and availability.\n\nBest regards,`;
+            } else if (lang === 'kz') {
+                title = `Қызықтырады: ${productName}`;
+                whatsappMessage = `Сәлеметсіз бе! Маған мына өнім қызықтырады: ${productName} (${productDescription}). Құны мен қол жетімділігі туралы ақпарат бере аласыз ба?`;
+                emailSubject = `Өнім туралы сұраныс: ${productName}`;
+                emailBody = `Сәлеметсіз бе!\n\nМаған мына өнім қызықтырады: ${productName}\nСипаттамасы: ${productDescription}\n\nҚұны, жалға беру/сатып алу шарттары мен қол жетімділігі туралы ақпарат беріңіз.\n\nҚұрметпен,`;
+            }
+            
+            // Обновляем ссылки с автоматическим сообщением
+            const whatsappLink = document.getElementById('whatsappLink');
+            whatsappLink.href = `https://wa.me/77087296307?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            const emailLink = document.getElementById('emailLink');
+            emailLink.href = `mailto:qhsesolutions5@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            productInfo.innerHTML = `
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="margin: 0 0 10px 0; color: #2c3e50;">${title}</h3>
+                    <p style="margin: 0; color: #6c757d;">${productDescription}</p>
+                    <div style="margin-top: 10px; padding: 10px; background: white; border-radius: 5px; border-left: 3px solid #2ecc71;">
+                        <small style="color: #7f8c8d;">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="lang lang-ru ${lang === 'ru' ? 'active' : ''}">Продажа, возможна аренда. Уточняйте актуальную стоимость.</span>
+                            <span class="lang lang-en ${lang === 'en' ? 'active' : ''}">Sale, rental possible. Check current cost.</span>
+                            <span class="lang lang-kz ${lang === 'kz' ? 'active' : ''}">Сату, жалға беру мүмкін. Ағымдағы құнды тексеріңіз.</span>
+                        </small>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Функция для переключения языка
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Переключаем активные классы у кнопок
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Переключаем активные классы у текстовых элементов
+            document.querySelectorAll('.lang').forEach(el => {
+                el.classList.remove('active');
+                if (el.classList.contains(`lang-${lang}`)) {
+                    el.classList.add('active');
+                }
+            });
+            
+            // Обновляем оборудование на выбранном языке
+            displayEquipmentCategories(lang);
+        }
+
+        // Закрытие модального окна по клику вне его
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Отображаем категории оборудования на русском языке
+            displayEquipmentCategories('ru');
+            
+            // Переключение языка
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.dataset.lang;
+                    switchLanguage(lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

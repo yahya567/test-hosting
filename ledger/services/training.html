@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Курсы по ОТ — QHSE Training</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    .accordion-header { cursor: pointer; }
+    .accordion-content { display: none; }
+    @media print {
+      body * { visibility: hidden; }
+      #printArea, #printArea * { visibility: visible; }
+      #printArea { position: static; top: 0; left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<header class="bg-blue-800 text-white p-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Заголовок по центру -->
+    <div class="text-center mb-2">
+      <h1 id="siteTitle" class="text-2xl font-bold">QHSE-Solutions Training Center</h1>
+      <p id="siteSubtitle" class="text-sm opacity-90">ILO / ISO / IADC / IWCF / OPITO / IOGP / ISSA / NEBOSH / IOSH</p>
+    </div>
+    
+    <!-- Выбор языка справа -->
+    <div class="flex justify-end">
+      <select id="langSelect" class="text-black rounded p-1 text-sm">
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+        <option value="kz">KZ</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto p-6 space-y-6">
+  <!-- НАША ЭКСПЕРТИЗА -->
+  <section id="expertiseSection" class="bg-white p-6 rounded shadow" data-aos="fade-up">
+    <h2 id="expertiseTitle" class="text-xl font-semibold mb-4">Наша экспертиза</h2>
+    <div id="expertiseContent" class="text-gray-700 space-y-4">
+      <p id="expertiseText1">Мы предлагаем профессиональное сопровождение на основе более чем 30-летнего опыта работы в международных компаниях (ТШО, КПО, НКОК).</p>
+      <p id="expertiseText2">Мы строим систему, которая не просто формально соответствует требованиям, но реально работает на вашу безопасность и эффективность.</p>
+      <p id="expertiseText3">Более 60 видов курсов онлайн и офлайн, соответствующих международным требованиям МОТ, ISO, IADC, IWCF, OPITO, IOGP, а также учебным программам NEBOSH, IOSH и внутренним стандартам таких компаний, как ТШО, КПО и НКОК.</p>
+      <p id="expertiseText4">Строгая аттестация: обязательное 100%-ное прохождение материалов и финальное тестирование без ошибок.</p>
+      <p id="expertiseText5">Выдача сертификатов установленного образца.</p>
+    </div>
+  </section>
+
+  <section id="modulesContainer" data-aos="fade-up"></section>
+</main>
+
+<!-- Кнопка возврата на главную -->
+<div class="fixed bottom-4 left-4 z-50">
+  <a href="index.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full shadow-lg transition duration-300 flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    <span id="back-button-text">На главную</span>
+  </a>
+</div>
+
+<footer class="bg-blue-900 text-white p-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Контакты -->
+      <div>
+        <h3 id="contactsTitle" class="text-lg font-semibold mb-4 border-b pb-2">Контакты</h3>
+        <div class="space-y-4 text-sm">
+          <div>
+            <h4 id="addressTitle" class="font-medium text-blue-200">Адрес</h4>
+            <p id="addressText" class="mt-1">г. Уральск, Западно-Казахстанская область</p>
+          </div>
+          <div>
+            <h4 id="phonesTitle" class="font-medium text-blue-200">Телефоны</h4>
+            <div class="mt-1 space-y-1">
+              <p>WhatsApp/Мобильный: +7 771 025 00 08</p>
+              <p>WhatsApp/Мобильный: +7 708 729 63 07</p>
+              <p id="cityPhone">Городской: +7 (7112) 21-90-18</p>
+            </div>
+          </div>
+          <div>
+            <h4 id="emailTitle" class="font-medium text-blue-200">Email</h4>
+            <p class="mt-1">qhsesolutions5@gmail.com</p>
+          </div>
+          <div>
+            <h4 id="hoursTitle" class="font-medium text-blue-200">Время работы</h4>
+            <p id="hoursText" class="mt-1">Без выходных 24/7</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Социальные сети -->
+      <div>
+        <h3 id="socialTitle" class="text-lg font-semibold mb-4 border-b pb-2">Социальные сети</h3>
+        <div class="flex space-x-4">
+          <a href="https://t.me/qhsesolutions" target="_blank" 
+             class="text-white hover:text-blue-300 transition transform hover:scale-110"
+             aria-label="Telegram">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/share/1K7Sww5ZFg/" target="_blank"
+             class="text-white hover:text-blue-300 transition transform hover:scale-110"
+             aria-label="Facebook">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank"
+             class="text-white hover:text-blue-300 transition transform hover:scale-110"
+             aria-label="Instagram">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@qhsesolutions" target="_blank"
+             class="text-white hover:text-blue-300 transition transform hover:scale-110"
+             aria-label="YouTube">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+        <p id="socialDescription" class="text-sm mt-4 text-blue-200">Следите за нашими обновлениями в социальных сетях</p>
+      </div>
+
+      <!-- О нас -->
+      <div>
+        <h3 id="aboutTitle" class="text-lg font-semibold mb-4 border-b pb-2">О нас</h3>
+        <div class="text-sm space-y-3">
+          <p id="aboutText1">Профессиональное обучение в области охраны труда, промышленной безопасности и экологии.</p>
+          <p id="aboutText2">Более 30 лет опыта работы в международных компаниях нефтегазовой отрасли.</p>
+          <p id="aboutText3">Международные стандарты и индивидуальный подход к каждому клиенту.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-blue-700 text-center text-sm text-blue-300">
+      <p id="copyright">&copy; <span id="year"></span> QHSE Training — Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Hidden print area for nicer printed output -->
+<div id="printArea" style="display:none; padding:20px;"></div>
+
+<script>
+  // init
+  document.getElementById('year').textContent = new Date().getFullYear();
+  AOS.init({ once: true });
+
+  // i18n UI texts
+  const i18n = {
+    ru: {
+      back_button: 'На главную',
+      siteTitle: 'QHSE-Solutions Training Center',
+      siteSubtitle: 'ILO / ISO / IADC / IWCF / OPITO / IOGP / ISSA / NEBOSH / IOSH',
+      expertiseTitle: 'Наша экспертиза',
+      expertiseText1: 'Мы предлагаем профессиональное сопровождение на основе более чем 30-летнего опыта работы в международных компаниях (ТШО, КПО, НКОК).',
+      expertiseText2: 'Мы строим систему, которая не просто формально соответствует требованиям, но реально работает на вашу безопасность и эффективность.',
+      expertiseText3: 'Более 60 видов курсов онлайн и офлайн, соответствующих международным требованиям МОТ, ISO, IADC, IWCF, OPITO, IOGP, а также учебным программам NEBOSH, IOSH и внутренним стандартам таких компаний, как ТШО, КПО и НКОК.',
+      expertiseText4: 'Строгая аттестация: обязательное 100%-ное прохождение материалов и финальное тестирование без ошибок.',
+      expertiseText5: 'Выдача сертификатов установленного образца.',
+      contactsTitle: 'Контакты',
+      addressTitle: 'Адрес',
+      addressText: 'г. Уральск, Западно-Казахстанская область',
+      phonesTitle: 'Телефоны',
+      cityPhone: 'Городской: +7 (7112) 21-90-18',
+      emailTitle: 'Email',
+      hoursTitle: 'Время работы',
+      hoursText: 'Без выходных 24/7',
+      socialTitle: 'Социальные сети',
+      socialDescription: 'Следите за нашими обновлениями в социальных сетях',
+      aboutTitle: 'О нас',
+      aboutText1: 'Профессиональное обучение в области охраны труда, промышленной безопасности и экологии.',
+      aboutText2: 'Более 30 лет опыта работы в международных компаниях нефтегазовой отрасли.',
+      aboutText3: 'Международные стандарты и индивидуальный подход к каждому клиенту.',
+      copyright: 'QHSE Training — Все права защищены.'
+    },
+    en: {
+      back_button: 'To Main Page',
+      siteTitle: 'QHSE-Solutions Training Center',
+      siteSubtitle: 'ILO / ISO / IADC / IWCF / OPITO / IOGP / ISSA / NEBOSH / IOSH',
+      expertiseTitle: 'Our Expertise',
+      expertiseText1: 'We offer professional support based on over 30 years of experience working in international companies (TCO, KPO, NCOC).',
+      expertiseText2: 'We build a system that not only formally meets requirements, but actually works for your safety and efficiency.',
+      expertiseText3: 'Over 60 types of online and offline courses that meet international requirements of ILO, ISO, IADC, IWCF, OPITO, IOGP, as well as training programs of NEBOSH, IOSH and internal standards of companies such as TCO, KPO and NCOC.',
+      expertiseText4: 'Strict certification: mandatory 100% completion of materials and final testing without errors.',
+      expertiseText5: 'Issuance of established certificates.',
+      contactsTitle: 'Contacts',
+      addressTitle: 'Address',
+      addressText: 'Uralsk, West Kazakhstan Region',
+      phonesTitle: 'Phones',
+      cityPhone: 'Landline: +7 (7112) 21-90-18',
+      emailTitle: 'Email',
+      hoursTitle: 'Working Hours',
+      hoursText: 'Open 24/7',
+      socialTitle: 'Social Networks',
+      socialDescription: 'Follow our updates on social media',
+      aboutTitle: 'About Us',
+      aboutText1: 'Professional training in occupational health and safety, industrial safety and ecology.',
+      aboutText2: 'Over 30 years of experience working in international oil and gas companies.',
+      aboutText3: 'International standards and individual approach to each client.',
+      copyright: 'QHSE Training — All rights reserved.'
+    },
+    kz: {
+      back_button: 'Басты бетке',
+      siteTitle: 'QHSE-Solutions Training Center',
+      siteSubtitle: 'ILO / ISO / IADC / IWCF / OPITO / IOGP / ISSA / NEBOSH / IOSH',
+      expertiseTitle: 'Біздің сараптама',
+      expertiseText1: 'Біз халықаралық компанияларда (ТШО, КПО, НКОК) 30 жылдан астам тәжірибеге негізделген кәсіби қолдауды ұсынамыз.',
+      expertiseText2: 'Біз тек ресми түрде талаптарға сәйкес келетін ғана емес, сонымен қатар сіздің қауіпсіздігіңіз және тиімділігіңіз үшін нақты жұмыс істейтін жүйені құрамыз.',
+      expertiseText3: 'МОТ, ISO, IADC, IWCF, OPITO, IOGП халықаралық талаптарына сәйкес келетін, сонымен қатар NEBOSH, IOSH оқу бағдарламаларына және ТШО, КПО, НКОК сияқты компаниялардың ішкі стандарттарына сәйкес келетін 60-тан астам онлайн және офлайн курстар.',
+      expertiseText4: 'Қатаң сертификаттау: материалдарды міндетті түрде 100% өту және қатесіз соңғы сынақ.',
+      expertiseText5: 'Белгіленген үлгідегі сертификаттарды беру.',
+      contactsTitle: 'Байланыс',
+      addressTitle: 'Мекен-жайы',
+      addressText: 'Орал қаласы, Батыс Қазақстан облысы',
+      phonesTitle: 'Телефондар',
+      cityPhone: 'Қалалық: +7 (7112) 21-90-18',
+      emailTitle: 'Электрондық пошта',
+      hoursTitle: 'Жұмыс уақыты',
+      hoursText: 'Тәулік бойы, демалыссыз (24/7)',
+      socialTitle: 'Әлеуметтік желілер',
+      socialDescription: 'Әлеуметтік желілердегі жаңартуларымызды қадағалаңыз',
+      aboutTitle: 'Біз туралы',
+      aboutText1: 'Еңбек қауіпсіздігі, өнеркәсіптік қауіпсіздік және экология саласындағы кәсіби оқыту.',
+      aboutText2: 'Халықаралық мұнай-газ компанияларында 30 жылдан астам тәжірибе.',
+      aboutText3: 'Халықаралық стандарттар және әрбір клиентке жеке көзқарас.',
+      copyright: 'QHSE Training — Барлық құқықтар қорғалған.'
+    }
+  };
+  let lang = 'ru';
+
+  // Full modules + courses with en/ru/kz and price (KZT)
+  const modules = [
+    {
+      id: 'module1',
+      title_en: 'Module 1 — Occupational Health & Safety fundamentals',
+      title_ru: 'MODULE 1 — Основы охраны труда и управления рисками',
+      title_kz: 'МОДУЛЬ 1 — Еңбек қауіпсіздігі және тәуекелдерді басқару',
+      courses: [
+        { id:'m1-1', en:{t:'Occupational Health and Safety Management System', d:'Development, implementation and audit of OHS management system. Workplace certification'}, ru:{t:'Система управления охраной труда (СУОТ)', d:'Разработка, внедрение и аудит СУОТ. Аттестация рабочих мест'}, kz:{t:'Еңбек қауіпсіздігі жүйесі (ЕҚЖ)', d:'ЕҚЖ жүйесін әзірлеу, енгізу және аудиттеу. Жұмыс орындарын аттестациялау'}, price:2000 },
+        { id:'m1-2', en:{t:'Energy Wheel', d:'Systematic hazard identification through analysis of energy sources to identify all potential sources of injury and damage before starting work'}, ru:{t:'Колесо энергий', d:'Систематическая идентификация опасностей через анализ источников энергии, чтобы выявить все потенциальные источники травм и повреждений перед началом работ'}, kz:{t:'Энергия дөңгелегі', d:'Жұмысты бастамас бұрын барлық ықтимал жарақат және зақым көздерін анықтау үшін энергия көздерін талдау арқылы қауіптерді жүйелі түрде анықтау'}, price:1000 },
+        { id:'m1-3', en:{t:'Hierarchy of Hazard Controls', d:'Application of a structured priority system for selecting and implementing the most effective protection measures'}, ru:{t:'Иерархия контроля опасности', d:'Применение структурированной системы приоритетов для выбора и внедрения наиболее эффективных мер защиты'}, kz:{t:'Қауіптерді басқару иерархиясы', d:'Ең тиімді қорғау шараларын таңдау және енгізу үшін басымдықтардың құрылымдық жүйесін қолдану'}, price:1000 },
+        { id:'m1-4', en:{t:'Safety Signs', d:'Requirements for the use and placement of safety signs and signal markings'}, ru:{t:'Знаки безопасности', d:'Требования к применению и размещению знаков безопасности и сигнальной маркировки'}, kz:{t:'Қауіпсіздік белгілері', d:'Қауіпсіздік белгілері мен сигналдық белгілерді қолдану және орналастыру талаптары'}, price:1000 },
+        { id:'m1-5', en:{t:'Risk Assessment', d:'Methods for identification, analysis and assessment of occupational risks'}, ru:{t:'Оценка риска', d:'Методики идентификации, анализа и оценки профессиональных рисков'}, kz:{t:'Тәуекелді бағалау', d:'Кәсіптік тәуекелдерді анықтау, талдау және бағалау әдістері'}, price:5000 },
+        { id:'m1-6', en:{t:'Observation Cards', d:'Behavioral observation system for assessing safe practices and working environment conditions'}, ru:{t:'Карты наблюдения', d:'Система поведенческих наблюдений для оценки безопасных практик и состояния рабочей среды'}, kz:{t:'Бақылау карталары', d:'Қауіпсіз тәжірибелер мен жұмыс ортасы жағдайын бағалау үшін мінез-құлықты бақылау жүйесі'}, price:1000 },
+        { id:'m1-7', en:{t:'Personal Protective Equipment (PPE)', d:'Rules for selection, use and maintenance of personal protective equipment'}, ru:{t:'Средства индивидуальной защиты (СИЗ)', d:'Правила выбора, применения и обслуживания средств индивидуальной защиты'}, kz:{t:'Жеке қорғаныс құралдары (ЖҚҚ)', d:'Жеке қорғаныс құралдарын таңдау, қолдану және техникалық қызмет көрсету ережелері'}, price:1000 },
+        { id:'m1-8', en:{t:'Work Permit (PTW)', d:'Organization of high-risk work using the work permit system'}, ru:{t:'Наряд+допуск', d:'Организация работ повышенной опасности с использованием системы нарядов+допусков'}, kz:{t:'Жұмыс рұқсаты', d:'Жұмыс рұқсаттары жүйесін пайдалана отырып, жоғары тәуекелді жұмыстарды ұйымдастыру'}, price:2000 },
+        { id:'m1-9', en:{t:'Monitoring & Measurement of OHS Indicators', d:'Control, monitoring and analysis of key safety and occupational health indicators'}, ru:{t:'Мониторинг и измерение показателей БиОТ', d:'Контроль, мониторинг и анализ ключевых показателей в области безопасности и охраны труда'}, kz:{t:'ЕҚК көрсеткіштерін бақылау және өлшеу', d:'Қауіпсіздік пен еңбек қауіпсіздігі саласындағы негізгі көрсеткіштерді бақылау, мониторинг және талдау'}, price:1000 },
+        { id:'m1-10', en:{t:'Accident Investigations & Reporting', d:'Methodology for investigation, classification and reporting of accidents and incidents'}, ru:{t:'Расследования несчастных случаев и отчетность', d:'Методика расследования, классификации и отчетности по несчастным случаям и инцидентам'}, kz:{t:'Апаттарды тергеу және есеп беру', d:'Жеңіл және ауыр оқиғаларды тергеу, жіктеу және есеп беру әдістемесі'}, price:2000 },
+        { id:'m1-11', en:{t:'Emergency Preparedness & Response', d:'Planning and practicing personnel actions in emergency situations'}, ru:{t:'Действия персонала в аварийных ситуациях', d:'Планирование и отработка действий персонала при чрезвычайных ситуациях'}, kz:{t:'Төтенше жағдайларға дайындық және әрекет', d:'Төтенше жағдайларда персоналдың әрекеттерін жоспарлау және жаттығу'}, price:2000 },
+        { id:'m1-12', en:{t:'First Aid', d:'Practicing first aid skills in the workplace'}, ru:{t:'Первая помощь', d:'Отработка навыков оказания первой помощи на рабочем месте'}, kz:{t:'Алғашқы көмек', d:'Жұмыс орнында алғашқы көмек көрсету дағдыларын жаттығу'}, price:1000 },
+        { id:'m1-13', en:{t:'Workplace Inspection', d:'Methodology for conducting scheduled and unscheduled inspections (checks) of workplaces and production control'}, ru:{t:'Проверка рабочих мест', d:'Методика проведения плановых и внеплановых инспекций (проверок) рабочих мест и производственный контроль'}, kz:{t:'Жұмыс орнын тексеру', d:'Жұмыс орындарын жоспарлы және жоспарлы емес тексерулер (тексерулер) жүргізу және өндірістік бақылау әдістемесі'}, price:1000 },
+        { id:'m1-14', en:{t:'Audits', d:'Organization and conduct of internal audits of the management system'}, ru:{t:'Проведение аудита', d:'Организация и проведение внутренних аудитов системы управления'}, kz:{t:'Аудит жүргізу', d:'Басқару жүйесінің ішкі аудиттерін ұйымдастыру және жүргізу'}, price:1000 },
+        { id:'m1-15', en:{t:'Management Review & Improvement', d:'Performance analysis and planning of measures to improve the management system'}, ru:{t:'Анализ и улучшение управления', d:'Анализ эффективности и планирование мероприятий по улучшению системы управления'}, kz:{t:'Басқаруды қарау және жетілдіру', d:'Басқару жүйесін жетілдіру бойынша шараларды тиімділігін талдау және жоспарлау'}, price:1000 }
+      ]
+    },
+
+    {
+      id: 'module2',
+      title_en: 'Module 2 — Workplace hazards & controls',
+      title_ru: 'MODULE 2 — Производственные опасности и меры защиты',
+      title_kz: 'МОДУЛЬ 2 — Өндірістік қауіптер және қорғау шаралары',
+      courses: [
+        { id:'m2-1', en:{t:'Noise & Hearing Protection', d:'Prevention of occupational hearing loss'}, ru:{t:'Шум и защита слуха', d:'Профилактика потери слуха на производстве'}, kz:{t:'Шуыл және есту қорғанысы', d:'Өндірісте есту қабілетінің жоғалуын алдын алу'}, price:1000 },
+        { id:'m2-2', en:{t:'Vibration', d:'Protection from local and whole-body vibration'}, ru:{t:'Вибрация', d:'Защита от локальной и общей вибрации'}, kz:{t:'Діріл', d:'Жергілікті және жалпы дірілден қорғану'}, price:1000 },
+        { id:'m2-3', en:{t:'Radiation Hazard', d:'Protection from radiation at workplace'}, ru:{t:'Радиационная опасность', d:'Защита от радиации на рабочем месте'}, kz:{t:'Радиациялық қауіп', d:'Жұмыс орнында радиациядан қорғану'}, price:1000 },
+        { id:'m2-4', en:{t:'Psychological Factors', d:'Prevention of stress and burnout'}, ru:{t:'Психологические факторы', d:'Профилактика стресса и выгорания'}, kz:{t:'Психологиялық факторлар', d:'Стресс пен эмоционалды шығу белгілерін болдырмау'}, price:1000 },
+        { id:'m2-5', en:{t:'Vulnerable Workers', d:'Special protection measures for vulnerable groups of workers'}, ru:{t:'Уязвимые работники', d:'Специальные меры защиты для уязвимых групп работников'}, kz:{t:'Осал жұмысшылар', d:'Осал топтарды қорғау шаралары'}, price:1000 },
+        { id:'m2-6', en:{t:'Psychoactive Substances', d:'Prevention of substance abuse in the workplace'}, ru:{t:'Психоактивные вещества', d:'Профилактика злоупотребления психотропными веществами на рабочем месте'}, kz:{t:'Психоактивті заттар', d:'Жұмыс орнында заттарды теріс қолданудың алдын алу'}, price:500 },
+        { id:'m2-7', en:{t:'Manual Handling', d:'Safe performance of loading and unloading operations'}, ru:{t:'Ручное перемещение', d:'Безопасное выполнение погрузочно-разгрузочных работ'}, kz:{t:'Қолмен тасымалдау', d:'Түсіру-тиеп жұмыстарын қауіпсіз орындау'}, price:1000 },
+        { id:'m2-8', en:{t:'Ergonomics', d:'Optimization of workplaces for comfort and safety'}, ru:{t:'Эргономика', d:'Оптимизация рабочих мест для комфорта и безопасности'}, kz:{t:'Эргономика', d:'Ыңғайлылық пен қауіпсіздік үшін жұмыс орындарын оңтайландыру'}, price:1000 },
+        { id:'m2-9', en:{t:'Lifting Operations', d:'Safety when working with lifting mechanisms'}, ru:{t:'Грузоподъемные работы', d:'Безопасность при работе с грузоподъемными механизмами'}, kz:{t:'Көтеру жұмыстары', d:'Көтеру механизмдерімен жұмыс істеу кезіндегі қауіпсіздік'}, price:1000 },
+        { id:'m2-10', en:{t:'Biological Hazards', d:'Protection from biological risks and pathogens'}, ru:{t:'Биологическая опасность', d:'Защита от биологических рисков и патогенов'}, kz:{t:'Биологиялық қауіптер', d:'Биологиялық тәуекелдер мен патогендерден қорғану'}, price:1000 },
+        { id:'m2-11', en:{t:'Chemical Hazards', d:'Safe work with hazardous chemicals'}, ru:{t:'Химическая опасность', d:'Безопасная работа с опасными химическими веществами'}, kz:{t:'Химиялық қауіптер', d:'Қауіпті химиялық заттармен қауіпсіз жұмыс'}, price:1000 },
+        { id:'m2-12', en:{t:'Respiratory Protection', d:'Proper selection and use of respiratory protective equipment (RPE)'}, ru:{t:'Защита органов дыхания', d:'Правильный выбор и использование средств индивидуальной защиты органов дыхания (СИЗОД)'}, kz:{t:'Тыныс алу қорғанысы', d:'Тыныс алу мүшелерін жеке қорғау құралдарын дұрыс таңдау және пайдалану'}, price:500 },
+        { id:'m2-13', en:{t:'Working in Extreme Weather', d:'Prevention of heat stroke and hypothermia'}, ru:{t:'Работа в экстемальную погоду', d:'Профилактика теплового удара и переохлаждения'}, kz:{t:'Экстремалды ауа райында жұмыс', d:'Жылу соққысы мен гипотермияның алдын алу'}, price:1000 },
+        { id:'m2-14', en:{t:'Working at Heights', d:'Safety when working at height and fall protection equipment'}, ru:{t:'Работа на высоте', d:'Безопасность при работе на высоте и средства защиты от падения'}, kz:{t:'Биіктікте жұмыс', d:'Биіктікте жұмыс істеу кезіндегі қауіпсіздік және құлаудан қорғау құралдары'}, price:1000 },
+        { id:'m2-15', en:{t:'Falling Objects', d:'Protection from falling objects and collapses'}, ru:{t:'Падающие предметы', d:'Защита от падающих объектов и обрушений'}, kz:{t:'Құлағыш заттар', d:'Құлағыш объектілер мен құлаулардан қорғану'}, price:1000 },
+        { id:'m2-16', en:{t:'Confined Space', d:'Safety in confined spaces'}, ru:{t:'Работа в замкнутом пространстве', d:'Безопасность в замкнутых пространствах'}, kz:{t:'Жабық кеңістікте жұмыс', d:'Жабық кеңістіктердегі қауіпсіздік'}, price:1000 },
+        { id:'m2-17', en:{t:'Hot Work', d:'Safety during hot work operations'}, ru:{t:'Огневые работы', d:'Безопасность при проведении огневых работ'}, kz:{t:'Ыстық жұмыстар', d:'Ыстық жұмыстарды жүргізу кезіндегі қауіпсіздік'}, price:1000 },
+        { id:'m2-18', en:{t:'Excavation Work', d:'Safety during excavation work and strengthening of pit walls'}, ru:{t:'Земляные работы', d:'Безопасность при производстве земляных работ и креплении стенок котлованов'}, kz:{t:'Қазба жұмыстары', d:'Қазба жұмыстарын өндіру және қазаншұңқыр қабырғаларын бекіту кезіндегі қауіпсіздік'}, price:1000 },
+        { id:'m2-19', en:{t:'Slips, Trips & Falls. Workplace Cleaning', d:'Prevention of injuries from stumbling, slipping and falls. Keeping the workplace in order'}, ru:{t:'Скользкие поверхности, спотыкания и падения. Уборка рабочего места', d:'Профилактика травм от спотыканий, поскальзываний и падений. Содержание рабочего места в порядке'}, kz:{t:'Тайғақ беттер, таяныш және құлау. Жұмыс орнын тазалау', d:'Таяныштан, тайғақтан және құлаудан болатын жарақаттардың алдын алу. Жұмыс орнын таптап ұстау'}, price:500 },
+        { id:'m2-20', en:{t:'Safe Driving', d:'Prevention of accidents when operating official transport'}, ru:{t:'Безопасное вождение', d:'Профилактика аварий при эксплуатации служебного транспорта'}, kz:{t:'Қауіпсіз жүргізу', d:'Ресми көлікті пайдалану кезіндегі апаттардың алдын алу'}, price:5000 },
+        { id:'m2-21', en:{t:'Heavy Equipment', d:'Safe operation of heavy construction and special equipment'}, ru:{t:'Работа с тяжёлой техникой', d:'Безопасная эксплуатация тяжелой строительной и специальной техники'}, kz:{t:'Ауыр техниканы пайдалану', d:'Ауыр құрылыс және арнайы техниканы қауіпсіз пайдалану'}, price:2000 },
+        { id:'m2-22', en:{t:'Hand & Power Tools', d:'Safe use of hand and portable power tools'}, ru:{t:'Ручные и Переносные инструменты', d:'Безопасное использование ручного и переносного электроинструмента'}, kz:{t:'Қол және портативті құралдар', d:'Қол және портативті электронды құралдарды қауіпсіз пайдалану'}, price:1000 },
+        { id:'m2-23', en:{t:'High Pressure', d:'Hazards of work under high pressure and protective measures'}, ru:{t:'Высокое давление', d:'Опасности работ под высоким давлением и меры защиты'}, kz:{t:'Жоғары қысым', d:'Жоғары қысымда жұмыс істеудің қауіптері және қорғау шаралары'}, price:1000 },
+        { id:'m2-24', en:{t:'Rotating & Moving Machinery', d:'Protection from dangerous moving parts of equipment'}, ru:{t:'Крутящиеся и вращающиеся механизмы', d:'Защита от опасных движущихся частей оборудования'}, kz:{t:'Айналатын және қозғалатын механизмдер', d:'Жабдықтың қауіпті қозғалатын бөлшектерінен қорғану'}, price:1000 },
+        { id:'m2-25', en:{t:'Hand & Finger Protection', d:'Prevention of hand injuries and proper selection of gloves'}, ru:{t:'Защита рук и пальцев', d:'Профилактика травм рук и правильный выбор перчаток'}, kz:{t:'Қол және саусақтарды қорғау', d:'Қол жарақаттарын болдырмау және қолғаптарды дұрыс таңдау'}, price:500 },
+        { id:'m2-26', en:{t:'Flying Particles', d:'Protection from flying particles, chips and sparks'}, ru:{t:'Летящие частицы', d:'Защита от разлетающихся частиц, стружки и искр'}, kz:{t:'Ұшатын бөлшектер', d:'Ұшатын бөлшектерден, шеберден және ұшқындардан қорғану'}, price:1000 },
+        { id:'m2-27', en:{t:'Eye & Face Protection', d:'Proper selection and use of eye and face protection'}, ru:{t:'Защита глаз и лица', d:'Правильный выбор и применение средств защиты глаз и лица'}, kz:{t:'Көз және бетті қорғау', d:'Көз және бетті қорғау құралдарын дұрыс таңдау және қолдану'}, price:1000 },
+        { id:'m2-28', en:{t:'Fire Safety', d:'Fire prevention, use of fire extinguishers and actions in case of fire'}, ru:{t:'Пожарная безопасность', d:'Профилактика возгораний, использование огнетушителей и действия при пожаре'}, kz:{t:'Өрт қауіпсіздігі', d:'Өрттің алдын алу, өрт сөндіргіштерді пайдалану және өрт кезіндегі әрекеттер'}, price:1000 },
+        { id:'m2-29', en:{t:'Electrical Safety', d:'Safe work with electrical installations and power tools'}, ru:{t:'Электробезопасность', d:'Безопасная работа с электроустановками и электроинструментом'}, kz:{t:'Электр қауіпсіздігі', d:'Электр қондырғыларымен және электр құралдарымен қауіпсіз жұмыс'}, price:1000 },
+        { id:'m2-30', en:{t:'Lockout/Tagout System', d:'Safe equipment maintenance and repair procedures'}, ru:{t:'Система блокировки/маркировки', d:'Безопасные процедуры обслуживания и ремонта оборудования'}, kz:{t:'Құлыптау/белгілеу жүйесі', d:'Жабдықты техникалық қызмет көрсету және жөндеудің қауіпсіз процедуралары'}, price:1000 }
+      ]
+    },
+
+    {
+      id: 'module3',
+      title_en: 'Module 3 — Specialized courses & international standards',
+      title_ru: 'MODULE 3 — Специализированные курсы и международные стандарты',
+      title_kz: 'МОДУЛЬ 3 — Арнайы курстар және халықаралық стандарттар',
+      courses: [
+        { id:'m3-1', en:{t:'Professional Development Courses for HSE Specialists', d:'Formation of holistic competencies for building, analyzing and improving the occupational health and safety management system, including risk management, documentation, control and incident response'}, ru:{t:'Курсы повышения квалификации для специалистов ОТ, ТБ и ООС', d:'Формирование у специалиста целостной компетенции по построению, анализу и улучшению системы управления охраной труда, включая управление рисками, документацию, контроль и реагирование на инциденты'}, kz:{t:'ЕҚЖ, ӨҚ және ҚҚС мамандары үшін біліктілікті арттыру курстары', d:'Маманға тәуекелдерді басқаруды, құжаттаманы, бақылауды және оқиғаларға жауап беруді қоса алғанда, еңбек қауіпсіздігін басқару жүйесін құру, талдау және жетілдіру бойынша тұтас құзыреттілікті қалыптастыру'}, price: null },
+        { id:'m3-2', en:{t:'Environmental Protection. Environmental Aspects and Impacts', d:'Study of the Environmental Code, as well as environmental aspects and impacts in production'}, ru:{t:'Охрана окружающей среды. Экологические аспекты и воздействия', d:'Изучение Экологического кодекса, а также экологических аспектов и воздействий на производстве'}, kz:{t:'Қоршаған ортаны қорғау. Экологиялық аспектілер мен әсерлер', d:'Экологиялық кодексті, сондай-ақ өндірістегі экологиялық аспектілер мен әсерлерді зерттеу'}, price:2000 },
+        { id:'m3-3', en:{t:'Leadership & Commitment', d:'Develop leadership skills to lead a team to results and unlock the talent of each - at any stage of your career'}, ru:{t:'Лидерство и приверженность', d:'Развивайте навыки лидера, чтобы вести команду к результату и раскрывать таланты каждого — на любом этапе вашей карьеры'}, kz:{t:'Көшбасшылық және адалдық', d:'Команданы нәтижеге жеткізу және әрқайсысының талантын ашу үшін көшбасшылық дағдыларын дамытыңыз - сіздің мансабыңыздың кез келген кезеңінде'}, price:5000 },
+        { id:'m3-4', en:{t:'Safety Culture (for Employees)', d:'Developing personal attitudes and conscious safety behavior. Understanding that safety rules exist to protect life and health. Building skills in safe work practices, engagement, and mutual responsibility in day-to-day activities.'}, ru:{t:'Культура безопасности (для работников)', d:'Формирование личного отношения и осознанного поведения. Понимание, что правила безопасности — это защита жизни и здоровья. Развитие навыков безопасного поведения, вовлечённости и взаимной ответственности в ежедневной работе.'}, kz:{t:'Қауіпсіздік мәдениеті (қызметкерлер үшін)', d:'Жеке көзқарас пен саналы қауіпсіздік мінез-құлқын қалыптастыру. Қауіпсіздік ережелері — өмір мен денсаулықты қорғауға арналғанын түсіну. Күнделікті жұмыста қауіпсіз жұмыс істеу дағдыларын, белсенділік пен өзара жауапкершілікті дамыту.'}, price: null },
+        { id:'m3-5', en:{t:'IOSH - Managing Safely', d:'Leading occupational health and safety course for middle managers'}, ru:{t:'IOSH - Управление безопасностью', d:'Ведущий курс по охране труда и технике безопасности для руководителей среднего звена'}, kz:{t:'IOSH - Қауіпсіздікті басқару', d:'Орта буын менеджерлеріне арналған еңбек қауіпсіздігі және техникасы бойынша жетекші курс'}, price:50000 },
+        { id:'m3-6', en:{t:'IOSH - Working Safely', d:'Leading occupational health and safety course for ordinary employees'}, ru:{t:'IOSH - Безопасная работа', d:'Ведущий курс по охране труда и технике безопасности для рядовых сотрудников'}, kz:{t:'IOSH - Қауіпсіз жұмыс', d:'Кәдімгі қызметкерлерге арналған еңбек қауіпсіздігі және техникасы бойынша жетекші курс'}, price:50000 },
+        { id:'m3-7', en:{t:'NEBOSH IGC - Occupational Health and Safety Management', d:'Building a solid foundation in occupational health and safety management systems and practices'}, ru:{t:'NEBOSH IGC - Управление охраной труда', d:'Формирование прочной основы в системах и практике управления охраной труда'}, kz:{t:'NEBOSH IGC - Еңбек қауіпсіздігін басқару', d:'Еңбек қауіпсіздігін басқару жүйелері мен тәжірибесінде берік негіз қалыптастыру'}, price:100000 },
+        { id:'m3-8', en:{t:'Vision Zero (ISSA)', d:'Familiarization with the global platform and principles of the movement that brings together occupational safety professionals to achieve zero mortality and improve the well-being of workers'}, ru:{t:'Нулевая смертность (ISSA)', d:'Ознакомление с глобальной платформой и принципами движения, объединяющего специалистов по охране труда для достижения нулевого уровня смертности и улучшения благополучия трудящихся'}, kz:{t:'Нөлдік өлім (ISSA)', d:'Еңбек қауіпсіздігі саласындағы мамандарды нөлдік өлім деңгейіне жету және жұмысшылардың әл-ауқатын жақсарту үшін біріктіретін қозғалыстың жаһандық платформасы мен принциптерімен танысу'}, price:2000 },
+        { id:'m3-9', en:{t:'Process Safety Fundamentals (IOGP)', d:'Study of the basic principles developed to support companies in their quest to reduce and eliminate fatal and serious incidents in process safety'}, ru:{t:'Основы технологической безопасности (IOGP)', d:'Изучение основных принципов, разработанных для поддержки компаний в стремлении сократить и полностью ликвидировать смертельные и тяжелые инциденты в области технологической безопасности'}, kz:{t:'Технологиялық қауіпсіздік негіздері (IOGP)', d:'Технологиялық қауіпсіздік саласындағы өлімге әкелетін және ауыр оқиғаларды азайту және толық жоюға ұмтылатын компанияларды қолдау үшін әзірленген негізгі принциптерді зерттеу'}, price:2000 },
+        { id:'m3-10', en:{t:'Life-Saving Rules (IOGP)', d:'Familiarizing workers with actions to protect themselves and colleagues, regardless of where they work'}, ru:{t:'Правила спасения жизни (IOGP)', d:'Ознакомление работников с действиями по защите себя и коллег, независимо от места работы'}, kz:{t:'Өмір құтқару ережелері (IOGP)', d:'Жұмысшыларды жұмыс орнына қарамастан, өздерін және әріптестерін қорғау әрекеттерімен таныстыру'}, price:2000 },
+        { id:'m3-11', en:{t:'RigPass Program (IADC)', d:'Standardized introductory safety training program for drilling industry workers'}, ru:{t:'Программа RigPass (IADC)', d:'Стандартизированная программа вводного инструктажа по безопасности для работников буровой отрасли'}, kz:{t:'RigPass бағдарламасы (IADC)', d:'Бұрғылау саласы жұмысшыларына арналған стандартталған кіріспе қауіпсіздік нұсқаулық бағдарламасы'}, price:2000 },
+        { id:'m3-12', en:{t:'IWCF Level 1 Course', d:'Basic course on well control fundamentals with a focus on preventive measures'}, ru:{t:'Курс IWCF Уровень 1', d:'Базовый курс по основам контроля над скважиной с акцентом на превентивные меры'}, kz:{t:'IWCF 1-ші деңгей курсы', d:'Алдын алу шараларына назар аудара отырып, ұңғыманы бақылаудың негіздері бойынша негізгі курс'}, price:2000 },
+        { id:'m3-13', en:{t:'Authorized Gas Tester (OPITO)', d:'Providing personnel with knowledge for safe monitoring of oxygen levels, as well as combustible and toxic gases'}, ru:{t:'Авторизованный Специалист по использованию приборов газового контроля (OPITO)', d:'Обеспечение персонала знаниями для безопасного проведения проверок уровня кислорода, а также горючих и токсичных газов'}, kz:{t:'Газды бақылау құрылғыларын пайдалану бойынша сертификатталған маман (OPITO)', d:'Оттегі деңгейін, сондай-ақ жанғыш және улы газдарды қауіпсіз тексеруді жүргізу үшін персоналды біліммен қамтамасыз ету'}, price:5000 },
+        { id:'m3-14', en:{t:'Standby Man', d:'Training and preparation of observers for work in confined spaces'}, ru:{t:'Наблюдатель замкнутого пространства', d:'Подготовка и обучение наблюдателей для работ в замкнутых пространствах'}, kz:{t:'Қадағалаушы', d:'Жабық кеңістіктерде жұмыс істеу үшін бақылаушыларды даярлау және оқыту'}, price:20000 },
+        { id:'m3-15', en:{t:'Fire Watcher', d:'Training of fire watchers'}, ru:{t:'Пожарный наблюдатель', d:'Подготовка пожарных наблюдателей'}, kz:{t:'Өрт күзетшісі', d:'Өрт күзетшілерін даярлау'}, price:20000 },
+        { id:'m3-16', en:{t:'Flagman / Traffic Control', d:'Training of specialists in signaling'}, ru:{t:'Сигнальщик', d:'Обучение специалистов по подаче сигналов'}, kz:{t:'Сигнал беруші', d:'Сигнал беру бойынша мамандарды оқыту'}, price:20000 },
+        { id:'m3-17', en:{t:'Tricycle Safety', d:'Safe operation of tricycles. The goal of the campaign is to ensure that all personnel using a tricycle have sufficient theoretical knowledge and practical skills for safe riding.'}, ru:{t:'Безопасная эксплуатация трехколесных велосипедов', d:'Безопасная эксплуатация трехколесных велосипедов. Цель кампании – убедиться в том, что весь персонал, использующий трехколесный велосипед, имеет достаточно теоретических знаний и практических навыков для безопасного вождения.'}, kz:{t:'Үш доңғалақты велосипедті қауіпсіз пайдалану', d:'Үш доңғалақты велосипедтерді қауіпсіз пайдалану. Науқанның мақсаты – үш доңғалақты велосипедті пайдаланатын барлық персоналдың қауіпсіз жүргізу үшін жеткілікті теориялық білімі мен практикалық дағдылары бар екеніне көз жеткізу.'}, price: null },
+        { id:'m3-18', en:{t:'English Language Courses. English from scratch', d:'Professional English for occupational safety specialists, engineers and managers'}, ru:{t:'Курсы английского языка. Английский с нуля', d:'Профессиональный английский для специалистов по охране труда, инженеров и менеджеров'}, kz:{t:'Ағылшын тілі курстары. Нөлден бастап ағылшын тілі', d:'Еңбек қауіпсіздігі саласындағы мамандарға, инженерлерге және менеджерлерге арналған кәсіби ағылшын тілі'}, price:2000 },
+        { id:'m3-19', en:{t:'Advanced PC User', d:'Improving PC skills to the level of an experienced user'}, ru:{t:'Опытный пользователь ПК', d:'Повышение навыков работы с ПК до уровня опытного пользователя'}, kz:{t:'Тәжірибелі ПК пайдаланушысы', d:'ПК-мен жұмыс істеу дағдыларын тәжірибелі пайдаланушы деңгейіне дейін арттыру'}, price:2000 },
+        { id:'m3-20', en:{t:'Integrated Management Systems and Internal Auditor', d:'Understand and apply the requirements of ISO 14001 and ISO 45001. Participate in the creation and maintenance of an integrated management system for HSE. Plan and conduct internal audits according to ISO 19011.'}, ru:{t:'Интегрированные системы менеджмента и внутренний аудитор', d:'Понимать и применять требования ISO 14001 и ISO 45001. Участвовать в создании и поддержании интегрированной системы менеджмента ОТ, ПБ и ООС. Планировать и проводить внутренние аудиты по ISO 19011.'}, kz:{t:'Біріктірілген басқару жүйелері мен ішкі аудитор', d:'ISO 14001 және ISO 45001 талаптарын түсіну және қолдану. ЕҚЖ, ӨҚ және ҚҚС біріктірілген басқару жүйесін құру және сақтауға қатысу. ISO 19011 бойынша ішкі аудиттерді жоспарлау және жүргізу.'}, price: null }
+      ]
+    }
+  ];
+
+  // UI refs
+  const modulesContainer = document.getElementById('modulesContainer');
+  const langSelect = document.getElementById('langSelect');
+
+  // Helpers
+  function getText(course, field){
+    if (!course) return '';
+    if (lang === 'ru') return course.ru[field];
+    if (lang === 'en') return course.en[field];
+    return course.kz[field];
+  }
+
+  // Update all UI texts based on language
+  function updateUITexts() {
+    const texts = i18n[lang];
+    
+    // Update expertise section
+    document.getElementById('expertiseTitle').textContent = texts.expertiseTitle;
+    document.getElementById('expertiseText1').textContent = texts.expertiseText1;
+    document.getElementById('expertiseText2').textContent = texts.expertiseText2;
+    document.getElementById('expertiseText3').textContent = texts.expertiseText3;
+    document.getElementById('expertiseText4').textContent = texts.expertiseText4;
+    document.getElementById('expertiseText5').textContent = texts.expertiseText5;
+    
+    // Update footer
+    document.getElementById('contactsTitle').textContent = texts.contactsTitle;
+    document.getElementById('addressTitle').textContent = texts.addressTitle;
+    document.getElementById('addressText').textContent = texts.addressText;
+    document.getElementById('phonesTitle').textContent = texts.phonesTitle;
+    document.getElementById('cityPhone').textContent = texts.cityPhone;
+    document.getElementById('emailTitle').textContent = texts.emailTitle;
+    document.getElementById('hoursTitle').textContent = texts.hoursTitle;
+    document.getElementById('hoursText').textContent = texts.hoursText;
+    document.getElementById('socialTitle').textContent = texts.socialTitle;
+    document.getElementById('socialDescription').textContent = texts.socialDescription;
+    document.getElementById('aboutTitle').textContent = texts.aboutTitle;
+    document.getElementById('aboutText1').textContent = texts.aboutText1;
+    document.getElementById('aboutText2').textContent = texts.aboutText2;
+    document.getElementById('aboutText3').textContent = texts.aboutText3;
+    document.getElementById('copyright').innerHTML = `&copy; ${new Date().getFullYear()} ${texts.copyright}`;
+    
+    // Update header
+    document.getElementById('siteTitle').textContent = texts.siteTitle;
+    document.getElementById('siteSubtitle').textContent = texts.siteSubtitle;
+    
+    // Update back button
+    document.getElementById('back-button-text').textContent = texts.back_button;
+  }
+
+  // render modules into DOM
+  function renderModules(){
+    modulesContainer.innerHTML = '';
+    modules.forEach(mod => {
+      const block = document.createElement('div');
+      block.className = 'bg-white p-4 rounded shadow mb-4';
+      block.setAttribute('data-aos','fade-up');
+      const title = lang === 'ru' ? mod.title_ru : (lang === 'en' ? mod.title_en : mod.title_kz);
+      block.innerHTML = `
+        <div class="accordion-header flex items-center justify-between p-3 bg-blue-50 rounded cursor-pointer">
+          <div>
+            <div class="font-semibold">${escapeHtml(title)}</div>
+            <div class="text-xs text-gray-600">${mod.courses.length} ${lang==='ru'?'курсов':(lang==='en'?'courses':'курстар')}</div>
+          </div>
+          <div class="text-sm text-blue-600">${lang==='ru'?'Развернуть ▼':(lang==='en'?'Open ▼':'Ашу ▼')}</div>
+        </div>
+        <div class="accordion-content mt-3">
+          <div class="overflow-x-auto">
+            <table class="w-full table-fixed border-collapse text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="border px-2 py-2 w-10">${lang==='ru'?'#':'#'}</th>
+                  <th class="border px-2 py-2 text-left">${lang==='ru'?'Название курса':(lang==='en'?'Course title':'Курс атауы')}</th>
+                  <th class="border px-2 py-2 text-left">${lang==='ru'?'Описание':(lang==='en'?'Description':'Сипаттамасы')}</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      `;
+      modulesContainer.appendChild(block);
+
+      const content = block.querySelector('.accordion-content');
+      const tbody = content.querySelector('tbody');
+      mod.courses.forEach((c, idx) => {
+        const titleText = (lang==='ru'?c.ru.t:(lang==='en'?c.en.t:c.kz.t));
+        const descText = (lang==='ru'?c.ru.d:(lang==='en'?c.en.d:c.kz.d));
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="border px-2 py-2 align-top">${idx+1}</td>
+          <td class="border px-2 py-2 align-top font-medium">${escapeHtml(titleText)}</td>
+          <td class="border px-2 py-2 align-top text-gray-700">${escapeHtml(descText)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // accordion toggle
+      const header = block.querySelector('.accordion-header');
+      header.addEventListener('click', ()=> {
+        const shown = content.style.display === 'block';
+        document.querySelectorAll('.accordion-content').forEach(el => el.style.display = 'none');
+        content.style.display = shown ? 'none' : 'block';
+        if (!shown) setTimeout(()=> content.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+      });
+    });
+  }
+
+  // escape
+  function escapeHtml(s){
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"'`=\/]/g, function (c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','/':'&#x2F;'}[c];
+    });
+  }
+
+  // language switch
+  langSelect.addEventListener('change', (e)=>{
+    lang = e.target.value;
+    updateUITexts();
+    renderModules();
+  });
+
+  function applyLangUI(){
+    updateUITexts();
+  }
+
+  // restore UI text initially
+  applyLangUI();
+  renderModules();
+
+</script>
+</body>
+</html>

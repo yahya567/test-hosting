@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бюро переводов — Технический, Финансовый, Юридический перевод</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2d4ba0 100%);
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: 3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #facc15;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      margin-left: 20px;
+    }
+
+    .lang-switch button {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 6px 15px;
+      cursor: pointer;
+      border-radius: 20px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .lang-switch button:hover {
+      background: #facc15;
+      color: #1e3a8a;
+      border-color: #facc15;
+    }
+
+    /* Кнопка возврата на главную */
+    .home-button {
+      background: #facc15;
+      color: #1e3a8a;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 20px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .home-button:hover {
+      background: #fde047;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+    }
+
+    .home-button i {
+      font-size: 16px;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 40px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      font-weight: 800;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .hero .subtitle {
+      font-size: 22px;
+      margin-bottom: 25px;
+      opacity: 0.95;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lang-list {
+      display: inline-flex;
+      gap: 15px;
+      background: rgba(255,255,255,0.15);
+      padding: 12px 25px;
+      border-radius: 30px;
+      margin-bottom: 35px;
+      font-weight: 600;
+      font-size: 18px;
+      backdrop-filter: blur(5px);
+    }
+
+    .hero button {
+      background: #facc15;
+      color: #1e3a8a;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+    }
+
+    .hero button:hover {
+      background: #fde047;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(250, 204, 21, 0.6);
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #1e3a8a;
+      font-size: 36px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #facc15;
+      border-radius: 2px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 5px solid #1e3a8a;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #1e3a8a;
+      font-size: 22px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card h3 i {
+      color: #facc15;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .about {
+      text-align: center;
+      background: #f1f5f9;
+      border-radius: 15px;
+      padding: 60px 40px;
+      margin-top: 40px;
+    }
+
+    .about p {
+      max-width: 900px;
+      margin: 30px auto 0;
+      font-size: 18px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .contact-info {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      margin-top: 40px;
+    }
+
+    .contact-info h3 {
+      color: #1e3a8a;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .contact-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .contact-item:hover {
+      background: #f1f5f9;
+    }
+
+    .contact-item i {
+      font-size: 28px;
+      color: #1e3a8a;
+      min-width: 30px;
+    }
+
+    .contact-item span {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .working-hours {
+      margin-top: 40px;
+      padding: 25px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .working-hours h4 {
+      color: #92400e;
+      margin-bottom: 10px;
+    }
+
+    .social-links {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: #1e3a8a;
+      color: white;
+      border-radius: 50%;
+      font-size: 28px;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: #facc15;
+      color: #1e3a8a;
+      transform: scale(1.1);
+    }
+
+    footer {
+      text-align: center;
+      background: #1e3a8a;
+      color: #fff;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-social {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-social a {
+      color: #fff;
+      font-size: 22px;
+      transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+      color: #facc15;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      opacity: 0.9;
+      font-size: 15px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 992px) {
+      .hero h2 {
+        font-size: 36px;
+      }
+      
+      .hero .subtitle {
+        font-size: 20px;
+      }
+      
+      section h2 {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+      
+      .lang-switch {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+      
+      .home-button {
+        margin-left: 0;
+        margin-top: 10px;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .hero {
+        padding: 70px 20px;
+      }
+      
+      .hero h2 {
+        font-size: 30px;
+      }
+      
+      .hero .subtitle {
+        font-size: 18px;
+      }
+      
+      .lang-list {
+        font-size: 16px;
+        flex-wrap: wrap;
+      }
+      
+      section {
+        padding: 60px 20px;
+      }
+      
+      .services {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-details {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 26px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      .social-links a {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+      
+      .home-button {
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div>
+    <h1 data-lang="title">Бюро переводов</h1>
+    <div class="tagline" data-lang="tagline">Профессиональный перевод документов любой сложности</div>
+  </div>
+  <nav>
+    <a href="#services" data-lang="navServices">Услуги</a>
+    <a href="#about" data-lang="navAbout">О компании</a>
+    <a href="#contact" data-lang="navContact">Контакты</a>
+    <div class="lang-switch">
+      <button onclick="setLang('ru')">RU</button>
+      <button onclick="setLang('kk')">KZ</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+    <!-- Кнопка возврата на главную -->
+    <a href="index.html" class="home-button">
+      <i class="fas fa-home"></i>
+      <span data-lang="homeBtn">На главную</span>
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2 data-lang="heroTitle">Профессиональный перевод документов</h2>
+  <p class="subtitle" data-lang="heroText">Технический, финансовый, юридический и специализированный перевод для бизнеса и частных клиентов.</p>
+  <div class="lang-list" data-lang="langList">Казахский ⇄ Русский ⇄ Английский</div>
+  <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-lang="heroBtn">Заказать перевод</button>
+</section>
+
+<section id="services">
+  <h2 data-lang="servicesTitle">Наши услуги</h2>
+  <div class="services">
+    <div class="card">
+      <h3><i class="fas fa-cogs"></i> <span data-lang="techTitle">Технический перевод</span></h3>
+      <p data-lang="techText">Перевод инструкций, спецификаций, чертежей, стандартов, процедур, производственной документации — с точной терминологией и отраслевой логикой.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-chart-line"></i> <span data-lang="finTitle">Финансовый перевод</span></h3>
+      <p data-lang="finText">Перевод отчетов, контрактов, аудиторских заключений, бухгалтерской и тендерной документации.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-gavel"></i> <span data-lang="lawTitle">Юридический перевод</span></h3>
+      <p data-lang="lawText">Договоры, уставные документы, доверенности, судебные материалы, нормативные акты — с соблюдением юридической точности.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-stamp"></i> <span data-lang="notaryTitle">Нотариальный перевод</span></h3>
+      <p data-lang="notaryText">Заверение переведённых документов для виз, миграции, обучения, подачи в госорганы.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-microphone"></i> <span data-lang="interpretTitle">Устный перевод</span></h3>
+      <p data-lang="interpretText">Последовательный, синхронный и «шептанный» перевод для встреч, переговоров, конференций.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-heartbeat"></i> <span data-lang="medicalTitle">Медицинский перевод</span></h3>
+      <p data-lang="medicalText">Выписки, диагнозы, заключения, результаты анализов, фармацевтические инструкции.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-bullhorn"></i> <span data-lang="marketingTitle">Маркетинговый и креативный перевод</span></h3>
+      <p data-lang="marketingText">Сайты, презентации, рекламные тексты, коммерческие предложения — с адаптацией под целевую аудиторию.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-laptop-code"></i> <span data-lang="itTitle">Локализация IT и цифровых продуктов</span></h3>
+      <p data-lang="itText">Приложения, веб-интерфейсы, ПО, обучающие платформы, техподдержка.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fas fa-video"></i> <span data-lang="mediaTitle">Перевод аудио и видео</span></h3>
+      <p data-lang="mediaText">Субтитры, транскрибация, перевод видеороликов, обучающих модулей и инструктажей.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2 data-lang="aboutTitle">О компании</h2>
+  <p data-lang="aboutText">Мы — команда профессиональных переводчиков с опытом более 30 лет. Для нас текст — не просто набор слов, а точная координатная сетка, где каждая фраза должна быть на своём месте. Мы обеспечиваем точность, конфиденциальность и оперативность при переводе документов любой сложности.</p>
+</section>
+
+<section id="contact" class="contact-info">
+  <h2 data-lang="contactTitle">Контакты</h2>
+  <p data-lang="contactText" style="font-size: 18px; margin-bottom: 20px;">Свяжитесь с нами удобным для вас способом:</p>
+  
+  <div class="contact-details">
+    <div class="contact-item">
+      <i class="fas fa-phone"></i>
+      <span>+7 771 025 00 08 <span data-lang="mobilePhone">(моб.)</span></span>
+    </div>
+    <div class="contact-item">
+      <i class="fab fa-whatsapp"></i>
+      <span>+7 708 729 63 07 (WhatsApp)</span>
+    </div>
+    <div class="contact-item">
+      <i class="fas fa-phone-alt"></i>
+      <span>+7 (7112) 21-90-18 <span data-lang="cityPhone">(городской)</span></span>
+    </div>
+    <div class="contact-item">
+      <i class="fas fa-envelope"></i>
+      <span>qhsesolutions5@gmail.com</span>
+    </div>
+    <div class="contact-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <span data-lang="address">г. Уральск, Западно-Казахстанская область</span>
+    </div>
+  </div>
+  
+  <div class="working-hours">
+    <h4 data-lang="workingHoursTitle">Режим работы</h4>
+    <p data-lang="workingHours" style="font-weight: 700; font-size: 20px;">Без выходных, 24/7</p>
+  </div>
+
+  <div class="social-links">
+    <a href="https://t.me/qhsesolutions" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+    <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/@qhsesolutions" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <p class="copyright" data-lang="footer">© 2025 QHSE Solutions. Все права защищены.</p>
+    <div class="footer-social">
+      <a href="https://t.me/qhsesolutions" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.facebook.com/qhsesolutions.kz/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@qhsesolutions" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  ru: {
+    title: "Бюро переводов",
+    tagline: "Профессиональный перевод документов любой сложности",
+    navServices: "Услуги",
+    navAbout: "О компании",
+    navContact: "Контакты",
+    homeBtn: "На главную",
+    heroTitle: "Профессиональный перевод документов",
+    heroText: "Технический, финансовый, юридический и специализированный перевод для бизнеса и частных клиентов.",
+    langList: "Казахский ⇄ Русский ⇄ Английский",
+    heroBtn: "Заказать перевод",
+    servicesTitle: "Наши услуги",
+    techTitle: "Технический перевод",
+    techText: "Перевод инструкций, спецификаций, чертежей, стандартов, процедур, производственной документации — с точной терминологией и отраслевой логикой.",
+    finTitle: "Финансовый перевод",
+    finText: "Перевод отчетов, контрактов, аудиторских заключений, бухгалтерской и тендерной документации.",
+    lawTitle: "Юридический перевод",
+    lawText: "Договоры, уставные документы, доверенности, судебные материалы, нормативные акты — с соблюдением юридической точности.",
+    notaryTitle: "Нотариальный перевод",
+    notaryText: "Заверение переведённых документов для виз, миграции, обучения, подачи в госорганы.",
+    interpretTitle: "Устный перевод",
+    interpretText: "Последовательный, синхронный и «шептанный» перевод для встреч, переговоров, конференций.",
+    medicalTitle: "Медицинский перевод",
+    medicalText: "Выписки, диагнозы, заключения, результаты анализов, фармацевтические инструкции.",
+    marketingTitle: "Маркетинговый и креативный перевод",
+    marketingText: "Сайты, презентации, рекламные тексты, коммерческие предложения — с адаптацией под целевую аудиторию.",
+    itTitle: "Локализация IT и цифровых продуктов",
+    itText: "Приложения, веб-интерфейсы, ПО, обучающие платформы, техподдержка.",
+    mediaTitle: "Перевод аудио и видео",
+    mediaText: "Субтитры, транскрибация, перевод видеороликов, обучающих модулей и инструктажей.",
+    aboutTitle: "О компании",
+    aboutText: "Мы — команда профессиональных переводчиков с опытом более 30 лет. Для нас текст — не просто набор слов, а точная координатная сетка, где каждая фраза должна быть на своём месте. Мы обеспечиваем точность, конфиденциальность и оперативность при переводе документов любой сложности.",
+    contactTitle: "Контакты",
+    contactText: "Свяжитесь с нами удобным для вас способом:",
+    mobilePhone: "(моб.)",
+    cityPhone: "(городской)",
+    address: "г. Уральск, Западно-Казахстанская область",
+    workingHoursTitle: "Режим работы",
+    workingHours: "Без выходных, 24/7",
+    footer: "© 2025 QHSE Solutions. Все права защищены."
+  },
+  kk: {
+    title: "Аударма бюросы",
+    tagline: "Кез келген күрделі құжаттарды кәсіби аудару",
+    navServices: "Қызметтер",
+    navAbout: "Компания туралы",
+    navContact: "Байланыс",
+    homeBtn: "Басты бетке",
+    heroTitle: "Құжаттарды кәсіби аудару",
+    heroText: "Бизнеске және жеке тұлғаларға техникалық, қаржылық, заңдық және мамандандырылған аударма.",
+    langList: "Қазақша ⇄ Орысша ⇄ Ағылшынша",
+    heroBtn: "Аудармаға тапсырыс беру",
+    servicesTitle: "Біздің қызметтер",
+    techTitle: "Техникалық аударма",
+    techText: "Нұсқаулықтарды, техникалық сипаттамаларды, сызбаларды, стандарттарды, процедураларды, өндірістік құжаттарды дәл терминология және салалық логикамен аудару.",
+    finTitle: "Қаржылық аударма",
+    finText: "Есептерді, келісімшарттарды, аудит қорытындыларын, бухгалтерлік және тендерлік құжаттарды аудару.",
+    lawTitle: "Заңдық аударма",
+    lawText: "Келісімшарттар, жарғылық құжаттар, сенімхаттар, сот материалдары, нормативтік актілер — заңдық дәлдікті сақтай отырып аудару.",
+    notaryTitle: "Нотарлық аударма",
+    notaryText: "Визaға, миграцияға, оқуға, мемлекеттік органдарға тапсыру үшін аударылған құжаттарды куәландыру.",
+    interpretTitle: "Ауызша аударма",
+    interpretText: "Кездесулерге, келіссөздерге, конференцияларға арналған ретімен, синхронды және «сыбырлап» аударма.",
+    medicalTitle: "Медициналық аударма",
+    medicalText: "Шығарылымдар, диагноздар, қорытындылар, талдау нәтижелері, фармацевтикалық нұсқаулықтар.",
+    marketingTitle: "Маркетингтік және креативті аударма",
+    marketingText: "Веб-сайттар, презентациялар, жарнамалық мәтіндер, коммерциялық ұсыныстар — мақсатты аудиторияға бейімдеп аудару.",
+    itTitle: "IT және сандық өнімдерді локализациялау",
+    itText: "Қолданбалар, веб-интерфейстер, БАҚ, оқыту платформалары, техникалық қолдау.",
+    mediaTitle: "Аудио және бейне аудармасы",
+    mediaText: "Субтитрлер, транскрибация, бейнероликтерді, оқыту модульдері мен білім беру материалдарын аудару.",
+    aboutTitle: "Компания туралы",
+    aboutText: "Біз — 30 жылдан астам тәжірибесі бар кәсіби аудармашылар командасымыз. Біз үшін мәтін — жай сөздер жиынтығы емес, әрбір сөйлем өз орнында болуы керек нақты координаталық тор. Біз кез келген күрделі құжаттарды аударғанда дәлдікті, құпиялылықты және жеделдікті қамтамасыз етеміз.",
+    contactTitle: "Байланыс",
+    contactText: "Өзіңізге ыңғайлы тәсілмен бізбен байланысыңыз:",
+    mobilePhone: "(ұялы)",
+    cityPhone: "(қалалық)",
+    address: "Орал қаласы, Батыс Қазақстан облысы",
+    workingHoursTitle: "Жұмыс кестесі",
+    workingHours: "Демалыссыз, тәулік бойы (24/7)",
+    footer: "© 2025 QHSE Solutions. Барлық құқықтар қорғалған."
+  },
+  en: {
+    title: "Translation Agency",
+    tagline: "Professional translation of documents of any complexity",
+    navServices: "Services",
+    navAbout: "About",
+    navContact: "Contacts",
+    homeBtn: "Home",
+    heroTitle: "Professional Document Translation",
+    heroText: "Technical, financial, legal and specialized translation for businesses and individuals.",
+    langList: "Kazakh ⇄ Russian ⇄ English",
+    heroBtn: "Order Translation",
+    servicesTitle: "Our Services",
+    techTitle: "Technical Translation",
+    techText: "Translation of manuals, specifications, drawings, standards, procedures, production documentation — with accurate terminology and industry logic.",
+    finTitle: "Financial Translation",
+    finText: "Translation of reports, contracts, audit opinions, accounting and tender documentation.",
+    lawTitle: "Legal Translation",
+    lawText: "Contracts, charter documents, powers of attorney, court materials, regulatory acts — with legal accuracy.",
+    notaryTitle: "Notarized Translation",
+    notaryText: "Certification of translated documents for visas, migration, education, submission to government agencies.",
+    interpretTitle: "Interpretation",
+    interpretText: "Consecutive, simultaneous and whispered interpretation for meetings, negotiations, conferences.",
+    medicalTitle: "Medical Translation",
+    medicalText: "Extracts, diagnoses, conclusions, test results, pharmaceutical instructions.",
+    marketingTitle: "Marketing and Creative Translation",
+    marketingText: "Websites, presentations, advertising texts, commercial proposals — adapted for the target audience.",
+    itTitle: "IT and Digital Products Localization",
+    itText: "Applications, web interfaces, software, training platforms, technical support.",
+    mediaTitle: "Audio and Video Translation",
+    mediaText: "Subtitles, transcription, translation of videos, training modules and instructional materials.",
+    aboutTitle: "About Us",
+    aboutText: "We are a team of professional translators with over 30 years of experience. For us, text is not just a set of words, but an exact coordinate grid where every phrase must be in its place. We ensure accuracy, confidentiality and efficiency in translating documents of any complexity.",
+    contactTitle: "Contacts",
+    contactText: "Contact us in any convenient way:",
+    mobilePhone: "(mobile)",
+    cityPhone: "(city phone)",
+    address: "Uralsk city, West Kazakhstan Region",
+    workingHoursTitle: "Working hours",
+    workingHours: "24/7, no days off",
+    footer: "© 2025 QHSE Solutions. All rights reserved."
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll("[data-lang]").forEach(el => {
+    const key = el.getAttribute("data-lang");
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+  
+  // Сохраняем выбор языка
+  localStorage.setItem('preferredLang', lang);
+}
+
+// При загрузке страницы проверяем сохраненный язык
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('preferredLang') || 'ru';
+  setLang(savedLang);
+});
+</script>
+
+</body>
+</html>

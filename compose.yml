@@ -1,0 +1,14 @@
+services:
+  apache:
+    # image: php:8.2-apache
+    build: .
+    container_name: apache2
+    volumes:
+      - ./addis:/var/www/html
+    ports:
+      - 7081:80
+    restart: unless-stopped
+    user: "www-data:www-data"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1

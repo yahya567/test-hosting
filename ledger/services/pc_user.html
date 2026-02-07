@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QHSE Solutions — Курсы обучения ПК</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .level-beginner { background-color: #10b981; }
+    .level-intermediate { background-color: #f59e0b; }
+    .level-advanced { background-color: #3b82f6; }
+    .level-beginner-text { color: #10b981; font-weight: bold; }
+    .level-intermediate-text { color: #f59e0b; font-weight: bold; }
+    .level-advanced-text { color: #3b82f6; font-weight: bold; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-yellow-600 text-white py-12 text-center relative">
+    
+    <!-- Кнопка возврата на главную (добавлено) -->
+    <div class="absolute top-4 left-4">
+      <a href="index.html" 
+         class="px-4 py-2 bg-white text-yellow-700 rounded-lg hover:bg-yellow-100 transition flex items-center space-x-2 shadow-md">
+        <i class="fas fa-home"></i>
+        <span id="home-button-text">На главную</span>
+      </a>
+    </div>
+    
+    <!-- Language Switcher -->
+    <div class="absolute top-4 right-4 space-x-2">
+      <button onclick="setLanguage('ru')" class="px-3 py-1 bg-white text-yellow-700 rounded hover:bg-yellow-100 transition">RU</button>
+      <button onclick="setLanguage('kz')" class="px-3 py-1 bg-white text-yellow-700 rounded hover:bg-yellow-100 transition">KZ</button>
+      <button onclick="setLanguage('en')" class="px-3 py-1 bg-white text-yellow-700 rounded hover:bg-yellow-100 transition">EN</button>
+    </div>
+    
+    <h1 id="header-title" class="text-3xl font-bold"></h1>
+    <p id="header-subtitle" class="mt-2 text-lg max-w-3xl mx-auto"></p>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="max-w-6xl mx-auto py-16 px-4 space-y-16">
+
+    <!-- Описание курса -->
+    <section class="bg-white p-8 rounded-xl shadow-lg">
+      <h2 id="course-title" class="text-2xl font-bold mb-4"></h2>
+      <p id="course-description" class="mb-6"></p>
+      <p id="course-audience" class="text-gray-700"></p>
+    </section>
+
+    <!-- Уровень 1: Начинающий пользователь -->
+    <section class="bg-white p-8 rounded-xl shadow-lg">
+      <div class="flex items-center mb-6">
+        <div class="level-beginner w-4 h-4 rounded-full mr-3"></div>
+        <h3 id="level1-title" class="text-xl font-bold level-beginner-text"></h3>
+      </div>
+      <p id="level1-subtitle" class="mb-4 italic"></p>
+      <p class="font-semibold mb-2" id="level1-learn-title"></p>
+      <ul id="level1-learn-list" class="list-disc list-inside space-y-2 mb-6"></ul>
+      <p class="font-semibold mb-2" id="level1-additional-title"></p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="border-l-4 border-green-500 pl-4">
+          <h4 class="font-bold mb-2" id="level1-topic1-title"></h4>
+          <ul id="level1-topic1-list" class="list-disc list-inside space-y-1 text-sm"></ul>
+        </div>
+        <div class="border-l-4 border-green-500 pl-4">
+          <h4 class="font-bold mb-2" id="level1-topic2-title"></h4>
+          <ul id="level1-topic2-list" class="list-disc list-inside space-y-1 text-sm"></ul>
+        </div>
+        <div class="border-l-4 border-green-500 pl-4">
+          <h4 class="font-bold mb-2" id="level1-topic3-title"></h4>
+          <ul id="level1-topic3-list" class="list-disc list-inside space-y-1 text-sm"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Уровень 2: Уверенный пользователь -->
+    <section class="bg-white p-8 rounded-xl shadow-lg">
+      <div class="flex items-center mb-6">
+        <div class="level-intermediate w-4 h-4 rounded-full mr-3"></div>
+        <h3 id="level2-title" class="text-xl font-bold level-intermediate-text"></h3>
+      </div>
+      <p id="level2-subtitle" class="mb-4 italic"></p>
+      <p class="font-semibold mb-2" id="level2-learn-title"></p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="border-l-4 border-yellow-500 pl-4">
+          <h4 class="font-bold mb-2" id="level2-topic1-title"></h4>
+          <ul id="level2-topic1-list" class="list-disc list-inside space-y-1 text-sm"></ul>
+        </div>
+        <div class="border-l-4 border-yellow-500 pl-4">
+          <h4 class="font-bold mb-2" id="level2-topic2-title"></h4>
+          <ul id="level2-topic2-list" class="list-disc list-inside space-y-1 text-sm"></ul>
+        </div>
+        <div class="border-l-4 border-yellow-500 pl-4">
+          <h4 class="font-bold mb-2" id="level2-topic3-title"></h4>
+          <ul id="level2-topic3-list" class="list-disc list-inside space-y-1 text-sm"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Уровень 3: Продвинутый пользователь -->
+    <section class="bg-white p-8 rounded-xl shadow-lg">
+      <div class="flex items-center mb-6">
+        <div class="level-advanced w-4 h-4 rounded-full mr-3"></div>
+        <h3 id="level3-title" class="text-xl font-bold level-advanced-text"></h3>
+      </div>
+      <p id="level3-subtitle" class="mb-4 italic"></p>
+      <p class="font-semibold mb-2" id="level3-learn-title"></p>
+      <ul id="level3-learn-list" class="list-disc list-inside space-y-2"></ul>
+    </section>
+
+    <!-- Дополнительные темы -->
+    <section class="bg-white p-8 rounded-xl shadow-lg">
+      <h3 id="additional-topics-title" class="text-xl font-bold mb-6"></h3>
+      <ul id="additional-topics-list" class="list-disc list-inside space-y-2"></ul>
+    </section>
+
+    <!-- Экспертиза -->
+    <section class="bg-yellow-50 p-8 rounded-xl border-l-4 border-yellow-600">
+      <h3 id="expertise-title" class="text-xl font-bold mb-4"></h3>
+      <p id="expertise-text"></p>
+    </section>
+
+    <!-- Контакты -->
+    <section class="bg-gray-800 text-white p-8 rounded-xl">
+      <h3 id="contacts-title" class="text-2xl font-bold mb-6 text-center"></h3>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-bold mb-4 text-yellow-300"><i class="fas fa-map-marker-alt mr-2"></i><span id="address-title"></span></h4>
+          <p id="address-text"></p>
+          
+          <h4 class="font-bold mb-4 mt-6 text-yellow-300"><i class="fas fa-phone mr-2"></i><span id="phones-title"></span></h4>
+          <p id="phones-text"></p>
+          
+          <h4 class="font-bold mb-4 mt-6 text-yellow-300"><i class="fas fa-envelope mr-2"></i>Email</h4>
+          <p>qhsesolutions5@gmail.com</p>
+          
+          <h4 class="font-bold mb-4 mt-6 text-yellow-300"><i class="fas fa-clock mr-2"></i><span id="hours-title"></span></h4>
+          <p id="hours-text"></p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-yellow-300"><i class="fas fa-share-alt mr-2"></i><span id="social-title"></span></h4>
+          <div class="flex space-x-4">
+            <a href="https://t.me/qhsesolutions" target="_blank" class="text-white hover:text-yellow-300 transition" title="Telegram">
+              <i class="fab fa-telegram fa-2x"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1K7Sww5ZFg/" target="_blank" class="text-white hover:text-yellow-300 transition" title="Facebook">
+              <i class="fab fa-facebook fa-2x"></i>
+            </a>
+            <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" class="text-white hover:text-yellow-300 transition" title="Instagram">
+              <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://www.youtube.com/@qhsesolutions" target="_blank" class="text-white hover:text-yellow-300 transition" title="YouTube">
+              <i class="fab fa-youtube fa-2x"></i>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-gray-300">
+            <span id="social-subtitle"></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 text-center py-6">
+    <p>© 2025 QHSE Solutions. <span id="rights-text"></span></p>
+  </footer>
+
+  <script>
+    const translations = {
+      ru: {
+        homeButton: "На главную",
+        header: {
+          title: "Полный курс обучения ПК",
+          subtitle: "От первых шагов до уверенной работы в офисных программах"
+        },
+        course: {
+          title: "О курсе",
+          description: "Наш курс — это понятная и практичная программа, которая помогает освоить компьютер с нуля: от устройства системного блока до навыков работы в Word, Excel и PowerPoint.",
+          audience: "Подходит для взрослых учеников, начинающих специалистов, офисных сотрудников и всех, кто хочет уверенно выйти в цифровую среду."
+        },
+        level1: {
+          title: "Начинающий пользователь",
+          subtitle: "Ваш «цифровой фундамент»",
+          learnTitle: "Вы освоите:",
+          learnList: [
+            "включение, выключение и базовое управление ПК;",
+            "работу с мышью и клавиатурой;",
+            "необходимые программы (Word, Excel, стандартные приложения Windows);",
+            "установку простых программ;",
+            "работу с флешками и внешними носителями;",
+            "поиск информации в интернете;",
+            "отправку и получение писем."
+          ],
+          additionalTitle: "И дополнительно изучите:",
+          topic1Title: "1. Устройство персонального компьютера",
+          topic1List: [
+            "основные компоненты ПК: материнская плата, процессор, ОЗУ, видеокарта, HDD/SSD, охлаждение, BIOS;",
+            "форм-факторы матплат (ATX, micro-ATX и др.);",
+            "разъёмы и интерфейсы: SATA, PCI-E, USB;",
+            "что такое чипсет и за что он отвечает."
+          ],
+          topic2Title: "2. Операционная система Windows",
+          topic2List: [
+            "что такое операционная система и какие функции выполняет;",
+            "рабочий стол, меню «Пуск», панель задач;",
+            "работа с файлами и папками (создание, копирование, перемещение);",
+            "проводник Windows и его элементы;",
+            "оптимизация системы: автозагрузка, удаление программ, очистка диска."
+          ],
+          topic3Title: "3. Программное обеспечение",
+          topic3List: [
+            "понятие ПО: бесплатное, платное, открытое;",
+            "установка и удаление программ;",
+            "работа с окнами (перемещение, размер, переключение);",
+            "горячие клавиши для Windows."
+          ]
+        },
+        level2: {
+          title: "Уверенный пользователь",
+          subtitle: "Для тех, кому компьютер нужен для работы каждый день",
+          learnTitle: "Вы научитесь:",
+          topic1Title: "4. Microsoft PowerPoint",
+          topic1List: [
+            "создавать презентации, управлять слайдами;",
+            "вставлять текст, изображения, диаграммы и таблицы;",
+            "применять анимацию и переходы;",
+            "оформлять презентации с помощью дизайна;",
+            "готовить материалы к печати и демонстрации."
+          ],
+          topic2Title: "5. Microsoft Word",
+          topic2List: [
+            "вводить, редактировать и форматировать текст;",
+            "использовать стили, списки и колонтитулы;",
+            "проверять орфографию;",
+            "сохранять, экспортировать и печатать документы."
+          ],
+          topic3Title: "6. Microsoft Excel",
+          topic3List: [
+            "понимать структуру книг: ячейки, строки, листы;",
+            "вводить данные и формулы;",
+            "работать с функциями: математическими, логическими, финансовыми;",
+            "создавать диаграммы;",
+            "применять стили, темы, форматирование;",
+            "искать, фильтровать и заменять данные."
+          ]
+        },
+        level3: {
+          title: "Продвинутый пользователь",
+          subtitle: "Когда компьютер становится инструментом профессии",
+          learnTitle: "Вы научитесь:",
+          learnList: [
+            "устанавливать и настраивать операционные системы;",
+            "понимать устройство ПК на уровне замены и апгрейда компонентов;",
+            "устранять распространённые неполадки;",
+            "работать с узкоспециализированными программами (дизайн, программирование, аналитика — в зависимости от направления)."
+          ]
+        },
+        additionalTopics: {
+          title: "🧩 Дополнительные темы",
+          list: [
+            "правила работы за компьютером (нагрузка, освещение, упражнения для глаз);",
+            "работа с USB-устройствами;",
+            "восстановление файлов (Recuva);",
+            "создание образов дисков;",
+            "техники грамотного хранения и резервирования данных."
+          ]
+        },
+        expertise: {
+          title: "Наша экспертиза",
+          text: "Мы предлагаем профессиональное сопровождение на основе более чем 30-летнего опыта работы в международных компаниях (ТШО, КПО, НКОК). Мы строим систему, которая не просто формально соответствует требованиям, но реально работает на вашу безопасность и эффективность."
+        },
+        contacts: {
+          title: "Контактная информация",
+          addressTitle: "Адрес",
+          addressText: "г. Уральск, Западно-Казахстанская область",
+          phonesTitle: "Телефоны",
+          phonesText: "WhatsApp/Мобильный: +7 771 025 00 08, +7 708 729 63 07<br>Городской: +7 (7112) 21-90-18",
+          hoursTitle: "Время работы",
+          hoursText: "Без выходных 24/7",
+          socialTitle: "Социальные сети",
+          socialSubtitle: "Свяжитесь с нами удобным для вас способом"
+        },
+        footer: {
+          rights: "Все права защищены."
+        }
+      },
+      kz: {
+        homeButton: "Басты бетке",
+        header: {
+          title: "Компьютерді оқытудың толық курсы",
+          subtitle: "Алғашқы қадамдардан бастап офис бағдарламаларында сенімді жұмыс істеуге дейін"
+        },
+        course: {
+          title: "Курс туралы",
+          description: "Біздің курс — бұл компьютерді нөлден меңгеруге көмектесетін түсінікті және практикалық бағдарлама: жүйелік блоктың құрылысынан Word, Excel және PowerPoint жұмысының дағдыларына дейін.",
+          audience: "Ересек оқушыларға, жаңадан бастаған мамандарға, кеңсе қызметкерлеріне және сандық ортаға сенімді шығуды қалайтындарға жарайды."
+        },
+        level1: {
+          title: "Жаңадан бастаушы пайдаланушы",
+          subtitle: "Сіздің «сандық негізіңіз»",
+          learnTitle: "Сіз үйренесіз:",
+          learnList: [
+            "компьютерді қосу, өшіру және негізгі басқару;",
+            "тышқан және пернетақтамен жұмыс істеу;",
+            "қажетті бағдарламалар (Word, Excel, Windows стандартты қосымшалары);",
+            "қарапайым бағдарламаларды орнату;",
+            "флешкалар және сыртқы тасымалдағыштармен жұмыс;",
+            "интернетте ақпарат іздеу;",
+            "хаттарды жіберу және қабылдау."
+          ],
+          additionalTitle: "Қосымша үйренесіз:",
+          topic1Title: "1. Жеке компьютердің құрылымы",
+          topic1List: [
+            "негізгі компоненттер: аналық плата, процессор, ЖЗЖ, бейнекарта, HDD/SSD, салқындату, BIOS;",
+            "аналық платалардың форм-факторлары (ATX, micro-ATX және т.б.);",
+            "түйіспелер және интерфейстер: SATA, PCI-E, USB;",
+            "чипсет деген не және ол не үшін жауап береді."
+          ],
+          topic2Title: "2. Windows операциялық жүйесі",
+          topic2List: [
+            "операциялық жүйе деген не және қандай функцияларды атқарады;",
+            "жұмыс үстелі, «Бастау» мәзірі, тапсырмалар тақтасы;",
+            "файлдар мен бумалармен жұмыс (жасау, көшіру, жылжыту);",
+            "Windows проводнигі және оның элементтері;",
+            "жүйені оңтайландыру: автозагрузка, бағдарламаларды жою, дискті тазалау."
+          ],
+          topic3Title: "3. Бағдарламалық жасақтама",
+          topic3List: [
+            "БЖ түсінігі: тегін, ақылы, ашық;",
+            "бағдарламаларды орнату және жою;",
+            "терезелермен жұмыс (жылжыту, өлшем, ауыстыру);",
+            "Windows үшін тездету пернелері."
+          ]
+        },
+        level2: {
+          title: "Сенімді пайдаланушы",
+          subtitle: "Күн сайын жұмыс үшін компьютер қажет адамдарға арналған",
+          learnTitle: "Сіз үйренесіз:",
+          topic1Title: "4. Microsoft PowerPoint",
+          topic1List: [
+            "презентация жасау, слайдтарды басқару;",
+            "мәтін, суреттер, диаграммалар және кестелерді енгізу;",
+            "анимация және ауысуларды қолдану;",
+            "дизайн арқылы презентацияларды ресімдеу;",
+            "баспаға дайындау және демонстрация."
+          ],
+          topic2Title: "5. Microsoft Word",
+          topic2List: [
+            "мәтін енгізу, өңдеу және пішімдеу;",
+            "стильдер, тізімдер және колонтитулдарды қолдану;",
+            "орфографияны тексеру;",
+            "құжаттарды сақтау, экспорттау және басып шығару."
+          ],
+          topic3Title: "6. Microsoft Excel",
+          topic3List: [
+            "кітаптардың құрылымын түсіну: ұяшықтар, жолдар, парақтар;",
+            "деректер мен формулаларды енгізу;",
+            "функциялармен жұмыс: математикалық, логикалық, қаржылық;",
+            "диаграммалар жасау;",
+            "стильдер, тақырыптар, пішімдеуді қолдану;",
+            "деректерді іздеу, сүзу және ауыстыру."
+          ]
+        },
+        level3: {
+          title: "Ілгері пайдаланушы",
+          subtitle: "Компьютер кәсіптің құралына айналған кезде",
+          learnTitle: "Сіз үйренесіз:",
+          learnList: [
+            "операциялық жүйелерді орнату және конфигурациялау;",
+            "компоненттерді ауыстыру және жаңарту деңгейінде компьютердің құрылымын түсіну;",
+            "таралған ақауларді жою;",
+            "тар салалы арнайы бағдарламалармен жұмыс (дизайн, бағдарламалау, аналитика — бағытқа байланысты)."
+          ]
+        },
+        additionalTopics: {
+          title: "🧩 Қосымша тақырыптар",
+          list: [
+            "компьютерде жұмыс істеу ережелері (жүктеме, жарықтандыру, көзге арналған жаттығулар);",
+            "USB құрылғыларымен жұмыс;",
+            "файлдарды қалпына келтіру (Recuva);",
+            "дискінің образдарын жасау;",
+            "деректерді сақтау және резервтеудің тиімді әдістері."
+          ]
+        },
+        expertise: {
+          title: "Біздің сарапшылық",
+          text: "Біз халықаралық компаниялардағы (ТШО, КПО, НКОК) 30 жылдан астам жұмыс тәжірибесіне негізделген кәсіби қолдауды ұсынамыз. Біз тек талаптарға формальды түрде сәйкес келмейтін, сонымен қатар сіздің қауіпсіздігіңіз мен тиімділігіңіз үшін шынымен жұмыс істейтін жүйені құрамыз."
+        },
+        contacts: {
+          title: "Байланыс ақпараты",
+          addressTitle: "Мекен-жайы",
+          addressText: "Орал қаласы, Батыс Қазақстан облысы",
+          phonesTitle: "Телефондар",
+          phonesText: "WhatsApp/Ұялы: +7 771 025 00 08<br>WhatsApp/Ұялы: +7 708 729 63 07<br>Қалалық: +7 (7112) 21-90-18",
+          hoursTitle: "Жұмыс уақыты",
+          hoursText: "Тәулік бойы, демалыссыз (24/7)",
+          socialTitle: "Әлеуметтік желілер",
+          socialSubtitle: "Бізбен сізге ыңғайлы тәсілмен байланысыңыз"
+        },
+        footer: {
+          rights: "Барлық құқықтар қорғалған."
+        }
+      },
+      en: {
+        homeButton: "Home",
+        header: {
+          title: "Complete PC Training Course",
+          subtitle: "From first steps to confident work in office programs"
+        },
+        course: {
+          title: "About the course",
+          description: "Our course is a clear and practical program that helps you master the computer from scratch: from the structure of the system unit to skills in Word, Excel and PowerPoint.",
+          audience: "Suitable for adult learners, novice specialists, office employees and anyone who wants to confidently enter the digital environment."
+        },
+        level1: {
+          title: "Beginner user",
+          subtitle: "Your «digital foundation»",
+          learnTitle: "You will master:",
+          learnList: [
+            "turning on, off and basic PC control;",
+            "working with mouse and keyboard;",
+            "necessary programs (Word, Excel, standard Windows applications);",
+            "installation of simple programs;",
+            "working with flash drives and external media;",
+            "searching for information on the Internet;",
+            "sending and receiving emails."
+          ],
+          additionalTitle: "And additionally study:",
+          topic1Title: "1. Personal computer device",
+          topic1List: [
+            "main PC components: motherboard, processor, RAM, video card, HDD/SSD, cooling, BIOS;",
+            "motherboard form factors (ATX, micro-ATX, etc.);",
+            "connectors and interfaces: SATA, PCI-E, USB;",
+            "what a chipset is and what it is responsible for."
+          ],
+          topic2Title: "2. Windows operating system",
+          topic2List: [
+            "what an operating system is and what functions it performs;",
+            "desktop, Start menu, taskbar;",
+            "working with files and folders (creation, copying, moving);",
+            "Windows Explorer and its elements;",
+            "system optimization: startup, program removal, disk cleanup."
+          ],
+          topic3Title: "3. Software",
+          topic3List: [
+            "software concept: free, paid, open;",
+            "installation and removal of programs;",
+            "working with windows (moving, resizing, switching);",
+            "hotkeys for Windows."
+          ]
+        },
+        level2: {
+          title: "Confident user",
+          subtitle: "For those who need a computer for daily work",
+          learnTitle: "You will learn:",
+          topic1Title: "4. Microsoft PowerPoint",
+          topic1List: [
+            "create presentations, manage slides;",
+            "insert text, images, charts and tables;",
+            "apply animation and transitions;",
+            "design presentations using design;",
+            "prepare materials for printing and demonstration."
+          ],
+          topic2Title: "5. Microsoft Word",
+          topic2List: [
+            "enter, edit and format text;",
+            "use styles, lists and headers/footers;",
+            "check spelling;",
+            "save, export and print documents."
+          ],
+          topic3Title: "6. Microsoft Excel",
+          topic3List: [
+            "understand workbook structure: cells, rows, sheets;",
+            "enter data and formulas;",
+            "work with functions: mathematical, logical, financial;",
+            "create charts;",
+            "apply styles, themes, formatting;",
+            "search, filter and replace data."
+          ]
+        },
+        level3: {
+          title: "Advanced user",
+          subtitle: "When the computer becomes a professional tool",
+          learnTitle: "You will learn:",
+          learnList: [
+            "install and configure operating systems;",
+            "understand PC structure at the level of component replacement and upgrade;",
+            "troubleshoot common problems;",
+            "work with specialized programs (design, programming, analytics — depending on the direction)."
+          ]
+        },
+        additionalTopics: {
+          title: "🧩 Additional topics",
+          list: [
+            "computer work rules (load, lighting, eye exercises);",
+            "working with USB devices;",
+            "file recovery (Recuva);",
+            "creating disk images;",
+            "techniques for proper data storage and backup."
+          ]
+        },
+        expertise: {
+          title: "Our expertise",
+          text: "We offer professional support based on more than 30 years of experience in international companies (TCO, KPO, NCOC). We build a system that not only formally meets requirements, but actually works for your safety and efficiency."
+        },
+        contacts: {
+          title: "Contact Information",
+          addressTitle: "Address",
+          addressText: "Uralsk city, West Kazakhstan Region",
+          phonesTitle: "Phones",
+          phonesText: "WhatsApp/Mobile: +7 771 025 00 08<br>WhatsApp/Mobile: +7 708 729 63 07<br>City phone: +7 (7112) 21-90-18",
+          hoursTitle: "Working Hours",
+          hoursText: "Open 24/7",
+          socialTitle: "Social Networks",
+          socialSubtitle: "Contact us in a way convenient for you"
+        },
+        footer: {
+          rights: "All rights reserved."
+        }
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      
+      // Обновляем текст кнопки "На главную"
+      document.getElementById("home-button-text").textContent = t.homeButton;
+      
+      // Header
+      document.getElementById("header-title").textContent = t.header.title;
+      document.getElementById("header-subtitle").textContent = t.header.subtitle;
+      
+      // Course description
+      document.getElementById("course-title").textContent = t.course.title;
+      document.getElementById("course-description").textContent = t.course.description;
+      document.getElementById("course-audience").textContent = t.course.audience;
+      
+      // Level 1
+      document.getElementById("level1-title").textContent = t.level1.title;
+      document.getElementById("level1-subtitle").textContent = t.level1.subtitle;
+      document.getElementById("level1-learn-title").textContent = t.level1.learnTitle;
+      document.getElementById("level1-learn-list").innerHTML = t.level1.learnList.map(item => `<li>${item}</li>`).join("");
+      document.getElementById("level1-additional-title").textContent = t.level1.additionalTitle;
+      document.getElementById("level1-topic1-title").textContent = t.level1.topic1Title;
+      document.getElementById("level1-topic1-list").innerHTML = t.level1.topic1List.map(item => `<li>${item}</li>`).join("");
+      document.getElementById("level1-topic2-title").textContent = t.level1.topic2Title;
+      document.getElementById("level1-topic2-list").innerHTML = t.level1.topic2List.map(item => `<li>${item}</li>`).join("");
+      document.getElementById("level1-topic3-title").textContent = t.level1.topic3Title;
+      document.getElementById("level1-topic3-list").innerHTML = t.level1.topic3List.map(item => `<li>${item}</li>`).join("");
+      
+      // Level 2
+      document.getElementById("level2-title").textContent = t.level2.title;
+      document.getElementById("level2-subtitle").textContent = t.level2.subtitle;
+      document.getElementById("level2-learn-title").textContent = t.level2.learnTitle;
+      document.getElementById("level2-topic1-title").textContent = t.level2.topic1Title;
+      document.getElementById("level2-topic1-list").innerHTML = t.level2.topic1List.map(item => `<li>${item}</li>`).join("");
+      document.getElementById("level2-topic2-title").textContent = t.level2.topic2Title;
+      document.getElementById("level2-topic2-list").innerHTML = t.level2.topic2List.map(item => `<li>${item}</li>`).join("");
+      document.getElementById("level2-topic3-title").textContent = t.level2.topic3Title;
+      document.getElementById("level2-topic3-list").innerHTML = t.level2.topic3List.map(item => `<li>${item}</li>`).join("");
+      
+      // Level 3
+      document.getElementById("level3-title").textContent = t.level3.title;
+      document.getElementById("level3-subtitle").textContent = t.level3.subtitle;
+      document.getElementById("level3-learn-title").textContent = t.level3.learnTitle;
+      document.getElementById("level3-learn-list").innerHTML = t.level3.learnList.map(item => `<li>${item}</li>`).join("");
+      
+      // Additional topics
+      document.getElementById("additional-topics-title").textContent = t.additionalTopics.title;
+      document.getElementById("additional-topics-list").innerHTML = t.additionalTopics.list.map(item => `<li>${item}</li>`).join("");
+      
+      // Expertise
+      document.getElementById("expertise-title").textContent = t.expertise.title;
+      document.getElementById("expertise-text").textContent = t.expertise.text;
+      
+      // Contacts
+      document.getElementById("contacts-title").textContent = t.contacts.title;
+      document.getElementById("address-title").textContent = t.contacts.addressTitle;
+      document.getElementById("address-text").innerHTML = t.contacts.addressText;
+      document.getElementById("phones-title").textContent = t.contacts.phonesTitle;
+      document.getElementById("phones-text").innerHTML = t.contacts.phonesText;
+      document.getElementById("hours-title").textContent = t.contacts.hoursTitle;
+      document.getElementById("hours-text").innerHTML = t.contacts.hoursText;
+      document.getElementById("social-title").textContent = t.contacts.socialTitle;
+      document.getElementById("social-subtitle").textContent = t.contacts.socialSubtitle;
+      
+      // Footer
+      document.getElementById("rights-text").textContent = t.footer.rights;
+    }
+
+    // Default language
+    setLanguage("ru");
+  </script>
+</body>
+</html>

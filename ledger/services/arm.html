@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аттестация производственных объектов | QHSE-Solutions.kz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-r from-gray-50 via-blue-50 to-gray-100 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg p-6 sticky top-0 z-50 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">QHSE-Solutions.kz</h1>
+    <div class="flex items-center gap-2">
+      <button onclick="setLanguage('ru')" class="px-3 py-1 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100">RU</button>
+      <button onclick="setLanguage('kz')" class="px-3 py-1 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100">KZ</button>
+      <button onclick="setLanguage('en')" class="px-3 py-1 bg-white text-blue-700 font-semibold rounded-xl shadow hover:bg-gray-100">EN</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-5xl mx-auto p-8 space-y-8">
+
+    <!-- BUTTON BACK -->
+    <div>
+      <a href="index.html" class="inline-flex items-center px-5 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl shadow hover:opacity-90 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        <span id="back-btn-text">На главную</span>
+      </a>
+    </div>
+
+    <section id="content" class="space-y-8">
+      <!-- Контент подгружается через JS -->
+    </section>
+
+    <!-- Контакты и соцсети -->
+    <div id="contacts-section" class="mt-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl shadow-xl border border-blue-200">
+      <!-- Контент загружается через JS -->
+    </div>
+
+    <!-- Наша экспертиза -->
+    <div id="expertise-section" class="p-8 bg-gradient-to-r from-amber-50 to-orange-100 rounded-2xl shadow-xl border border-amber-200">
+      <!-- Контент загружается через JS -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer-section" class="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-center p-6 mt-12">
+    <!-- Контент загружается через JS -->
+  </footer>
+
+  <script>
+    const translations = {
+      ru: {
+        backBtn: "На главную",
+        sections: [
+          { 
+            title: "Аттестация производственных объектов (АПО)", 
+            text: "Аттестация производственных объектов по условиям труда (АПО) — это обязательная периодическая оценка условий труда на рабочих местах, направленная на выявление вредных и опасных производственных факторов и приведение условий труда в соответствие с государственными нормативными требованиями.\n\nНормативная база:\n• Статья 183 Трудового кодекса РК: устанавливает обязательность периодической аттестации.\n• Приказ № 1057 от 28.12.2015: утверждает Правила проведения аттестации.\n\nПериодичность: Не реже одного раза в 5 лет." 
+          },
+          { 
+            title: "Кто обязан проводить аттестацию?", 
+            text: "Аттестации подлежат все производственные объекты работодателей:\n• Юридические лица (любая форма собственности).\n• Коммерческие и бюджетные организации.\n• Индивидуальные предприниматели с наемными работниками.\n\nК производственным объектам относятся:\n• Цеха, участки, отдельные подразделения, осуществляющие производственную деятельность.\n• Вспомогательные подразделения организаций сферы услуг, образования, здравоохранения (котельные, склады, мастерские и т.д.)." 
+          },
+          { 
+            title: "Цели и задачи аттестации", 
+            text: "Основные цели:\n• Оценка влияния факторов производственной среды на здоровье работника.\n• Определение уровня травмобезопасности и обеспеченности средствами защиты.\n• Выявление работ, связанных с вредными и опасными условиями труда.\n• Планирование мероприятий по улучшению условий и охраны труда.\n\nПрактические выгоды для работодателя:\n• Соблюдение требований законодательства (избежание штрафов).\n• Возможность снижения страховых тарифов.\n• Снижение уровня производственного травматизма и профзаболеваний.\n• Повышение производительности труда." 
+          },
+          { 
+            title: "Кто проводит аттестацию?", 
+            text: "Аттестацию проводит специализированная организация, аккредитованная в установленном порядке и включенная в Реестр Минтруда РК.\n\nТребования к организации:\n• Должна иметь собственную аккредитованную лабораторию (стандарт ГОСТ ISO/IEC 17025).\n\nРоль работодателя:\n• Создать внутреннюю аттестационную комиссию.\n• Оказать содействие специализированной организации.\n• Запрещено скрывать информацию или препятствовать проведению оценки." 
+          },
+          { 
+            title: "Процесс и этапы аттестации", 
+            text: "1. Подготовительный этап:\n• Издание приказа о создании комиссии.\n• Составление перечня рабочих мест.\n• Выбор и заключение договора со специализированной организацией.\n\n2. Проведение измерений и оценок:\n• Физические факторы: шум, вибрация, освещенность, микроклимат.\n• Химические и биологические факторы.\n• Тяжесть и напряженность трудового процесса.\n• Травмобезопасность оборудования.\n• Обеспеченность СИЗ и СКЗ.\n\n3. Оформление результатов:\n• Составление Отчета об аттестации.\n• Протоколы измерений.\n• План мероприятий по устранению нарушений.\n• Реестр рабочих мест.\n\nРезультаты доводятся до сведения работников." 
+          },
+          { 
+            title: "Итоговые документы и стоимость", 
+            text: "По окончании работ специализированная организация передает работодателю пакет документов, который является основанием для:\n• Планирования мероприятий по охране труда.\n• Принятия решений о предоставлении компенсаций.\n• Подготовки статистической отчетности.\n• Разрешения спорных ситуаций, в том числе в суде.\n\nСтоимость услуг — договорная, определяется объемом работ и количеством рабочих мест." 
+          }
+        ],
+        contacts: {
+          title: "Контакты",
+          ourContacts: "Наши контакты",
+          socialMedia: "Мы в социальных сетях",
+          followText: "Следите за новостями и полезными материалами:",
+          address: "Адрес:",
+          addressValue: "г. Уральск, Западно-Казахстанская область",
+          phone: "Телефон:",
+          phoneValue: "+7 771 025 00 08 ",
+          whatsapp: "WhatsApp:",
+          whatsappValue: "+7 708 729 63 07",
+          phone2: "Телефон:",
+          phone2Value: "+7 (7112) 21-90-18",
+          email: "Email:",
+          emailValue: "qhsesolutions5@gmail.com",
+          workingTime: "Рабочее время:",
+          workingTimeValue: "Без выходных 24/7",
+          telegram: "Telegram",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          youtube: "YouTube"
+        },
+        expertise: {
+          title: "Наша экспертиза",
+          text: "Мы предлагаем профессиональное сопровождение на основе более чем 30-летнего опыта работы в международных компаниях (таких как ТШО, КПО, НКОК). Мы знаем, как построить систему, которая не просто формально соответствует требованиям, но и реально работает на вашу безопасность и эффективность."
+        },
+        footer: {
+          copyright: "© 2025 QHSE Solutions. All rights reserved.",
+          address: "г. Уральск, Западно-Казахстанская область"
+        }
+      },
+      kz: {
+        backBtn: "Басты бетке",
+        sections: [
+          { 
+            title: "Өндірістік объектілерді аттестациялау (ӨОА)", 
+            text: "Өндірістік объектілерді еңбек жағдайы бойынша аттестациялау (ӨОА) — бұл зиянды және қауіпті өндірістік факторларды анықтау және еңбек жағдайларын мемлекеттік нормативтік талаптарға сәйкестендіруге бағытталған жұмыс орындарындағы еңбек жағдайларын міндетті мерзімді бағалау.\n\nНормативтік база:\n• ҚР Еңбек кодексінің 183-бабы: мерзімді аттестацияның міндеттілігін белгілейді.\n• 28.12.2015 ж. № 1057 бұйрық: аттестация өткізу ережелерін бекітеді.\n\nЖиілігі: 5 жылда бір реттен жиі емес." 
+          },
+          { 
+            title: "Аттестацияны кім жүргізуге міндетті?", 
+            text: "Аттестацияға барлық жұмыс берушілердің өндірістік объектілері жатады:\n• Заңды тұлғалар (меншік нысанына қарамастан).\n• Коммерциялық және бюджеттік ұйымдар.\n• Жалдамалы жұмысшылары бар жеке кәсіпкерлер.\n\nӨндірістік объектілерге мыналар жатады:\n• Өндірістік қызметті жүзеге асыратын цехтар, учаскелер, жеке бөлімшелер.\n• Қызмет көрсету, білім беру, денсаулық сақтау саласындағы ұйымдардың көмекші бөлімшелері (қазандықтар, қоймалар, шеберханалар және т.б.)." 
+          },
+          { 
+            title: "Аттестацияның мақсаттары мен міндеттері", 
+            text: "Негізгі мақсаттар:\n• Өндірістік орта факторларының жұмысшы денсаулығына әсерін бағалау.\n• Жарақаттануға қауіпсіздік деңгейін және қорғаныс құралдарымен қамтамасыз етілуін анықтау.\n• Зиянды және қауіпті еңбек жағдайларымен байланысты жұмыстарды анықтау.\n• Еңбек жағдайлары мен еңбекті қорғауды жақсарту бойынша шараларды жоспарлау.\n\nЖұмыс беруші үшін практикалық пайдалар:\n• Заңнама талаптарын сақтау (айыппұлдардан аулақ болу).\n• Сақтандыру тарифтерін төмендету мүмкіндігі.\n• Өндірістік жарақаттану және кәсіби аурулар деңгейін төмендету.\n• Еңбек өнімділігін арттыру." 
+          },
+          { 
+            title: "Аттестацияны кім жүргізеді?", 
+            text: "Аттестацияны қолайлы тәртіпте аккредиттелген және ҚР Еңбек министрлігінің Тізіміне енгізілген мамандандырылған ұйым жүргізеді.\n\nҰйымға қойылатын талаптар:\n• Өздігінен аккредиттелген зертханасы болуы керек (ГОСТ ISO/IEC 17025 стандарты).\n\nЖұмыс берушінің рөлі:\n• Ішкі аттестациялық комиссия құру.\n• Мамандандырылған ұйымға көмек көрсету.\n• Ақпаратты жасыруға немесе бағалауды жүргізуге кедергі келтіруге тыйым салынады." 
+          },
+          { 
+            title: "Аттестация процесі және кезеңдері", 
+            text: "1. Дайындық кезеңі:\n• Комиссия құру туралы бұйрық шығару.\n• Жұмыс орындарының тізімін құрастыру.\n• Мамандандырылған ұйымды таңдау және онымен келісімшарт жасасу.\n\n2. Өлшеулер мен бағалаулар жүргізу:\n• Физикалық факторлар: шу, діріл, жарықтандыру, микроклимат.\n• Химиялық және биологиялық факторлар.\n• Еңбек процесінің ауырлығы мен кернеулілігі.\n• Жабдықтың жарақаттануға қауіпсіздігі.\n• ЖЖҚ (жеке қорғаныс құралдары) және ҰЖҚ (ұжымдық қорғаныс құралдары)мен қамтамасыз етілуі.\n\n3. Нәтижелерді ресімдеу:\n• Аттестация туралы Есепті құрастыру.\n• Өлшеу протоколдары.\n• Бұзушылықтарды жою бойынша іс-шаралар жоспары.\n• Жұмыс орындарының тізімі.\n\nНәтижелер жұмысшыларға хабарланады." 
+          },
+          { 
+            title: "Қорытынды құжаттар мен құны", 
+            text: "Жұмыстар аяқталғаннан кейін мамандандырылған ұйым жұмыс берушіге келесілер үшін негіз болатын құжаттар пакетін тапсырады:\n• Еңбекті қорғау бойынша іс-шараларды жоспарлау.\n• Компенсациялар беру туралы шешім қабылдау.\n• Статистикалық есептілік дайындау.\n• Даулы жағдайларды шешу, соның ішінде сотта.\n\nҚызметтердің құны — келісімшарттық, жұмыс көлемі мен жұмыс орындарының санымен анықталады." 
+          }
+        ],
+        contacts: {
+          title: "Байланыс",
+          ourContacts: "Байланыс ақпараты",
+          socialMedia: "Әлеуметтік желілерде",
+          followText: "Бізбен сізге ыңғайлы тәсілмен байланысыңыз:",
+          address: "Мекен-жай:",
+          addressValue: "Орал қаласы, Батыс Қазақстан облысы",
+          phone: "Телефондар:",
+          phoneValue: "WhatsApp/Ұялы: +7 771 025 00 08",
+          whatsapp: "WhatsApp/Ұялы:",
+          whatsappValue: "+7 708 729 63 07",
+          phone2: "Қалалық:",
+          phone2Value: "+7 (7112) 21-90-18",
+          email: "Электрондық пошта:",
+          emailValue: "qhsesolutions5@gmail.com",
+          workingTime: "Жұмыс уақыты:",
+          workingTimeValue: "Тәулік бойы, демалыссыз (24/7)",
+          telegram: "Telegram",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          youtube: "YouTube"
+        },
+        expertise: {
+          title: "Біздің сараптама",
+          text: "Біз халықаралық компаниялардағы (ТШО, КПО, НКОК сияқты) 30 жылдан астам тәжірибеге негізделген кәсіби қолдау ұсынамыз. Біз тек ресми түрде талаптарға сәйкес келетін емес, сонымен қатар сіздің қауіпсіздігіңіз мен тиімділігіңізге нақты жұмыс істейтін жүйені қалай құру керектігін білеміз."
+        },
+        footer: {
+          copyright: "© 2025 QHSE Solutions. Барлық құқықтар қорғалған.",
+          address: "Орал қаласы, Батыс Қазақстан облысы"
+        }
+      },
+      en: {
+        backBtn: "To Main",
+        sections: [
+          { 
+            title: "Certification of Production Facilities (CPF)", 
+            text: "Certification of production facilities for working conditions (CPF) is a mandatory periodic assessment of working conditions at workplaces aimed at identifying harmful and dangerous production factors and bringing working conditions into compliance with state regulatory requirements.\n\nRegulatory framework:\n• Article 183 of the Labor Code of the RK: establishes the mandatory nature of periodic certification.\n• Order No. 1057 dated December 28, 2015: approves the Rules for certification.\n\nFrequency: At least once every 5 years." 
+          },
+          { 
+            title: "Who is required to conduct certification?", 
+            text: "All production facilities of employers are subject to certification:\n• Legal entities (any form of ownership).\n• Commercial and budgetary organizations.\n• Individual entrepreneurs with hired employees.\n\nProduction facilities include:\n• Shops, sites, separate divisions engaged in production activities.\n• Auxiliary divisions of organizations in the service, education, healthcare sectors (boiler houses, warehouses, workshops, etc.)." 
+          },
+          { 
+            title: "Goals and objectives of certification", 
+            text: "Main goals:\n• Assessment of the impact of production environment factors on worker health.\n• Determining the level of injury safety and provision of protective equipment.\n• Identification of work associated with harmful and dangerous working conditions.\n• Planning measures to improve working conditions and labor protection.\n\nPractical benefits for the employer:\n• Compliance with legal requirements (avoiding fines).\n• Possibility of reducing insurance rates.\n• Reduction of industrial injuries and occupational diseases.\n• Increased labor productivity." 
+          },
+          { 
+            title: "Who conducts the certification?", 
+            text: "Certification is carried out by a specialized organization accredited in accordance with the established procedure and included in the Register of the Ministry of Labor of the Republic of Kazakhstan.\n\nRequirements for the organization:\n• Must have its own accredited laboratory (standard GOST ISO/IEC 17025).\n\nRole of the employer:\n• Create an internal certification commission.\n• Assist the specialized organization.\n• It is prohibited to conceal information or interfere with the assessment." 
+          },
+          { 
+            title: "Process and stages of certification", 
+            text: "1. Preparatory stage:\n• Issuing an order to create a commission.\n• Compiling a list of workplaces.\n• Selection and conclusion of a contract with a specialized organization.\n\n2. Conducting measurements and assessments:\n• Physical factors: noise, vibration, illumination, microclimate.\n• Chemical and biological factors.\n• Severity and intensity of the labor process.\n• Injury safety of equipment.\n• Provision with PPE and collective protective equipment.\n\n3. Formalization of results:\n• Preparation of the Certification Report.\n• Measurement protocols.\n• Action plan to eliminate violations.\n• Register of workplaces.\n\nThe results are communicated to employees." 
+          },
+          { 
+            title: "Final documents and cost", 
+            text: "Upon completion of the work, the specialized organization provides the employer with a package of documents that serves as the basis for:\n• Planning labor protection measures.\n• Making decisions on compensation.\n• Preparation of statistical reporting.\n• Resolving disputes, including in court.\n\nThe cost of services is contractual and determined by the scope of work and the number of workplaces." 
+          }
+        ],
+        contacts: {
+          title: "Contact Information",
+          ourContacts: "Contact us in a way convenient for you",
+          socialMedia: "Social Networks",
+          followText: "Contact us in a way convenient for you:",
+          address: "Address:",
+          addressValue: "Uralsk city, West Kazakhstan Region",
+          phone: "Phones:",
+          phoneValue: "WhatsApp/Mobile: +7 771 025 00 08",
+          whatsapp: "WhatsApp/Mobile:",
+          whatsappValue: "+7 708 729 63 07",
+          phone2: "City phone:",
+          phone2Value: "+7 (7112) 21-90-18",
+          email: "Email:",
+          emailValue: "qhsesolutions5@gmail.com",
+          workingTime: "Working Hours:",
+          workingTimeValue: "Open 24/7",
+          telegram: "Telegram",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          youtube: "YouTube"
+        },
+        expertise: {
+          title: "Our Expertise",
+          text: "We offer professional support based on more than 30 years of experience working in international companies (such as TCO, KPO, NCOC). We know how to build a system that not only formally meets requirements but actually works for your safety and efficiency."
+        },
+        footer: {
+          copyright: "© 2025 QHSE Solutions. All rights reserved.",
+          address: "Uralsk city, West Kazakhstan Region"
+        }
+      }
+    };
+
+    function renderContent(lang) {
+      const t = translations[lang];
+      
+      // Обновляем кнопку "Назад"
+      document.getElementById('back-btn-text').textContent = t.backBtn;
+      
+      // Рендерим основной контент
+      const container = document.getElementById("content");
+      container.innerHTML = "";
+      
+      // Заголовок страницы
+      const title = document.createElement("h1");
+      title.className = "text-3xl md:text-4xl font-bold text-center text-blue-900 mb-2";
+      title.textContent = lang === 'ru' ? 'Аттестация производственных объектов по условиям труда' : 
+                          lang === 'kz' ? 'Еңбек жағдайы бойынша өндірістік объектілерді аттестациялау' : 
+                          'Certification of Production Facilities for Working Conditions';
+      container.appendChild(title);
+      
+      const subtitle = document.createElement("p");
+      subtitle.className = "text-lg text-gray-600 text-center mb-10 max-w-3xl mx-auto";
+      subtitle.textContent = lang === 'ru' ? 'Профессиональная оценка условий труда для соответствия требованиям законодательства РК' :
+                            lang === 'kz' ? 'ҚР заңнамасының талаптарына сәйкестік үшін еңбек жағдайларын кәсіби бағалау' :
+                            'Professional assessment of working conditions for compliance with the requirements of the legislation of the RK';
+      container.appendChild(subtitle);
+      
+      // Рендерим карточки с контентом
+      t.sections.forEach((sec, idx) => {
+        const colors = [
+          "from-indigo-50 to-blue-100 border-indigo-200",
+          "from-emerald-50 to-green-100 border-emerald-200", 
+          "from-amber-50 to-yellow-100 border-amber-200",
+          "from-violet-50 to-purple-100 border-violet-200",
+          "from-cyan-50 to-teal-100 border-cyan-200",
+          "from-rose-50 to-pink-100 border-rose-200"
+        ];
+        
+        const card = document.createElement("div");
+        card.className = `p-7 bg-gradient-to-r ${colors[idx % colors.length]} rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border`;
+        card.innerHTML = `
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 pb-3 border-b border-gray-300">${sec.title}</h2>
+          <p class="whitespace-pre-line text-gray-800 leading-relaxed">${sec.text}</p>
+        `;
+        container.appendChild(card);
+      });
+      
+      // Рендерим контакты
+      renderContacts(lang);
+      
+      // Рендерим секцию экспертизы
+      renderExpertise(lang);
+      
+      // Рендерим футер
+      renderFooter(lang);
+    }
+
+    function renderContacts(lang) {
+      const t = translations[lang].contacts;
+      const container = document.getElementById("contacts-section");
+      container.innerHTML = `
+        <h2 class="text-2xl font-bold text-center text-blue-900 mb-6">${t.title}</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">${t.ourContacts}</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="font-medium text-blue-700 min-w-[120px]">${t.address}</span>
+                <span>${t.addressValue}</span>
+              </li>
+              <li class="flex items-center">
+                <span class="font-medium text-blue-700 min-w-[120px]">${t.phone}</span>
+                <span>${t.phoneValue}</span>
+              </li>
+              <li class="flex items-center">
+                <span class="font-medium text-blue-700 min-w-[120px]">${t.whatsapp}</span>
+                <span>${t.whatsappValue}</span>
+              </li>
+              <li class="flex items-center">
+                <span class="font-medium text-blue-700 min-w-[120px]">${t.phone2}</span>
+                <span>${t.phone2Value}</span>
+              </li>
+              <li class="flex items-center">
+                <span class="font-medium text-blue-700 min-w-[120px]">${t.email}</span>
+                <span class="text-blue-600">${t.emailValue}</span>
+              </li>
+              <li class="flex items-center">
+                <span class="font-medium text-blue-700 min-w-[120px]">${t.workingTime}</span>
+                <span>${t.workingTimeValue}</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">${t.socialMedia}</h3>
+            <p class="text-gray-600 mb-4">${t.followText}</p>
+            <div class="flex flex-wrap gap-4">
+              <a href="https://t.me/qhsesolutions" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:opacity-90 transition flex items-center">
+                <i class="fab fa-telegram mr-2"></i> ${t.telegram}
+              </a>
+              <a href="https://www.facebook.com/share/1K7Sww5ZFg/" target="_blank" class="px-4 py-2 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-lg hover:opacity-90 transition flex items-center">
+                <i class="fab fa-facebook mr-2"></i> ${t.facebook}
+              </a>
+              <a href="https://www.instagram.com/qhsesolutions.kz" target="_blank" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition flex items-center">
+                <i class="fab fa-instagram mr-2"></i> ${t.instagram}
+              </a>
+              <a href="https://youtube.com/@qhsesolutions" target="_blank" class="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:opacity-90 transition flex items-center">
+                <i class="fab fa-youtube mr-2"></i> ${t.youtube}
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderExpertise(lang) {
+      const t = translations[lang].expertise;
+      const container = document.getElementById("expertise-section");
+      container.innerHTML = `
+        <h2 class="text-2xl font-bold text-center text-amber-900 mb-4">${t.title}</h2>
+        <p class="text-lg text-gray-800 text-center max-w-3xl mx-auto">
+          ${t.text}
+        </p>
+      `;
+    }
+
+    function renderFooter(lang) {
+      const t = translations[lang].footer;
+      const container = document.getElementById("footer-section");
+      container.innerHTML = `
+        <p class="text-lg">${t.copyright}</p>
+        <p class="text-gray-400 mt-2">${t.address}</p>
+      `;
+    }
+
+    function setLanguage(lang) {
+      renderContent(lang);
+    }
+
+    // По умолчанию русский
+    renderContent("ru");
+  </script>
+</body>
+</html>

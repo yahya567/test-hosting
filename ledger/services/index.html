@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QHSE Solutions — корпоративный дизайн</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="images/logo.jpeg" type="image/jpeg">
+
+  <style>
+    /* Corporate palette: blue / slate / silver */
+    :root{
+      --brand-500:#0ea5e9; /* sky-500 */
+      --brand-600:#0284c7;
+      --accent:#94a3b8; /* slate-400 */
+    }
+
+    /* Language button active */
+    .lang-btn.active{ background-color:var(--brand-600); color:white; border-color:transparent; }
+
+    /* Hero animated gradient */
+    .hero-gradient{
+      background: linear-gradient(90deg, rgba(14,165,233,0.12), rgba(2,132,199,0.08));
+      backdrop-filter: blur(6px);
+    }
+
+    /* Card entrance */
+    .card{ transform: translateY(12px); opacity:0; transition: all .45s cubic-bezier(.2,.9,.3,1); }
+    .card.show{ transform:none; opacity:1; }
+
+    /* Simple bouncing CTA */
+    @keyframes pulseX{ 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+    .cta-bounce:hover{ animation: pulseX .8s ease-in-out; }
+
+    /* Header blur on scroll */
+    .backdrop-blur { backdrop-filter: blur(6px); }
+
+    /* Social icon hover */
+    .social-icon{ transition:transform .18s ease, box-shadow .18s ease; }
+    .social-icon:hover{ transform:translateY(-4px) scale(1.06); box-shadow: 0 6px 18px rgba(2,132,199,0.12); }
+
+    /* Mobile nav */
+    .mobile-menu{ transition: max-height .32s ease; overflow:hidden; }
+  </style>
+</head>
+
+<body class="antialiased bg-gray-50 text-slate-800">
+
+  <!-- Header -->
+  <header class="fixed w-full z-50">
+    <div id="topbar" class="bg-white/75 backdrop-blur shadow-sm">
+      <div class="container mx-auto flex items-center justify-between gap-4 p-4">
+
+        <div class="flex items-center gap-4">
+          <a href="#" class="flex items-center gap-3">
+            <img src="images/logo.jpeg" alt="QHSE" class="h-12 w-12 rounded-md object-cover shadow-sm" />
+            <div class="hidden sm:block">
+              <div class="text-sm font-semibold" data-translate="company_name">QHSE Solutions</div>
+              <div class="text-xs text-slate-500" data-translate="tagline">Safety • Health • Environment</div>
+            </div>
+          </a>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#services" class="text-slate-700 hover:text-brand-600 font-medium transition" data-translate="services_nav">Услуги</a>
+          <a href="#contacts" class="text-slate-700 hover:text-brand-600 font-medium transition" data-translate="contacts_nav">Контакты</a>
+          <a href="/about.html" class="text-slate-700 hover:text-brand-600 font-medium transition" data-translate="about_nav">О нас</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <!-- language buttons -->
+          <div class="flex gap-2">
+            <button id="lang-ru" class="lang-btn border px-3 py-1 rounded text-sm">RU</button>
+            <button id="lang-kz" class="lang-btn border px-3 py-1 rounded text-sm">KZ</button>
+            <button id="lang-en" class="lang-btn border px-3 py-1 rounded text-sm">EN</button>
+          </div>
+
+          <a href="#contacts" class="hidden sm:inline-block bg-brand-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-brand-500 transition" data-translate="contact_btn">Связаться</a>
+
+          <!-- Mobile burger -->
+          <button id="burger" class="md:hidden p-2 rounded hover:bg-slate-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden bg-white border-t mobile-menu max-h-0">
+        <div class="container mx-auto p-4 flex flex-col gap-3">
+          <a href="#services" class="py-2" data-translate="services_nav">Услуги</a>
+          <a href="#contacts" class="py-2" data-translate="contacts_nav">Контакты</a>
+          <a href="/about.html" class="py-2" data-translate="about_nav">О нас</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-28">
+
+    <!-- HERO -->
+    <section class="hero-gradient relative overflow-hidden">
+      <div class="container mx-auto py-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6" data-translate="hero_title">Комплексные решения в области безопасности и охраны труда вашего бизнеса.</h1>
+          <p class="text-slate-600 mb-8 text-lg" data-translate="hero_description">Аудит, обучение, аттестация рабочих мест, производство контроля и цифровые IT-решения — всё в одном месте. Наш опыт помогает вам снизить риски и соответствовать лучшим международным практикам.</p>
+        </div>
+      </div>
+
+      <!-- Decorative SVG shapes -->
+      <svg class="absolute right-0 top-0 opacity-5 w-1/2" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 C150 0 450 200 600 100 L600 200 L0 200 Z" fill="url(#g)"/></svg>
+    </section>
+
+    <!-- SERVICES GRID -->
+    <section id="services" class="container mx-auto py-16 px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold" data-translate="our_services">Наши услуги</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Аудит -->
+        <a href="audit.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="60">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V9m3 11H6a2 2 0 01-2-2V6a2 2 0 012-2h7"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="audit_title">Проведение Аудита и поддержка тендеров</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="audit_description">Полный аудит систем охраны труда, рекомендации и подготовка тендерной документации.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2: Аутсорсинг -->
+        <a href="outsourcing.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="120">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="outsourcing_title">Аутсорсинг</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="outsourcing_description">Делаем службу охраны труда вашей компании эффективной и прозрачной.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 3: Аттестация рабочих мест -->
+        <a href="arm.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="180">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8m-4 8h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="workplace_certification">Аттестация рабочих мест</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="workplace_certification_description">Оценка условий труда, приборные замеры и рекомендации по улучшению.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 4: Производственный контроль -->
+        <a href="control.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="240">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V9m3 11H6a2 2 0 01-2-2V6a2 2 0 012-2h7"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="production_control">Производственный контроль</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="production_control_description">Контроль санитарных норм и соблюдения техники безопасности.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 5: Обучение -->
+        <a href="training.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="300">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422A12.083 12.083 0 0119 11.5c0 5.523-4.477 10-10 10S-1 17.023-1 11.5c0-.402.023-.8.067-1.191L12 14z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="training_title">Обучение</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="training_description">Курсы по NEBOSH, IOSH, OPITO и корпоративные программы.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 6: Оборудование по БиОТ -->
+        <a href="hse_equipment.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="360">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="equipment_title">Оборудование по БиОТ</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="equipment_description">СИЗ, измерительные приборы, аренда и продажа оборудования.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 7: Типография -->
+        <a href="banners.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="420">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9V2h12v7M6 18h12v4H6v-4zM6 14h12v4H6v-4z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="printing_title">Типография</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="printing_description">Баннеры, стенды, журналы по охране труда.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 8: IT-решения -->
+        <a href="products.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="480">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 20h9"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="it_solutions_title">IT-решения</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="it_solutions_description">Корпоративные платформы, базы документации, автоматизация процессов.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 9: Risk Assessment Tool -->
+        <a href="ratool.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="540">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="ratool_title">Risk Assessment Tool</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="ratool_description">Онлайн-инструмент для идентификации и управления рисками.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 10: Английский -->
+        <a href="english.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="600">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="english_title">Английский</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="english_description">Профессиональный английский для HSE-специалистов.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 11: Перевод -->
+        <a href="translation.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="660">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6M7 16h10"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="translation_title">Перевод</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="translation_description">Технические, юридические и финансовые переводы.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 12: ПК (Пользователь) -->
+        <a href="pc_user.html" class="card bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg transition" data-delay="720">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 bg-slate-50 p-3 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6M9 16h6M7 8h10M4 6h16v12H4z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold" data-translate="pc_user_title">ПК (Пользователь)</h3>
+              <p class="text-sm text-slate-600 mt-1" data-translate="pc_user_description">Обучение навыкам работы с ПК для сотрудников.</p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="container mx-auto py-12 px-4">
+      <div class="bg-white border rounded-2xl p-8 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div>
+            <h3 class="text-lg font-semibold" data-translate="contact_info">Контактная информация</h3>
+            <p class="text-slate-600 mt-2" data-translate="address">г. Уральск, Западно-Казахстанская область</p>
+            <p class="text-slate-600 mt-2">
+              <span data-translate="mobile">WhatsApp/Мобильный:</span> 
+              <a href="tel:+77710250008" class="text-brand-600">+7 771 025 00 08</a>
+            </p>
+            <p class="text-slate-600 mt-1">
+              <span data-translate="landline">Городской:</span> 
+              +7 (7112) 21-90-18
+            </p>
+            <p class="text-slate-600 mt-1">
+              <span data-translate="email">Email:</span> 
+              <a href="mailto:qhsesolutions5@gmail.com" class="text-brand-600">qhsesolutions5@gmail.com</a>
+            </p>
+            <p class="text-slate-600 mt-1">
+              <span data-translate="working_hours">Время работы:</span> 
+              <span data-translate="hours_value">Без выходных, 24/7</span>
+            </p>
+          </div>
+
+          <div class="lg:col-span-2">
+            <h3 class="text-lg font-semibold" data-translate="social_networks">Мы в социальных сетях</h3>
+            <p class="text-slate-600 mt-2" data-translate="social_description">Подписывайтесь, чтобы первыми получать новости и полезные материалы по охране труда.</p>
+
+            <div class="flex items-center gap-4 mt-4">
+              <a href="https://t.me/qhsesolutions" target="_blank" class="social-icon p-3 rounded-lg bg-white border shadow-sm" title="Telegram">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+              </a>
+
+              <a href="https://www.facebook.com/share/1K7Sww5ZFg/" target="_blank" class="social-icon p-3 rounded-lg bg-white border shadow-sm" title="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-700" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.5 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+              </a>
+
+              <a href="https://www.instagram.com/qhsesolutions.kz/" target="_blank" class="social-icon p-3 rounded-lg bg-white border shadow-sm" title="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.308.06 2.655.358 3.608 1.311.953.953 1.251 2.3 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.06 1.308-.358 2.655-1.311 3.608-.953.953-2.3 1.251-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.308-.06-2.655-.358-3.608-1.311-.953-.953-1.251-2.3-1.311-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.06-1.308.358-2.655 1.311-3.608.953-.953 2.3-1.251 3.608-1.311 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.877.089-3.181 1.394-3.27 3.27-.058 1.281-.072 1.689-.072 4.947s.014 3.667.072 4.947c.089 1.877 1.394 3.181 3.27 3.27 1.281.058 1.689.072 4.947.072s3.667-.014 4.947-.072c1.877-.089 3.181-1.394 3.27-3.27.058-1.281.072-1.689.072-4.947s-.014-3.667-.072-4.947c-.089-1.877-1.394-3.181-3.27-3.27-1.281-.058-1.689-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+
+              <a href="https://www.youtube.com/@qhsesolutions" target="_blank" class="social-icon p-3 rounded-lg bg-white border shadow-sm" title="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-200 py-8 mt-12">
+    <div class="container mx-auto text-center">
+      <div class="mb-3" data-translate="copyright">© 2025 QHSE Solutions</div>
+      <div class="text-sm text-slate-400" data-translate="rights">Built with care for safety. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Полные переводы для всех языков
+    const translations = {
+      ru: {
+        // Заголовки
+        site_title: 'QHSE Solutions — корпоративный дизайн',
+        company_name: 'QHSE Solutions',
+        tagline: 'Safety • Health • Environment',
+        
+        // Навигация
+        services_nav: 'Услуги',
+        contacts_nav: 'Контакты',
+        about_nav: 'О нас',
+        contact_btn: 'Связаться',
+        
+        // Герой-секция
+        hero_title: 'Комплексные решения в области безопасности и охраны труда вашего бизнеса.',
+        hero_description: 'Аудит, обучение, аттестация рабочих мест, производство контроля и цифровые IT-решения — всё в одном месте. Наш опыт помогает вам снизить риски и соответствовать лучшим международным практикам.',
+        
+        // Секция услуг
+        our_services: 'Наши услуги',
+        audit_title: 'Проведение Аудита и поддержка тендеров',
+        audit_description: 'Полный аудит систем охраны труда, рекомендации и подготовка тендерной документации.',
+        outsourcing_title: 'Аутсорсинг',
+        outsourcing_description: 'Делаем службу охраны труда вашей компании эффективной и прозрачной.',
+        workplace_certification: 'Аттестация рабочих мест',
+        workplace_certification_description: 'Оценка условий труда, приборные замеры и рекомендации по улучшению.',
+        production_control: 'Производственный контроль',
+        production_control_description: 'Контроль санитарных норм и соблюдения техники безопасности.',
+        training_title: 'Обучение',
+        training_description: 'Курсы по NEBOSH, IOSH, OPITO и корпоративные программы.',
+        equipment_title: 'Оборудование по БиОТ',
+        equipment_description: 'СИЗ, измерительные приборы, аренда и продажа оборудования.',
+        printing_title: 'Типография',
+        printing_description: 'Баннеры, стенды, журналы по охране труда.',
+        it_solutions_title: 'IT-решения',
+        it_solutions_description: 'Корпоративные платформы, базы документации, автоматизация процессов.',
+        ratool_title: 'Risk Assessment Tool',
+        ratool_description: 'Онлайн-инструмент для идентификации и управления рисками.',
+        english_title: 'Английский',
+        english_description: 'Профессиональный английский для HSE-специалистов.',
+        translation_title: 'Перевод',
+        translation_description: 'Технические, юридические и финансовые переводы.',
+        pc_user_title: 'ПК (Пользователь)',
+        pc_user_description: 'Обучение навыкам работы с ПК для сотрудников.',
+        
+        // Контакты
+        contact_info: 'Контактная информация',
+        address: 'г. Уральск, Западно-Казахстанская область',
+        mobile: 'WhatsApp/Мобильный:',
+        landline: 'Городской:',
+        email: 'Email:',
+        working_hours: 'Время работы:',
+        hours_value: 'Без выходных, 24/7',
+        social_networks: 'Мы в социальных сетях',
+        social_description: 'Подписывайтесь, чтобы первыми получать новости и полезные материалы по охране труда.',
+        
+        // Футер
+        copyright: '© 2025 QHSE Solutions',
+        rights: 'Built with care for safety. Все права защищены.'
+      },
+      
+      kz: {
+        // Заголовки
+        site_title: 'QHSE Solutions — корпоративті дизайн',
+        company_name: 'QHSE Solutions',
+        tagline: 'Қауіпсіздік • Денсаулық • Қоршаған орта',
+        
+        // Навигация
+        services_nav: 'Қызметтер',
+        contacts_nav: 'Байланыс',
+        about_nav: 'Біз туралы',
+        contact_btn: 'Байланысу',
+        
+        // Герой-секция
+        hero_title: 'Бизнесіңіздің қауіпсіздігі және еңбекті қорғау саласындағы кешенді шешімдер.',
+        hero_description: 'Аудит, оқыту, жұмыс орындарын аттестациялау, өндірістік бақылау және цифрлық IT-шешімдер — бәрі бір жерде. Біздің тәжірибе тәуекелдерді азайтуға және халықаралық ең жақсы тәжірибелерге сәйкес келуге көмектеседі.',
+        
+        // Секция услуг
+        our_services: 'Біздің қызметтер',
+        audit_title: 'Аудит өткізу және тендерлерді қолдау',
+        audit_description: 'Еңбекті қорғау жүйелерін толық тексеру, ұсыныстар және тендер құжаттарын дайындау.',
+        outsourcing_title: 'Аутсорсинг',
+        outsourcing_description: 'Компанияңыздың еңбекті қорғау қызметін тиімді және ашық етеміз.',
+        workplace_certification: 'Жұмыс орындарын аттестациялау',
+        workplace_certification_description: 'Еңбек жағдайларын бағалау, аспаптық өлшемдер және жақсарту бойынша ұсыныстар.',
+        production_control: 'Өндірістік бақылау',
+        production_control_description: 'Санитарлық нормалар мен техникалық қауіпсіздік ережелерінің сақталуын бақылау.',
+        training_title: 'Оқыту',
+        training_description: 'NEBOSH, IOSH, OPITO бойынша курстар және корпоративтік бағдарламалар.',
+        equipment_title: 'БиОТ бойынша жабдықтар',
+        equipment_description: 'ЖЖК, өлшеу құралдары, жабдықтарды жалға беру және сату.',
+        printing_title: 'Баспахана',
+        printing_description: 'Баннерлер, стендтер, еңбекті қорғау журналдары.',
+        it_solutions_title: 'IT-шешімдер',
+        it_solutions_description: 'Корпоративтік платформалар, құжаттама базалары, процестерді автоматтандыру.',
+        ratool_title: 'Тәуекелді бағалау құралы',
+        ratool_description: 'Тәуекелдерді анықтау және басқаруға арналған онлайн құрал.',
+        english_title: 'Ағылшын тілі',
+        english_description: 'HSE мамандары үшін кәсіби ағылшын тілі.',
+        translation_title: 'Аударма',
+        translation_description: 'Техникалық, заңды және қаржылық аудармалар.',
+        pc_user_title: 'ЖК (Пайдаланушы)',
+        pc_user_description: 'Қызметкерлер үшін ЖК-мен жұмыс істеу дағдыларын оқыту.',
+        
+        // Контакты
+        contact_info: 'Байланыс ақпараты',
+        address: 'Орал қ., Батыс Қазақстан облысы',
+        mobile: 'WhatsApp/Ұялы:',
+        landline: 'Қалалық:',
+        email: 'Электрондық пошта:',
+        working_hours: 'Жұмыс уақыты:',
+        hours_value: 'Демалыссыз, тәулік бойы',
+        social_networks: 'Әлеуметтік желілерде',
+        social_description: 'Еңбекті қорғау бойынша жаңалықтар мен пайдалы материалдарды бірінші болып алу үшін жазылыңыз.',
+        
+        // Футер
+        copyright: '© 2025 QHSE Solutions',
+        rights: 'Қауіпсіздік үшін мұқият жасалған. Барлық құқықтар қорғалған.'
+      },
+      
+      en: {
+        // Заголовки
+        site_title: 'QHSE Solutions — Corporate Design',
+        company_name: 'QHSE Solutions',
+        tagline: 'Safety • Health • Environment',
+        
+        // Навигация
+        services_nav: 'Services',
+        contacts_nav: 'Contacts',
+        about_nav: 'About Us',
+        contact_btn: 'Contact',
+        
+        // Герой-секция
+        hero_title: 'Comprehensive solutions in the field of safety and occupational health for your business.',
+        hero_description: 'Audit, training, workplace certification, production control and digital IT solutions — all in one place. Our experience helps you reduce risks and comply with the best international practices.',
+        
+        // Секция услуг
+        our_services: 'Our Services',
+        audit_title: 'Audit Conduct and Tender Support',
+        audit_description: 'Complete audit of occupational health and safety systems, recommendations and preparation of tender documentation.',
+        outsourcing_title: 'Outsourcing',
+        outsourcing_description: 'Making your company\'s occupational safety service efficient and transparent.',
+        workplace_certification: 'Workplace Certification',
+        workplace_certification_description: 'Assessment of working conditions, instrument measurements and improvement recommendations.',
+        production_control: 'Production Control',
+        production_control_description: 'Control of sanitary standards and compliance with safety regulations.',
+        training_title: 'Training',
+        training_description: 'Courses on NEBOSH, IOSH, OPITO and corporate programs.',
+        equipment_title: 'HSE Equipment',
+        equipment_description: 'PPE, measuring instruments, equipment rental and sale.',
+        printing_title: 'Printing',
+        printing_description: 'Banners, stands, occupational safety magazines.',
+        it_solutions_title: 'IT Solutions',
+        it_solutions_description: 'Corporate platforms, documentation databases, process automation.',
+        ratool_title: 'Risk Assessment Tool',
+        ratool_description: 'Online tool for risk identification and management.',
+        english_title: 'English',
+        english_description: 'Professional English for HSE specialists.',
+        translation_title: 'Translation',
+        translation_description: 'Technical, legal and financial translations.',
+        pc_user_title: 'PC (User)',
+        pc_user_description: 'Training in PC skills for employees.',
+        
+        // Контакты
+        contact_info: 'Contact Information',
+        address: 'Uralsk, West Kazakhstan Region',
+        mobile: 'WhatsApp/Mobile:',
+        landline: 'Landline:',
+        email: 'Email:',
+        working_hours: 'Working Hours:',
+        hours_value: '24/7, No Days Off',
+        social_networks: 'We are on Social Networks',
+        social_description: 'Subscribe to be the first to receive news and useful materials on occupational safety.',
+        
+        // Футер
+        copyright: '© 2025 QHSE Solutions',
+        rights: 'Built with care for safety. All rights reserved.'
+      }
+    };
+
+    // Language switcher
+    function changeLanguage(lang){
+      // Update text content
+      document.querySelectorAll('[data-translate]').forEach(el=>{
+        const key = el.getAttribute('data-translate');
+        if(translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Update page title
+      if(translations[lang] && translations[lang].site_title){
+        document.title = translations[lang].site_title;
+      }
+      
+      // Update active language button
+      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+      const btn = document.getElementById('lang-'+lang); 
+      if(btn) btn.classList.add('active');
+      
+      // Save language preference
+      localStorage.setItem('selectedLanguage', lang);
+      
+      console.log('Language changed to:', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // Set initial language
+      const saved = localStorage.getItem('selectedLanguage') || 'ru'; 
+      changeLanguage(saved);
+      
+      // Language buttons event listeners
+      document.getElementById('lang-ru').addEventListener('click', () => changeLanguage('ru'));
+      document.getElementById('lang-kz').addEventListener('click', () => changeLanguage('kz'));
+      document.getElementById('lang-en').addEventListener('click', () => changeLanguage('en'));
+
+      // mobile menu toggle
+      const burger = document.getElementById('burger'); 
+      const mobileMenu = document.getElementById('mobileMenu');
+      burger.addEventListener('click', ()=>{
+        if(mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== '0px'){ 
+          mobileMenu.style.maxHeight = '0px'; 
+        } else { 
+          mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px'; 
+        }
+      });
+
+      // header shadow on scroll
+      const topbar = document.getElementById('topbar');
+      window.addEventListener('scroll', ()=>{
+        if(window.scrollY > 10) 
+          topbar.classList.add('shadow-md'); 
+        else 
+          topbar.classList.remove('shadow-md');
+      });
+
+      // cards appear animation
+      document.querySelectorAll('.card').forEach((el, i)=>{
+        const delay = el.dataset.delay ? parseInt(el.dataset.delay) : (i+1)*80;
+        setTimeout(()=> el.classList.add('show'), delay);
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.style.maxHeight = '0px';
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>
