@@ -1,6 +1,6 @@
 <?php
 // Base URL of your MediaCMS instance
-define('MEDIACMS_BASE', 'https://yetemare.com/app');
+define('MEDIACMS_BASE', 'https://yetemare.com/content');
 
 // Admin credentials for API actions (create/reset user)
 define('ADMIN_USER', 'yohannes');
