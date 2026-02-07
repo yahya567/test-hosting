@@ -1,8 +1,4 @@
-# Base image
 FROM php:8.2-apache-bullseye
-
-# Set working directory
-WORKDIR /var/www/html
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,26 +6,30 @@ RUN apt-get update && apt-get install -y \
     curl \
     unixodbc \
     unixodbc-dev \
+    libc-client-dev \
     libkrb5-dev \
-    libc-client2007e-dev \
-    libssl-dev \
-    pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Microsoft ODBC Driver 18 for SQL Server
-RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg \
-    && curl -sSL https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/11/prod.list \
+        > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update \
-    && apt-get remove -y libodbc2 libodbccr2 libodbcinst2 unixodbc-common \
-    && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql18
+    
+# Install PHP IMAP extension (must be compiled with kerberos support)
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install imap sockets pdo \
-    && pecl install sqlsrv pdo_sqlsrv \
-    && docker-php-ext-enable sqlsrv pdo_sqlsrv \
-    && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
+    && docker-php-ext-install imap
+
+# Install PHP extensions for SQL Server
+RUN pecl install sqlsrv pdo_sqlsrv \
+    && docker-php-ext-enable sqlsrv pdo_sqlsrv
+
+# Install required PHP extensions
+RUN docker-php-ext-install sockets pdo
+
+# Install ODBC support
+RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
     && docker-php-ext-install pdo_odbc
 
 # Copy custom php.ini
@@ -38,8 +38,9 @@ COPY php.ini /usr/local/etc/php/conf.d/
 # Enable Apache modules
 RUN a2enmod rewrite
 
-# Expose port 80
+# Set working directory
+WORKDIR /var/www/html
+
 EXPOSE 80
 
-# Start Apache
 CMD ["apache2-foreground"]
