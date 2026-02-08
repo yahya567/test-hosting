@@ -183,7 +183,7 @@ function resetPassword($username, $newPassword) {
 
     // 2) Perform reset
     $encUser = rawurlencode($username);
-    $url = MEDIACMS_BASE . "/api/v1/users/$encUser/";
+    $url = MEDIACMS_BASE . "/api/v1/users/$encUser";
 
     $payload = json_encode([
         'action' => 'change_password',
@@ -231,7 +231,7 @@ function resetPassword($username, $newPassword) {
 
 function mediacmsUserExists($username, $token) {
     $encUser = rawurlencode($username);
-    $url = MEDIACMS_BASE . "/api/v1/users/$encUser/";
+    $url = MEDIACMS_BASE . "/api/v1/users/$encUser";
 
     $ch = curl_init($url);
     curl_setopt_array($ch, [
