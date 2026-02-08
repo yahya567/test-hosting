@@ -185,11 +185,12 @@ function resetPassword($username, $newPassword) {
     $encUser = rawurlencode($username);
     $url = MEDIACMS_BASE . "/api/v1/users/$encUser";
 
-    $payload = json_encode([
-        'action' => 'change_password',
+    // 🔥 FIX: multipart/form-data instead of JSON
+    $fields = [
+        'action'   => 'change_password',
         'username' => $username,
         'password' => $newPassword
-    ]);
+    ];
 
     $ch = curl_init($url);
     curl_setopt_array($ch, [
@@ -198,10 +199,9 @@ function resetPassword($username, $newPassword) {
         CURLOPT_HEADER => true,
         CURLOPT_HTTPHEADER => [
             "Authorization: Token $token",
-            "Content-Type: application/json",
             "Accept: application/json"
         ],
-        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_POSTFIELDS => $fields, // ← this forces multipart/form-data
         CURLOPT_SSL_VERIFYPEER => true
     ]);
 
@@ -216,7 +216,7 @@ function resetPassword($username, $newPassword) {
 
     error_log("=== RESET PASSWORD DEBUG ===");
     error_log("PUT URL: $url");
-    error_log("PAYLOAD: $payload");
+    error_log("FIELDS: " . json_encode($fields));
     error_log("HTTP CODE: $httpCode");
     error_log("RESPONSE HEADERS: $headers");
     error_log("RESPONSE BODY: $body");
