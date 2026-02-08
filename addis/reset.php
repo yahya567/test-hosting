@@ -1,8 +1,8 @@
 <?php
 require 'admin_api.php';
 
-$phone = $_POST['phone'] ?? '';
-$newPassword = $_POST['new_password'] ?? '';
+$phone = $_GET['phone'] ?? '';
+$newPassword = $_GET['new_password'] ?? '';
 $comm = $_GET['comm'] ?? '';
 
 if ($comm !== 'fromfalconvas123') {
