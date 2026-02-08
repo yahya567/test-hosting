@@ -62,34 +62,53 @@ function createUser($username, $password, $email, $name = null) {
     $token = getAdminToken();
     if (!$name) $name = $username; // fallback
 
-    $ch = curl_init(MEDIACMS_BASE . '/api/v1/users/');
+    $url = MEDIACMS_BASE . '/api/v1/users/';
+    $payload = json_encode([
+        "username" => $username,
+        "password" => $password,
+        "email" => $email,
+        "name" => $name
+    ]);
+
+    $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
+        CURLOPT_HEADER => true,
         CURLOPT_HTTPHEADER => [
             "Authorization: Token $token",
             "Content-Type: application/json",
             "Accept: application/json"
         ],
-        CURLOPT_POSTFIELDS => json_encode([
-            "username" => $username,
-            "password" => $password,
-            "email" => $email,
-            "name" => $name
-        ])
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_SSL_VERIFYPEER => true
     ]);
 
-    $res = curl_exec($ch);
+    $response = curl_exec($ch);
     $curlErr = curl_error($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+
+    $headers = substr($response, 0, $headerSize);
+    $body = substr($response, $headerSize);
+
+    curl_close($ch);
 
     error_log("=== CREATE USER DEBUG ===");
+    error_log("POST URL: $url");
+    error_log("TOKEN: $token");
+    error_log("POST PAYLOAD: $payload");
     error_log("HTTP CODE: $httpCode");
     if ($curlErr) error_log("CURL ERROR: $curlErr");
-    error_log("RESPONSE BODY: $res");
+    error_log("RESPONSE HEADERS: " . $headers);
+    error_log("RESPONSE BODY: " . $body);
     error_log("========================");
 
-    return json_decode($res, true);
+    if ($httpCode < 200 || $httpCode >= 300) {
+        throw new Exception("Create user failed with HTTP $httpCode. See PHP error log for details.");
+    }
+
+    return json_decode($body, true);
 }
 
 /**
@@ -98,55 +117,88 @@ function createUser($username, $password, $email, $name = null) {
 function resetPassword($username, $newPassword) {
     $token = getAdminToken();
 
-    $ch = curl_init(MEDIACMS_BASE . "/api/v1/users/$username");
+    $url = MEDIACMS_BASE . "/api/v1/users/$username";
+    $payload = json_encode(["password" => $newPassword]);
+
+    $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CUSTOMREQUEST => 'PUT',
+        CURLOPT_HEADER => true,
         CURLOPT_HTTPHEADER => [
             "Authorization: Token $token",
             "Content-Type: application/json",
             "Accept: application/json"
         ],
-        CURLOPT_POSTFIELDS => json_encode([
-            "password" => $newPassword
-        ])
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_SSL_VERIFYPEER => true
     ]);
 
-    $res = curl_exec($ch);
+    $response = curl_exec($ch);
     $curlErr = curl_error($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+
+    $headers = substr($response, 0, $headerSize);
+    $body = substr($response, $headerSize);
+
+    curl_close($ch);
 
     error_log("=== RESET PASSWORD DEBUG ===");
+    error_log("PUT URL: $url");
+    error_log("TOKEN: $token");
+    error_log("PAYLOAD: $payload");
     error_log("HTTP CODE: $httpCode");
     if ($curlErr) error_log("CURL ERROR: $curlErr");
-    error_log("RESPONSE BODY: $res");
+    error_log("RESPONSE HEADERS: " . $headers);
+    error_log("RESPONSE BODY: " . $body);
     error_log("============================");
 
-    return json_decode($res, true);
+    if ($httpCode < 200 || $httpCode >= 300) {
+        throw new Exception("Reset password failed with HTTP $httpCode. See PHP error log for details.");
+    }
+
+    return json_decode($body, true);
 }
 
 function deleteUser($username) {
     $token = getAdminToken();
 
-    $ch = curl_init(MEDIACMS_BASE . "/api/v1/users/$username");
+    $url = MEDIACMS_BASE . "/api/v1/users/$username";
+    $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HEADER => true,
         CURLOPT_HTTPHEADER => [
             "Authorization: Token $token",
             "Accept: application/json"
-        ]
+        ],
+        CURLOPT_SSL_VERIFYPEER => true
     ]);
 
-    $res = curl_exec($ch);
+    $response = curl_exec($ch);
     $curlErr = curl_error($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+
+    $headers = substr($response, 0, $headerSize);
+    $body = substr($response, $headerSize);
+
+    curl_close($ch);
 
     error_log("=== DELETE USER DEBUG ===");
+    error_log("DELETE URL: $url");
+    error_log("TOKEN: $token");
     error_log("HTTP CODE: $httpCode");
     if ($curlErr) error_log("CURL ERROR: $curlErr");
-    error_log("RESPONSE BODY: $res");
+    error_log("RESPONSE HEADERS: " . $headers);
+    error_log("RESPONSE BODY: " . $body);
     error_log("==========================");
 
-    return json_decode($res, true);
+    if ($httpCode < 200 || $httpCode >= 300) {
+        throw new Exception("Delete user failed with HTTP $httpCode. See PHP error log for details.");
+    }
+
+    return json_decode($body, true);
 }
