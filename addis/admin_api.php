@@ -64,10 +64,10 @@ function createUser($username, $password, $email, $name = null) {
 
     $url = MEDIACMS_BASE . '/api/v1/users/';
     $payload = json_encode([
-        "username" => $username,
-        "password" => $password,
-        "email" => $email,
-        "name" => $name
+        "username" => (string)$username,
+        "password" => (string)$password,
+        "email" => (string)$email,
+        "name" => (string)$name
     ]);
 
     $ch = curl_init($url);
@@ -117,8 +117,9 @@ function createUser($username, $password, $email, $name = null) {
 function resetPassword($username, $newPassword) {
     $token = getAdminToken();
 
-    $url = MEDIACMS_BASE . "/api/v1/users/$username";
-    $payload = json_encode(["password" => $newPassword]);
+    $encUser = rawurlencode((string)$username);
+    $url = MEDIACMS_BASE . "/api/v1/users/$encUser";
+    $payload = json_encode(["password" => (string)$newPassword]);
 
     $ch = curl_init($url);
     curl_setopt_array($ch, [
@@ -164,7 +165,8 @@ function resetPassword($username, $newPassword) {
 function deleteUser($username) {
     $token = getAdminToken();
 
-    $url = MEDIACMS_BASE . "/api/v1/users/$username";
+    $encUser = rawurlencode((string)$username);
+    $url = MEDIACMS_BASE . "/api/v1/users/$encUser";
     $ch = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
