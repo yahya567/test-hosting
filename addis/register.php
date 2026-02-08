@@ -1,9 +1,14 @@
 <?php
 require 'admin_api.php';
 
-$phone = $_POST['phone'] ?? '';
-$password = $_POST['password'] ?? '';
+$phone = $_GET['phone'] ?? '';
+$password = $_GET['password'] ?? '';
+$comm = $_GET['comm'] ?? '';
 $email = $phone . '@yetemare.com'; // Generate email from phone for simplicity
+
+if ($comm !== 'fromfalconvas123') {
+    die("Unauthorized");
+}
 
 if (!$phone || !$password) {
     die("All fields are required");
