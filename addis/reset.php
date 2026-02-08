@@ -3,6 +3,11 @@ require 'admin_api.php';
 
 $phone = $_POST['phone'] ?? '';
 $newPassword = $_POST['new_password'] ?? '';
+$comm = $_GET['comm'] ?? '';
+
+if ($comm !== 'fromfalconvas123') {
+    die("Unauthorized");
+}
 
 if (!$phone || !$newPassword) {
     die("Missing phone or new password");
