@@ -3,7 +3,7 @@ require 'admin_api.php';
 
 $phone = $_POST['phone'] ?? '';
 $password = $_POST['password'] ?? '';
-$email = $_POST['email'] ?? '';
+$email = $phone . '@yetemare.com'; // Generate email from phone for simplicity
 
 if (!$phone || !$password || !$email) {
     die("All fields are required");
