@@ -5,7 +5,7 @@ $phone = $_POST['phone'] ?? '';
 $password = $_POST['password'] ?? '';
 $email = $phone . '@yetemare.com'; // Generate email from phone for simplicity
 
-if (!$phone || !$password || !$email) {
+if (!$phone || !$password) {
     die("All fields are required");
 }
 
