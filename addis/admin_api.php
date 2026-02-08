@@ -119,7 +119,8 @@ function resetPassword($username, $newPassword) {
     // Per MediaCMS API (PUT /users/{username}) the request body should include
     // `action`, `username`, and `password` as JSON. Send exactly that.
     $encUser = rawurlencode((string)$username);
-    $url = MEDIACMS_BASE . "/api/v1/users/$encUser";
+    // Ensure trailing slash to match MediaCMS API route (/api/v1/users/{username}/)
+    $url = MEDIACMS_BASE . "/api/v1/users/$encUser/";
     $payload = json_encode([
         'action' => 'change_password',
         'username' => (string)$username,
