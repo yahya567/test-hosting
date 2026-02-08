@@ -124,3 +124,29 @@ function resetPassword($username, $newPassword) {
 
     return json_decode($res, true);
 }
+
+function deleteUser($username) {
+    $token = getAdminToken();
+
+    $ch = curl_init(MEDIACMS_BASE . "/api/v1/users/$username");
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => [
+            "Authorization: Token $token",
+            "Accept: application/json"
+        ]
+    ]);
+
+    $res = curl_exec($ch);
+    $curlErr = curl_error($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    error_log("=== DELETE USER DEBUG ===");
+    error_log("HTTP CODE: $httpCode");
+    if ($curlErr) error_log("CURL ERROR: $curlErr");
+    error_log("RESPONSE BODY: $res");
+    error_log("==========================");
+
+    return json_decode($res, true);
+}
